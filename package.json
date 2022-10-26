@@ -18,7 +18,8 @@
     "gsap": "^3.10.4",
     "marked": "^4.0.14",
     "next": "13.0.0",
-    "next-pwa": "^5.4.6",
+    "next-compose-plugins": "^2.2.1",
+    "next-pwa": "^5.6.0",
     "normalize.css": "^8.0.1",
     "nprogress": "^0.2.0",
     "react": "18.2.0",
@@ -34,16 +35,24 @@
     "remark": "^14.0.2",
     "remark-html": "^15.0.1",
     "sharp": "^0.30.4",
-    "swiper": "^8.1.4"
+    "swiper": "^8.1.4",
+    "typed.js": "^2.0.12"
   },
   "devDependencies": {
     "@types/react": "18.0.23",
+    "@typescript-eslint/eslint-plugin": "^5.41.0",
     "autoprefixer": "^10.4.12",
-    "eslint": "8.26.0",
+    "eslint": "^8.26.0",
     "eslint-config-next": "13.0.0",
+    "eslint-config-standard-with-typescript": "^23.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.3.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-react": "^7.31.10",
     "postcss": "^8.4.18",
     "sass": "^1.55.0",
     "tailwindcss": "^3.2.1",
-    "tailwindcss-debug-screens": "^2.2.1"
+    "tailwindcss-debug-screens": "^2.2.1",
+    "typescript": "^4.8.4"
   }
 }

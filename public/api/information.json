@@ -1,0 +1,29 @@
+{
+    "firstName": "Robin",
+    "lastName": "Regis",
+    "fullName": "Robin Regis",
+    "thumbImage": "/images/formal-image.png",
+    "largeImage": "/images/about-image.jpg",
+    "bio": "I am a frontend web developer. I can provide clean code and pixel perfect design. I also make website more & more interactive with web animations.",
+    "age": 26,
+    "nationality": "Française",
+    "languages": [
+        "Français",
+        "Anglais"
+    ],
+    "address": "2 rue Alexis de Tocqueville, 78000, Versailles",
+    "freelance": "Disponible",
+    "socialAddress": {
+        "facebook": "",
+        "twitter": "",
+        "github": "https://github.com/Robilol",
+        "linkedin": "https://www.linkedin.com/in/robin-regis-933b41100/",
+        "dribbble": ""
+    },
+    "phoneNumbers": [
+        "06 34 48 70 32"
+    ],
+    "emailAddress": [
+        "robin.regis78@gmail.com"
+    ]
+}

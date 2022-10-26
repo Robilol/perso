@@ -34,7 +34,7 @@ const Homepage2 = ({ posts }) => {
         className="about-section pt-24 lg:pt-28 xl:pt-32"
       >
         <div className="container mx-auto">
-          <SectionHeading animated={false} title="About Me" watermark="About" />
+          <SectionHeading animated={false} title="À propos de moi" watermark="À propos" />
           <AboutSection />
         </div>
       </Section>
@@ -46,7 +46,7 @@ const Homepage2 = ({ posts }) => {
         className="skills-section pt-24 lg:pt-28 xl:pt-32"
       >
         <div className="container mx-auto">
-          <SectionHeading animated={false} title="My Skills" watermark="Skills" />
+          <SectionHeading animated={false} title="Mes compétences" watermark="Compétences" />
           <SkillsSection />
         </div>
       </Section>
@@ -58,7 +58,7 @@ const Homepage2 = ({ posts }) => {
         className="services-section pt-24 lg:pt-28 xl:pt-32"
       >
         <div className="container mx-auto">
-          <SectionHeading animated={false} title="My Services" watermark="Services" />
+          <SectionHeading animated={false} title="Mes services" watermark="Services" />
           <ServicesSection />
         </div>
       </Section>
@@ -70,7 +70,7 @@ const Homepage2 = ({ posts }) => {
         className="resume-section pt-24 lg:pt-28 xl:pt-32"
       >
         <div className="container mx-auto">
-          <SectionHeading animated={false} title="My Resume" watermark="Resume" />
+          <SectionHeading animated={false} title="Mon exprérience" watermark="Expérience" />
           <ResumeSection />
         </div>
       </Section>
@@ -82,7 +82,7 @@ const Homepage2 = ({ posts }) => {
         className="portfolios-section pt-24 lg:pt-28 xl:pt-32"
       >
         <div className="container mx-auto">
-          <SectionHeading animated={false} title="My Works" watermark="Works" />
+          <SectionHeading animated={false} title="Mes réalisations" watermark="Réalisations" />
           <PortfoliosSection />
         </div>
       </Section>
@@ -94,22 +94,22 @@ const Homepage2 = ({ posts }) => {
         className="reviews-section pt-24 lg:pt-28 xl:pt-32"
       >
         <div className="container mx-auto">
-          <SectionHeading animated={false} title="Client Reviews" watermark="Reviews" />
+          <SectionHeading animated={false} title="Avis" watermark="Avis" />
           <ReviewsSection />
         </div>
       </Section>
       {/* End Reviews Section */}
 
       {/* Start Blog Section */}
-      <Section
-        name="section-blog"
-        className="news-section pt-24 lg:pt-28 xl:pt-32"
-      >
-        <div className="container mx-auto">
-          <SectionHeading animated={false} title="Latest Blogs" watermark="Blogs" />
-          <BlogSection posts={posts} />
-        </div>
-      </Section>
+      {/*<Section*/}
+      {/*  name="section-blog"*/}
+      {/*  className="news-section pt-24 lg:pt-28 xl:pt-32"*/}
+      {/*>*/}
+      {/*  <div className="container mx-auto">*/}
+      {/*    <SectionHeading animated={false} title="Latest Blogs" watermark="Blogs" />*/}
+      {/*    <BlogSection posts={posts} />*/}
+      {/*  </div>*/}
+      {/*</Section>*/}
       {/* End Blog Section */}
 
       {/* Start Contact Section */}
@@ -118,7 +118,7 @@ const Homepage2 = ({ posts }) => {
         className="contact-section pt-24 lg:pt-28 xl:pt-32"
       >
         <div className="container mx-auto">
-          <SectionHeading animated={false} title="Contact Us" watermark="Contact" />
+          <SectionHeading animated={false} title="Me contacter" watermark="Contact" />
           <ContactSection />
         </div>
       </Section>

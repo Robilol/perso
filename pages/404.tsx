@@ -31,10 +31,10 @@ const NotFound = () => {
                 )}`}
               />
               <div>
-                <Link href="/">
-                  <a className="btn btn-large">
-                    <span>Back to home</span>
-                  </a>
+                <Link href="/" className="btn btn-large">
+
+                  <span>Back to home</span>
+
                 </Link>
               </div>
             </div>

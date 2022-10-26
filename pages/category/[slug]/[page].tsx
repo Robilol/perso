@@ -75,26 +75,26 @@ const CategoryPosts = ({ posts, hasMore, categories, recentPosts }) => {
               </div>
               <div className="flex gap-3 pt-10 text-center">
                 {pageNumber !== "1" && (
-                  <Link
+                  (<Link
                     href={`/category/${slug}/${String(
                       parseInt(pageNumber) - 1
                     )}`}
-                  >
-                    <a className="btn btn-small">
-                      <span>Prev</span>
-                    </a>
-                  </Link>
+                    className="btn btn-small">
+
+                    <span>Prev</span>
+
+                  </Link>)
                 )}
                 {hasMore && (
-                  <Link
+                  (<Link
                     href={`/category/${slug}/${String(
                       parseInt(pageNumber) + 1
                     )}`}
-                  >
-                    <a className="btn btn-small">
-                      <span>Next</span>
-                    </a>
-                  </Link>
+                    className="btn btn-small">
+
+                    <span>Next</span>
+
+                  </Link>)
                 )}
               </div>
             </div>
@@ -114,18 +114,20 @@ const CategoryPosts = ({ posts, hasMore, categories, recentPosts }) => {
                   <ul className="styledlist mb-0 list-none pl-0">
                     {uniqueCategories.map((category, i) => (
                       <li key={i}>
-                        <Link href={`/category/${createSlug(category)}/1`}>
-                          <a className="clearfix hover:text-primary">
-                            {category}
-                            <span className="float-right">
-                              (
-                              {
-                                categories.filter((cat) => cat === category)
-                                  .length
-                              }
-                              )
-                            </span>
-                          </a>
+                        <Link
+                          href={`/category/${createSlug(category)}/1`}
+                          className="clearfix hover:text-primary">
+
+                          {category}
+                          <span className="float-right">
+                            (
+                            {
+                              categories.filter((cat) => cat === category)
+                                .length
+                            }
+                            )
+                          </span>
+
                         </Link>
                       </li>
                     ))}
@@ -146,10 +148,12 @@ const CategoryPosts = ({ posts, hasMore, categories, recentPosts }) => {
                     {recentPosts.map((post, index) => (
                       <li key={index} className="mb-4 last:mb-0">
                         <p className="mb-0">
-                          <Link href={`/postdetails/${post.slug}`}>
-                            <a className="text-heading no-underline hover:text-primary hover:underline">
-                              {post.title}{" "}
-                            </a>
+                          <Link
+                            href={`/postdetails/${post.slug}`}
+                            className="text-heading no-underline hover:text-primary hover:underline">
+
+                            {post.title}{" "}
+
                           </Link>
                         </p>
                         <small className="text-body">
