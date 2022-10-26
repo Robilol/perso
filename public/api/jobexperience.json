@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "title": "Freelance React.js / Next.js / Typescript",
+        "meta": "Remote",
+        "text": "",
+        "year": "Actuellement"
+    },
+    {
+        "id": 2,
+        "title": "Développeur Front-end",
+        "meta": "LesHabitués (Groupe UP), Paris (75)",
+        "text": "",
+        "year": "2019 - 2022"
+    },
+    {
+        "id": 3,
+        "title": "Développeur Front-end - Alternance",
+        "meta": "Likibu, Paris (75)",
+        "text": "",
+        "year": "2018 - 2019"
+    },
+    {
+        "id": 4,
+        "title": "Développeur Web - Alternance",
+        "meta": "Envergure Digitale, Houilles (78)",
+        "text": "",
+        "year": "2017 - 2018"
+    },
+    {
+        "id": 5,
+        "title": "Développeur Back-end - Alternance",
+        "meta": "Alltricks, Maurepas (78)",
+        "text": "",
+        "year": "2014 - 2017"
+    }
+]

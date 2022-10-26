@@ -1,0 +1,23 @@
+{
+    "theme_color": "#72E2AE",
+    "background_color": "#0B1223",
+    "display": "browser",
+    "orientation": "portrait",
+    "scope": "/",
+    "start_url": "/",
+    "name": "Robin Regis - Développeur Front-end React.js / Next.js / Typescript",
+    "short_name": "Robin Regis",
+    "description": "Ancien développeur Back-end j'ai décidé de passer de l'invisible au visible en me spécialisant dans le développement frontend plus particulièrement sur React.js",
+    "icons": [
+        {
+            "src": "/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "title": "Développement Front-end",
+        "text": "Spécialisé sur React.js et Next.js je suis à même de répondre à vos besoins. Je reste ouvert aux différents frameworks JS front.",
+        "icon": "/icons/code-s-slash-line.svg"
+    },
+    {
+        "id": 2,
+        "title": "Développement web",
+        "text": "Je peux également développer différents sites vitrine / ecommerce via CMS ou de façon custom selon vos besoins.",
+        "icon": "/icons/code-s-slash-line.svg"
+    },
+    {
+        "id": 3,
+        "title": "Intégration",
+        "text": "Je peux évidemment mener vos besoins d'intégration plus classique de façon rapide via des outils tels que TailwindCSS.",
+        "icon": "/icons/quill-pen-line.svg"
+    }
+]
