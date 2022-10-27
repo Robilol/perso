@@ -25,7 +25,7 @@ const MobileNavigation = ({ changeState }) => {
         <li className="block">
           {checkroute ? (
             (<Link
-              href="/homepage2"
+              href="/Index"
               className="group relative inline-block cursor-pointer py-2 text-lg uppercase tracking-wider text-heading before:text-primary"
               onClick={() => handleClick()}>
               Home<span className="absolute left-0 top-auto bottom-5 inline-block h-px w-full origin-top-right scale-0 bg-primary align-middle transition-transform duration-500 group-hover:origin-top-left group-hover:scale-100"></span>
@@ -50,7 +50,7 @@ const MobileNavigation = ({ changeState }) => {
         <li className="block">
           {checkroute ? (
             (<Link
-              href="/homepage2"
+              href="/Index"
               className="group relative inline-block cursor-pointer py-2 text-lg uppercase tracking-wider text-heading before:text-primary"
               onClick={() => handleClick()}>
               About<span className="absolute left-0 top-auto bottom-5 inline-block h-px w-full origin-top-right scale-0 bg-primary align-middle transition-transform duration-500 group-hover:origin-top-left group-hover:scale-100"></span>
@@ -75,7 +75,7 @@ const MobileNavigation = ({ changeState }) => {
         <li className="block">
           {checkroute ? (
             (<Link
-              href="/homepage2"
+              href="/Index"
               className="group relative inline-block cursor-pointer py-2 text-lg uppercase tracking-wider text-heading before:text-primary"
               onClick={() => handleClick()}>
               Resume<span className="absolute left-0 top-auto bottom-5 inline-block h-px w-full origin-top-right scale-0 bg-primary align-middle transition-transform duration-500 group-hover:origin-top-left group-hover:scale-100"></span>
@@ -100,7 +100,7 @@ const MobileNavigation = ({ changeState }) => {
         <li className="block">
           {checkroute ? (
             (<Link
-              href="/homepage2"
+              href="/Index"
               className="group relative inline-block cursor-pointer py-2 text-lg uppercase tracking-wider text-heading before:text-primary"
               onClick={() => handleClick()}>
               Works<span className="absolute left-0 top-auto bottom-5 inline-block h-px w-full origin-top-right scale-0 bg-primary align-middle transition-transform duration-500 group-hover:origin-top-left group-hover:scale-100"></span>
@@ -134,7 +134,7 @@ const MobileNavigation = ({ changeState }) => {
         <li className="block">
           {checkroute ? (
             (<Link
-              href="/homepage2"
+              href="/Index"
               className="group relative inline-block cursor-pointer py-2 text-lg uppercase tracking-wider text-heading before:text-primary"
               onClick={() => handleClick()}>
               Contact<span className="absolute left-0 top-auto bottom-5 inline-block h-px w-full origin-top-right scale-0 bg-primary align-middle transition-transform duration-500 group-hover:origin-top-left group-hover:scale-100"></span>

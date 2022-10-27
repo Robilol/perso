@@ -1,13 +1,13 @@
 [
     {
         "id": 1,
-        "title": "UI/UX Design",
-        "percentage": 85
+        "title": "Front-end",
+        "percentage": 90
     },
     {
         "id": 2,
-        "title": "Back-end Development",
-        "percentage": 80
+        "title": "Back-end",
+        "percentage": 70
     },
     {
         "id": 3,

@@ -5,6 +5,7 @@ import { childrenAnimation } from "../../lib/motion";
 import { getInformation } from "../../fetchers";
 import { useQuery } from "react-query";
 import { Spinner } from "../utils";
+import dayjs from "dayjs";
 
 const AboutSection = () => {
   const { data, isLoading } = useQuery("information", getInformation);
@@ -84,7 +85,7 @@ const AboutSection = () => {
                 <strong className="inline-block min-w-[120px] font-medium">
                   Âge{" "}
                 </strong>
-                : {data.age} ans
+                : {dayjs().diff(dayjs(data.birthday), 'year')} ans
               </li>
             )}
             {data.nationality && (

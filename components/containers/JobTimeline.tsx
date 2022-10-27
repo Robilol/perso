@@ -14,7 +14,7 @@ const JobTimeline = () => {
         <div className="job-experience">
             <h4>
                 <RiBriefcaseLine className="mr-2 inline-block text-primary" />
-                Working Experience
+                Expériences professionnelles
             </h4>
             {data?.map((timeline, index) => (
                 <motion.div
