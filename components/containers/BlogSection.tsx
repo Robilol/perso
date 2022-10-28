@@ -6,7 +6,7 @@ import { Spinner } from "../utils";
 
 const BlogSection = ({ posts }) => {
   const [mounted, setMounted] = useState(false);
-  const sliderRef = useRef(null);
+  const sliderRef = useRef<any>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -40,6 +40,7 @@ const BlogSection = ({ posts }) => {
           delay: 5000,
         }}
         centerInsufficientSlides={true}
+        // @ts-ignore
         ref={sliderRef}
         breakpoints={{
           320: {

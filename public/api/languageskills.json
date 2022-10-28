@@ -1,42 +1,62 @@
 [
     {
         "id": 1,
-        "title": "Javascript",
-        "percentage": 85
+        "title": "React.js",
+        "percentage": 95
+    },
+    {
+        "id": 1,
+        "title": "Typescript",
+        "percentage": 90
     },
     {
         "id": 2,
-        "title": "Node Js",
+        "title": "Javascript",
         "percentage": 90
     },
     {
         "id": 3,
-        "title": "React Js",
-        "percentage": 80
+        "title": "Next.js",
+        "percentage": 90
     },
     {
         "id": 4,
-        "title": "React Native",
-        "percentage": 70
+        "title": "Node.js",
+        "percentage": 80
     },
     {
         "id": 5,
-        "title": "Html & Css",
-        "percentage": 95
+        "title": "Svelte",
+        "percentage": 10
     },
     {
         "id": 6,
-        "title": "Photoshop",
-        "percentage": 75
+        "title": "Astro",
+        "percentage": 10
     },
     {
         "id": 7,
-        "title": "Illustrator",
-        "percentage": 70
+        "title": "React native",
+        "percentage": 20
     },
     {
         "id": 8,
-        "title": "Figma",
-        "percentage": 90
+        "title": "PHP",
+        "percentage": 70
+    },
+    {
+        "id": 9,
+        "title": "Symfony",
+        "percentage": 70
+    },
+    {
+        "id": 10,
+        "title": "Wordpress",
+        "percentage": 70
+    },
+    {
+        "id": 11,
+        "title": "Prestashop",
+        "percentage": 80
     }
 ]

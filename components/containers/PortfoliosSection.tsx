@@ -80,10 +80,10 @@ const PortfoliosSection = () => {
           </motion.div>
         ))}
       </motion.div>
-      {visiblePortfolios < data ? (
+      {visiblePortfolios.length < data ? (
         <div className="mt-12 text-center">
           <button className="btn btn-small" onClick={() => handleLoadmore()}>
-            <span>Load More</span>
+            <span>Voir plus</span>
           </button>
         </div>
       ) : null}

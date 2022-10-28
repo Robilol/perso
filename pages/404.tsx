@@ -1,20 +1,24 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { Breadcrumb } from "../components/elements";
-import { Layout } from "../components/layout";
-import { toBase64, shimmer, imageLoader } from "../lib/utils";
+import {Breadcrumb} from "../components/elements";
+import {Layout} from "../components/layout";
+import {toBase64, shimmer, imageLoader} from "../lib/utils";
 
 const NotFound = () => {
   return (
-    <Layout>
+    <Layout blurred>
       <Head>
         <title>Page non trouvée - Robin Regis - Développeur Front-end React.js / Next.js / Typescript</title>
       </Head>
 
       {/* Start NotFound Section */}
       <section className="section-notfound">
-        <Breadcrumb title="Page not found" />
+        <Breadcrumb title="Page not found" paths={[
+          {
+            name: "Home",
+            link: "/",
+          }]} blurred={false}/>
         <div className="not-found-wrapper pb-24 pt-10 lg:pt-14 lg:pb-28 xl:pt-16 xl:pb-32">
           <div className="container mx-auto">
             <div className="not-found text-center">

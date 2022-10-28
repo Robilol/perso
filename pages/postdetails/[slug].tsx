@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useState, useEffect } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -62,8 +63,6 @@ const PostPage = ({ title, date, cover, category, content }) => {
                 height={650}
                 width={1350}
                 alt="Blog Image"
-                layout="responsive"
-                objectFit="cover"
                 placeholder="blur"
                 blurDataURL={`data:image/svg+xml;base64,${toBase64(
                   shimmer(1350, 650)

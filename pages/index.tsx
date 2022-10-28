@@ -2,12 +2,10 @@ import Head from "next/head";
 import { Element as Section } from "react-scroll";
 import {
   AboutSection,
-  BlogSection,
   ContactSection,
   HeroSection,
   PortfoliosSection,
   ResumeSection,
-  ReviewsSection,
   ServicesSection,
   SkillsSection,
 } from "../components/containers";
@@ -70,7 +68,7 @@ const Index = ({ posts }) => {
         className="resume-section pt-24 lg:pt-28 xl:pt-32"
       >
         <div className="container mx-auto">
-          <SectionHeading animated={false} title="Mon exprérience" watermark="Expérience" />
+          <SectionHeading animated={false} title="Mon expérience" watermark="Expérience" />
           <ResumeSection />
         </div>
       </Section>
@@ -89,15 +87,15 @@ const Index = ({ posts }) => {
       {/* End Portfolios Section */}
 
       {/* Start Reviews Section */}
-      <Section
-        name="section-reviews"
-        className="reviews-section pt-24 lg:pt-28 xl:pt-32"
-      >
-        <div className="container mx-auto">
-          <SectionHeading animated={false} title="Avis" watermark="Avis" />
-          <ReviewsSection />
-        </div>
-      </Section>
+      {/*<Section*/}
+      {/*  name="section-reviews"*/}
+      {/*  className="reviews-section pt-24 lg:pt-28 xl:pt-32"*/}
+      {/*>*/}
+      {/*  <div className="container mx-auto">*/}
+      {/*    <SectionHeading animated={false} title="Avis" watermark="Avis" />*/}
+      {/*    <ReviewsSection />*/}
+      {/*  </div>*/}
+      {/*</Section>*/}
       {/* End Reviews Section */}
 
       {/* Start Blog Section */}

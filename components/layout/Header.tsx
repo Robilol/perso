@@ -29,7 +29,7 @@ const Header = () => {
     >
       <div className="container mx-auto">
         <div className="header-inner flex items-center justify-between">
-          <Logo url="/homepage2" />
+          <Logo url="/" />
           <div className="header-mobilenav block lg:hidden">
             <button
               className="btn btn-small btn-transparent px-3 text-3xl"
@@ -66,7 +66,7 @@ const Header = () => {
               duration={1000}
               className="btn"
             >
-              <span>Hire Me</span>
+              <span>Me contacter</span>
             </ScrollLink>
           </div>
         </div>

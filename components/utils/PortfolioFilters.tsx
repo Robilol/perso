@@ -14,7 +14,7 @@ const PortfolioFilters = ({ currentFilter, filterHandler }) => {
                 }`}
                 onClick={() => filterHandler("")}
             >
-                <span>All</span>
+                <span>Tout</span>
             </button>
             {data?.map((filter) => (
                 <button

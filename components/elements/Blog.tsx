@@ -19,8 +19,6 @@ const Blog = ({ post: { title, date, thumb, category, slug } }) => {
             height={240}
             width={400}
             alt="Blog Image"
-            layout="responsive"
-            objectFit="cover"
             placeholder="blur"
             blurDataURL={`data:image/svg+xml;base64,${toBase64(
               shimmer(400, 240)
@@ -40,9 +38,7 @@ const Blog = ({ post: { title, date, thumb, category, slug } }) => {
             })}
           </span>
           <span className="year block text-sm leading-none">
-            {new Date(date).getFullYear({
-              year: "numeric",
-            })}
+            {new Date(date).getFullYear()}
           </span>
         </div>
       </div>

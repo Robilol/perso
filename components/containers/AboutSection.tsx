@@ -41,7 +41,6 @@ const AboutSection = () => {
               src={data.largeImage}
               height={422}
               width={660}
-              layout="responsive"
               alt={data.fullName}
               placeholder="blur"
               blurDataURL={`data:image/svg+xml;base64,${toBase64(
@@ -61,7 +60,7 @@ const AboutSection = () => {
           className="about-content"
         >
           <h3>
-            Hi, I am <span className="text-primary">{data.fullName}</span>
+            Salut, je suis <span className="text-primary">{data.fullName}</span>
           </h3>
           <ul className="styledlist">
             {data.firstName && (
@@ -121,8 +120,8 @@ const AboutSection = () => {
               </li>
             )}
           </ul>
-          <a href="/resume.pdf" className="btn mt-3" target="_blank">
-            <span>Télécharger mon CV</span>
+          <a href="/CV - Robin Regis - Développeur Front-end Reactjs Nextjs Typescript.pdf" className="btn mt-3" target="_blank">
+            <span>Voir mon CV</span>
           </a>
         </motion.div>
       </div>

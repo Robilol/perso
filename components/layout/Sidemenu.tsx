@@ -24,7 +24,6 @@ const Sidemenu = ({ fullMenu, fullMenuHandler }) => {
             alt={data.fullName}
             height={60}
             width={60}
-            layout="responsive"
             priority={true}
           />
 
@@ -46,9 +45,9 @@ const Sidemenu = ({ fullMenu, fullMenuHandler }) => {
           <Link
             href="/"
             className="block font-medium text-heading no-underline hover:text-primary lg:inline">
-            
+
               NuclearThemes
-            
+
           </Link>
         </p>
       </div>

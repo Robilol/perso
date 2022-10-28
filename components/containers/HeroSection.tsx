@@ -52,7 +52,6 @@ const HeroSection = ({ blurred, scroll = true, typed = true }) => {
                     alt={data.fullName}
                     height={150}
                     width={150}
-                    layout="responsive"
                     placeholder="blur"
                     blurDataURL={`data:image/svg+xml;base64,${toBase64(
                       shimmer(150, 150)
@@ -68,7 +67,7 @@ const HeroSection = ({ blurred, scroll = true, typed = true }) => {
                 variants={childrenAnimation}
                 className="mb-5 text-heading"
               >
-                <span className="block sm:inline">Hi, I am</span>{" "}
+                <span className="block sm:inline">Salut, je suis</span>{" "}
                 {typed ? (
                   <Typed
                     options={{
@@ -78,8 +77,7 @@ const HeroSection = ({ blurred, scroll = true, typed = true }) => {
                       backDelay: 2000,
                       strings: [
                           data.fullName,
-                        "Full-stack Developer",
-                        "Web Designer",
+                        "Front-end Developer",
                       ],
                       className: "text-primary"
                     }}

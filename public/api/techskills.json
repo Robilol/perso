@@ -11,12 +11,7 @@
     },
     {
         "id": 3,
-        "title": "Front-end Development",
-        "percentage": 95
-    },
-    {
-        "id": 4,
-        "title": "Mobile App Development",
-        "percentage": 75
+        "title": "Mobile",
+        "percentage": 20
     }
 ]

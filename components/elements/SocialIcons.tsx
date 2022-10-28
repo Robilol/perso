@@ -6,7 +6,7 @@ import {
     RiTwitterFill,
 } from "react-icons/ri";
 
-const SocialIcons = ({ data, rounded }) => {
+const SocialIcons = ({ data, rounded = false }) => {
     if (!data) return null;
 
     return (

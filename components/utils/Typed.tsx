@@ -4,9 +4,6 @@ import { default as TypedLib } from "typed.js";
 const Typed: React.FC<{ options: any }> = ({options}) => {
   const ref = useRef<HTMLSpanElement | null>(null);
 
-
-  console.log(options)
-
   useEffect(() => {
     if (! ref.current) {
       return;

@@ -9,7 +9,7 @@ import { Spinner } from "../utils";
 const ReviewsSection = () => {
   const { data, isLoading } = useQuery("clientreviews", getClientReviews);
 
-  const sliderRef = useRef(null);
+  const sliderRef = useRef<any>(null);
 
   const handlePrev = useCallback(() => {
     if (!sliderRef.current) return;
@@ -40,6 +40,7 @@ const ReviewsSection = () => {
           delay: 4000,
         }}
         centerInsufficientSlides={true}
+        // @ts-ignore
         ref={sliderRef}
         breakpoints={{
           320: {
