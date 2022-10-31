@@ -32,7 +32,7 @@ const ContactSection = () => {
         <div className="contact-information">
           <h4>Coordonnées</h4>
           <p>
-            N'hesitez pas à me contacter pour des missions freelance ou pour toute demande de création de site
+            N'hesitez pas à me contacter de préférence par le formulaire de contact ou par mail pour des missions freelance ou pour toute demande de création de site.
           </p>
           <span className="inline-block h-1 w-20 rounded-full bg-primary bg-opacity-20"></span>
           <div className="contact-blocks mt-5 space-y-5">

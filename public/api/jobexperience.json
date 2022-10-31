@@ -1,17 +1,17 @@
 [
     {
         "id": 1,
-        "title": "Développeur Back-end - Alternance",
-        "meta": "Alltricks, Maurepas (78)",
+        "title": "Freelance React.js / Next.js / Typescript",
+        "meta": "Remote",
         "text": "",
-        "year": "2014 - 2017"
+        "year": "Actuellement"
     },
     {
         "id": 2,
-        "title": "Développeur Web - Alternance",
-        "meta": "Envergure Digitale, Houilles (78)",
+        "title": "Développeur Front-end",
+        "meta": "LesHabitués (Groupe UP), Paris (75)",
         "text": "",
-        "year": "2017 - 2018"
+        "year": "2019 - 2022"
     },
     {
         "id": 3,
@@ -22,16 +22,16 @@
     },
     {
         "id": 4,
-        "title": "Développeur Front-end",
-        "meta": "LesHabitués (Groupe UP), Paris (75)",
+        "title": "Développeur Web - Alternance",
+        "meta": "Envergure Digitale, Houilles (78)",
         "text": "",
-        "year": "2019 - 2022"
+        "year": "2017 - 2018"
     },
     {
         "id": 5,
-        "title": "Freelance React.js / Next.js / Typescript",
-        "meta": "Remote",
+        "title": "Développeur Back-end - Alternance",
+        "meta": "Alltricks, Maurepas (78)",
         "text": "",
-        "year": "Actuellement"
+        "year": "2014 - 2017"
     }
 ]
