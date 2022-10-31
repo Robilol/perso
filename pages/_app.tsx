@@ -38,7 +38,7 @@ function MyApp({Component, pageProps}) {
             <meta name="description"
                   content="Ancien développeur Back-end j'ai décidé de passer de l'invisible au visible en me spécialisant dans le développement frontend plus particulièrement sur React.js"/>
             <meta name="robots" content="index, follow"/>
-            <meta name="keywords" content="Robin Regis développeur front-end freelance react next typescript"/>
+            <meta name="keywords" content="Robin Regis développeur front-end developper frontend freelance react next typescript"/>
             <meta name="author" content="Robin Regis"/>
             <meta name="theme-color" content="#72E2AE"/>
             <meta httpEquiv="X-UA-Compatible" content="IE=edge"/>

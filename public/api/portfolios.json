@@ -9,5 +9,38 @@
         "videogallery": false,
         "url": "https://flotbleu.com/recherche",
         "filters": ["react"]
+    },
+    {
+        "id": 2,
+        "title": "Henry Lemoine",
+        "subtitle": "Création d'un thème Prestashop personnalisé",
+        "coverimage": "/images/portfolios/henry-lemoine.png",
+        "imagegallery": [
+        ],
+        "videogallery": false,
+        "url": "https://www.henry-lemoine.com/fr/",
+        "filters": ["prestashop"]
+    },
+    {
+        "id": 3,
+        "title": "L'atelier des 2 roues",
+        "subtitle": "Création d'un site vitrine",
+        "coverimage": "/images/portfolios/atelier2roues.png",
+        "imagegallery": [
+        ],
+        "videogallery": false,
+        "url": "https://atelierdes2roues.com/",
+        "filters": ["wordpress"]
+    },
+    {
+        "id": 4,
+        "title": "Bernard Chauveau Édition",
+        "subtitle": "Migration du site prestashop 1.4 vers 1.7",
+        "coverimage": "/images/portfolios/flot-bleu/cover.png",
+        "imagegallery": [
+        ],
+        "videogallery": false,
+        "url": "https://www.bernardchauveau.com/fr/",
+        "filters": ["prestashop"]
     }
 ]

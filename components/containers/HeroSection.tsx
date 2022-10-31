@@ -44,17 +44,17 @@ const HeroSection = ({ blurred, scroll = true, typed = true }) => {
                 className="herosection-imagewrapper relative mb-5 inline-block overflow-hidden rounded-full align-middle"
               >
                 <span className="herosection-imageanimation absolute left-0 top-0 z-10 h-full w-full animate-spin rounded-full bg-gradient-to-tr from-primary to-transparent"></span>
-                <div className="herosection-image fiximage relative z-20 inline-block h-[150px] w-[150px] overflow-hidden rounded-full border-6 border-primary border-opacity-10 align-middle">
+                <div className="herosection-image fiximage relative z-20 flex justify-center items-center h-[150px] w-[150px] overflow-hidden rounded-full border-6 border-primary border-opacity-10 align-middle">
                   <Image
                     loader={imageLoader}
                     unoptimized={true}
                     src={data.thumbImage}
                     alt={data.fullName}
-                    height={150}
-                    width={150}
+                    height={100}
+                    width={100}
                     placeholder="blur"
                     blurDataURL={`data:image/svg+xml;base64,${toBase64(
-                      shimmer(150, 150)
+                      shimmer(100, 100)
                     )}`}
                   />
                 </div>
@@ -78,6 +78,9 @@ const HeroSection = ({ blurred, scroll = true, typed = true }) => {
                       strings: [
                           data.fullName,
                         "Front-end Developer",
+                        "React.js Developer",
+                        "Next.js Developer",
+                        "Typescript Developer",
                       ],
                       className: "text-primary"
                     }}
