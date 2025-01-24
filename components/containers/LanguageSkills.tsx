@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
-import { useQuery } from "react-query";
 import { getLanguageskills } from "../../fetchers";
 import { childrenAnimation } from "../../lib/motion";
 import { ProgressBar } from "../elements";
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 const LanguageSkills = () => {
-  const { data } = useQuery("language-skills", getLanguageskills);
+  const { data, isFetching } = useQuery({ queryKey: ['language-skills'], queryFn: getLanguageskills })
+
 
   if (!data) return null;
 
@@ -19,7 +20,7 @@ const LanguageSkills = () => {
           transition={{ duration: 0.4, delay: 0.2 * index }}
           variants={childrenAnimation}
           className="col-span-2 md:col-span-1"
-          key={skill.id}
+          key={index}
         >
           <ProgressBar skill={skill} />
         </motion.div>

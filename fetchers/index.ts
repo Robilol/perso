@@ -1,4 +1,13 @@
 import { http } from "./http";
+import {
+  EducationalBackground,
+  JobExperience,
+  LanguageSkill,
+  Portfolio,
+  PortfolioFilter,
+  Service,
+  TechSkill
+} from '../types'
 
 const getInformation = async () => {
   let res = await http.get(`/api/information.json`);
@@ -6,37 +15,37 @@ const getInformation = async () => {
 };
 
 const getServices = async () => {
-  let res = await http.get(`/api/services.json`);
+  let res = await http.get<Service[]>(`/api/services.json`);
   return res.data;
 };
 
 const getTechskills = async () => {
-  let res = await http.get(`/api/techskills.json`);
+  let res = await http.get<TechSkill[]>(`/api/techskills.json`);
   return res.data;
 };
 
 const getLanguageskills = async () => {
-  let res = await http.get(`/api/languageskills.json`);
+  let res = await http.get<LanguageSkill[]>(`/api/languageskills.json`);
   return res.data;
 };
 
 const getPortfolioFilters = async () => {
-  let res = await http.get(`/api/portfoliofilters.json`);
+  let res = await http.get<PortfolioFilter[]>(`/api/portfoliofilters.json`);
   return res.data;
 };
 
 const getPortfolios = async () => {
-  let res = await http.get(`/api/portfolios.json`);
+  let res = await http.get<Portfolio[]>(`/api/portfolios.json`);
   return res.data;
 };
 
 const getJobExperience = async () => {
-  let res = await http.get(`/api/jobexperience.json`);
+  let res = await http.get<JobExperience[]>(`/api/jobexperience.json`);
   return res.data;
 };
 
 const getEducationBackground = async () => {
-  let res = await http.get(`/api/educationbackground.json`);
+  let res = await http.get<EducationalBackground[]>(`/api/educationbackground.json`);
   return res.data;
 };
 

@@ -4,7 +4,7 @@
     "fullName": "Robin Regis",
     "thumbImage": "/images/logo.svg",
     "largeImage": "/images/about.png",
-    "bio": "Ancien développeur Back-end j'ai décidé de passer de l'invisible au visible en me spécialisant dans le développement frontend plus particulièrement sur React.js",
+    "bio": "Full Stack Developer avec un œil aiguisé pour la création de vos produits digitaux innovants. Je transforme vos idées ambitieuses en applications performantes grâce à mon expertise de l'écosystème JavaScript et ma vision globale du développement.",
     "age": 26,
     "birthday": "1996-06-19",
     "nationality": "Française",
@@ -15,11 +15,9 @@
     "address": "Versailles (78)",
     "freelance": "Disponible",
     "socialAddress": {
-        "facebook": "",
-        "twitter": "",
         "github": "https://github.com/Robilol",
         "linkedin": "https://www.linkedin.com/in/robin-regis-933b41100/",
-        "dribbble": ""
+        "malt": "https://www.malt.fr/profile/robinregis"
     },
     "phoneNumbers": [
         "06 34 48 70 32"

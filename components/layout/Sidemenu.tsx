@@ -1,12 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { RiCloseLine, RiMenuLine } from "react-icons/ri";
-import { useQuery } from "react-query";
 import { getInformation } from "../../fetchers";
 import { imageLoader } from "../../lib/utils";
+import { useQuery } from '@tanstack/react-query'
 
 const Sidemenu = ({ fullMenu, fullMenuHandler }) => {
-  const { data, isLoading } = useQuery("information", getInformation);
+  const { data, isFetching } = useQuery({ queryKey: ['information'], queryFn: getInformation })
 
   if (!data) return null;
 

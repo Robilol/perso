@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { useCallback, useEffect, useState } from "react";
-import { useQuery } from "react-query";
-import { getPortfolios } from "../../fetchers";
+import { getInformation, getPortfolios } from '../../fetchers'
 import { Portfolio } from "../elements";
 import { PortfolioFilters, Spinner } from "../utils";
+import { useQuery } from '@tanstack/react-query'
 
 const PortfoliosSection = () => {
   // States
@@ -11,7 +11,8 @@ const PortfoliosSection = () => {
   const [currentFilter, setCurrentFilter] = useState("");
   const [pageNumber, setPageNumber] = useState(1);
 
-  const { data, isLoading } = useQuery("portfolios", getPortfolios);
+  const { data, isFetching } = useQuery({ queryKey: ['portfolios'], queryFn: getPortfolios })
+
 
   useEffect(() => {
     if (data) setVisiblePortfolios(data.slice(0, 6));
@@ -48,7 +49,7 @@ const PortfoliosSection = () => {
     }
   }, [currentFilter, data, pageNumber]);
 
-  if (isLoading)
+  if (isFetching)
     return (
       <div className="block py-20 text-center">
         <Spinner />
@@ -80,7 +81,7 @@ const PortfoliosSection = () => {
           </motion.div>
         ))}
       </motion.div>
-      {visiblePortfolios.length < data ? (
+      {visiblePortfolios.length < data.length ? (
         <div className="mt-12 text-center">
           <button className="btn btn-small" onClick={() => handleLoadmore()}>
             <span>Voir plus</span>

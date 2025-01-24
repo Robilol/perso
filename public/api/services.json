@@ -1,20 +1,17 @@
 [
     {
-        "id": 1,
         "title": "Développement Front-end",
-        "text": "Spécialisé sur React.js et Next.js je suis à même de répondre à vos besoins. Je reste ouvert aux différents frameworks JS front.",
+        "text": "Expert React et Next.js, je développe des applications web modernes et performantes. Mon expertise s'étend à l'ensemble de l'écosystème JavaScript front-end.",
         "icon": "/icons/code-s-slash-line.svg"
     },
     {
-        "id": 2,
         "title": "Développement web",
-        "text": "Je peux également développer différents sites vitrine / ecommerce via CMS ou de façon custom selon vos besoins.",
+        "text": "Du site vitrine au e-commerce, je conçois des solutions web sur mesure. Mon approche s'adapte à vos besoins, que ce soit avec un CMS ou en développement from scratch.",
         "icon": "/icons/code-s-slash-line.svg"
     },
     {
-        "id": 3,
         "title": "Intégration",
-        "text": "Je peux évidemment mener vos besoins d'intégration plus classique de façon rapide via des outils tels que TailwindCSS.",
+        "text": "Expert en intégration avec Tailwind CSS, je transforme vos maquettes en interfaces responsive. J'accorde une attention particulière à la performance et aux standards du web.",
         "icon": "/icons/quill-pen-line.svg"
     }
 ]

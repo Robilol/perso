@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
-import { useQuery } from "react-query";
-import { getTechskills } from "../../fetchers";
+import { getInformation, getTechskills } from '../../fetchers'
 import { childrenAnimation } from "../../lib/motion";
 import { ProgressCircle } from "../elements";
+import { useQuery } from '@tanstack/react-query'
 
 const TechSkills = () => {
-  const { data } = useQuery("tech-skills", getTechskills);
+  const { data, isFetching } = useQuery({ queryKey: ['tech-skills'], queryFn: getTechskills })
+
 
   if (!data) return null;
 
@@ -19,7 +20,7 @@ const TechSkills = () => {
           transition={{ duration: 0.4, delay: 0.2 * index }}
           variants={childrenAnimation}
           className=""
-          key={skill.id}
+          key={index}
         >
           <ProgressCircle skill={skill} />
         </motion.div>

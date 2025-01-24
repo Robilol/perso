@@ -2,15 +2,16 @@ import Image from "next/image";
 import { imageLoader, shimmer, toBase64 } from "../../lib/utils";
 import { motion } from "framer-motion";
 import { childrenAnimation } from "../../lib/motion";
-import { getInformation } from "../../fetchers";
-import { useQuery } from "react-query";
+import { getInformation, getLanguageskills } from '../../fetchers'
 import { Spinner } from "../utils";
 import dayjs from "dayjs";
+import { useQuery } from '@tanstack/react-query'
 
 const AboutSection = () => {
-  const { data, isLoading } = useQuery("information", getInformation);
+  const { data, isFetching } = useQuery({ queryKey: ['information'], queryFn: getInformation })
 
-  if (isLoading)
+
+  if (isFetching)
     return (
       <div className="block py-20 text-center">
         <Spinner />

@@ -1,37 +1,58 @@
 [
     {
-        "id": 1,
-        "title": "Freelance React.js / Next.js / Typescript",
+        "title": "Freelance React.js / Next.js / Node.js / Typescript",
         "meta": "Remote",
         "text": "",
-        "year": "Actuellement"
+        "year": "2019 - now",
+        "tags": ["Next.js", "React.js", "TailwindCSS", "Node.js", "PostgreSQL"]
     },
     {
-        "id": 2,
+        "title": "Développeur Full-stack",
+        "meta": "MerciRobin, Paris (75)",
+        "text": "Service de renégociation de prêt étudiant\n\n- Création du front-office\n- Création du back-office\n- Gestion de l'infrastructure Vercel / AWS\n- Intégration CRM Hubspot",
+        "year": "2024 - 2024",
+        "tags": ["Next.js", "TailwindCSS", "Node.js", "PostgreSQL"]
+    },
+    {
+        "title": "Développeur Full-stack",
+        "meta": "Izicrédit, Paris (75)",
+        "text": "Plateforme de mise en relation entre emprunteurs et banques pour les crédits immobilier\n\n- Évolution de la partie front du back-office emprunteur\n- Évolution de la partie front du back-office administrateur\n- Intégration CRM Hubspot\n- Intégration signature électronique YouSign",
+        "year": "2023 - 2024",
+        "tags": ["Next.js", "TailwindCSS", "Node.js", "PostgreSQL", "GraphQL"]
+    },
+    {
+        "title": "Développeur Front-end",
+        "meta": "Groupe UP, Gennevilliers (92)",
+        "text": "Mon Espace UP : Service de gestion des titres restaurants et d'affiliation aux services UP\n\n- Maintenance et évolutions du site React.JS / Redux\n- Maintenance et évolutions des 2 librairies de composants React.Js\n- Transformation du site en site mobile friendly",
+        "year": "2020 - 2022",
+        "tags": ["React.js", "Redux", "Jest", "Storybook", "styled-components"]
+    },
+    {
         "title": "Développeur Front-end",
         "meta": "LesHabitués (Groupe UP), Paris (75)",
-        "text": "",
-        "year": "2019 - 2022"
+        "text": "Solution de prépaiement pour les commerces de proximités.\n\n- Refonte du backoffice legacy en React.Js / Redux\n- Refonte du site en Next.Js\n- Création d'une librairie de composant React.Js\n- Refonte des mails en composants TWIG / MJML\n- Création d'un dashboard de statistiques React.Js / GraphQL",
+        "year": "2019 - 2022",
+        "tags": ["Next.js", "React.js", "TailwindCSS", "Redux"]
     },
     {
-        "id": 3,
         "title": "Développeur Front-end - Alternance",
         "meta": "Likibu, Paris (75)",
         "text": "",
-        "year": "2018 - 2019"
+        "year": "2018 - 2019",
+        "tags": ["React.js", "JavaScript", "Symfony 1.4", "SASS"]
     },
     {
-        "id": 4,
         "title": "Développeur Web - Alternance",
         "meta": "Envergure Digitale, Houilles (78)",
         "text": "",
-        "year": "2017 - 2018"
+        "year": "2017 - 2018",
+        "tags": ["PHP 5", "Prestashop", "Wordpress"]
     },
     {
-        "id": 5,
         "title": "Développeur Back-end - Alternance",
         "meta": "Alltricks, Maurepas (78)",
         "text": "",
-        "year": "2014 - 2017"
+        "year": "2014 - 2017",
+        "tags": ["PHP 5", "Symofny 3"]
     }
 ]

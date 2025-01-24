@@ -1,8 +1,8 @@
-import { useQuery } from "react-query";
-import { getPortfolioFilters } from "../../fetchers";
+import { getInformation, getPortfolioFilters } from '../../fetchers'
+import { useQuery } from '@tanstack/react-query'
 
 const PortfolioFilters = ({ currentFilter, filterHandler }) => {
-    const { data } = useQuery("portfolio-filters", getPortfolioFilters);
+  const { data, isFetching } = useQuery({ queryKey: ['portfolio-filters'], queryFn: getPortfolioFilters })
 
     if (!data) return null;
 
@@ -16,7 +16,7 @@ const PortfolioFilters = ({ currentFilter, filterHandler }) => {
             >
                 <span>Tout</span>
             </button>
-            {data?.map((filter) => (
+            {data?.map((filter, index) => (
                 <button
                     className={`btn btn-small ${
                         currentFilter === filter.value
@@ -24,7 +24,7 @@ const PortfolioFilters = ({ currentFilter, filterHandler }) => {
                             : "btn-transparent"
                     }`}
                     onClick={() => filterHandler(filter.value)}
-                    key={filter.id}
+                    key={index}
                 >
                     <span>{filter.title}</span>
                 </button>

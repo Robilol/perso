@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
 import { RiBookLine } from "react-icons/ri";
-import { useQuery } from "react-query";
-import { getEducationBackground } from "../../fetchers";
+import { getEducationBackground, getInformation } from '../../fetchers'
 import { childrenAnimation } from "../../lib/motion";
 import { TimelineItem } from "../elements";
+import { useQuery } from '@tanstack/react-query'
 
 const EducationTimeline = () => {
-    const { data } = useQuery("education-background", getEducationBackground);
+  const { data, isFetching } = useQuery({ queryKey: ['education-background'], queryFn: getEducationBackground })
 
     if (!data) return null;
 
@@ -24,7 +24,7 @@ const EducationTimeline = () => {
                     transition={{ duration: 0.4, delay: 0.2 * index }}
                     variants={childrenAnimation}
                     className="timeline-wrap"
-                    key={timeline.id}
+                    key={index}
                 >
                     <TimelineItem timeline={timeline} />
                 </motion.div>

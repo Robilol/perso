@@ -3,14 +3,16 @@ import {useForm} from "react-hook-form";
 import emailjs from "@emailjs/browser";
 import {settings} from "../../settings/settings";
 import {GoogleReCaptcha, GoogleReCaptchaProvider, useGoogleReCaptcha} from "react-google-recaptcha-v3";
+import { BiLoaderAlt } from "react-icons/bi";
 
 const ContactForm = () => {
-  const currentForm = useRef();
+  const currentForm = useRef(undefined);
 
   const { executeRecaptcha } = useGoogleReCaptcha();
 
   const [serverSuccess, setServerSuccess] = useState<boolean | string>(false);
   const [serverError, setServerError] = useState<boolean | string>(false);
+  const [loading, setLoading] = useState<boolean>(false)
 
   const {
     register,
@@ -33,6 +35,7 @@ const ContactForm = () => {
 
 
   const onSubmit = async (data) => {
+    setLoading(true)
     const token = await handleReCaptchaVerify()
 
     if (!token) {
@@ -53,10 +56,12 @@ const ContactForm = () => {
             setServerError(false);
             setServerSuccess("Email envoyé avec succès !");
           }
+          setLoading(false)
         },
         (error) => {
           setServerSuccess(false);
           setServerError("Une erreur est survenue pendant l'envoi du message!");
+          setLoading(false)
         }
       );
   };
@@ -68,16 +73,16 @@ const ContactForm = () => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="inputbox">
-          <label htmlFor="name">Nom</label>
+          <label htmlFor="from_name">Nom</label>
           <input
             type="text"
             placeholder="Votre nom"
-            id="name"
-            {...register("name", {required: true})}
+            id="from_name"
+            {...register("from_name", {required: true})}
           />
-          {errors.name && (
+          {errors.from_name && (
             <>
-              {errors.name.type === "required" && (
+              {errors.from_name.type === "required" && (
                 <p className="bg-red-500 bg-opacity-5 text-center text-sm text-red-500">
                   Le nom est obligatoire
                 </p>
@@ -86,24 +91,24 @@ const ContactForm = () => {
           )}
         </div>
         <div className="inputbox">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="reply_to">Email</label>
           <input
             type="email"
             placeholder="Votre email"
-            id="email"
-            {...register("email", {
+            id="reply_to"
+            {...register("reply_to", {
               required: true,
               pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
             })}
           />
-          {errors.email && (
+          {errors.reply_to && (
             <>
-              {errors.email.type === "required" && (
+              {errors.reply_to.type === "required" && (
                 <p className="bg-red-500 bg-opacity-5 text-center text-sm text-red-500">
                   L'email est obligatoire
                 </p>
               )}
-              {errors.email.type === "pattern" && (
+              {errors.reply_to.type === "pattern" && (
                 <p className="bg-red-500 bg-opacity-5 text-center text-sm text-red-500">
                   Adresse email incorrecte
                 </p>
@@ -158,7 +163,10 @@ const ContactForm = () => {
             {serverSuccess}
           </p>
         )}
-        <button type="submit" className="btn">
+        <button type="submit" className="btn flex flex-row items-center gap-2 transition-all disabled:pointer-events-none" disabled={loading}>
+          {loading && (
+            <BiLoaderAlt className="w-5 h-5 animate-spin" />
+          )}
           <span>Envoyer</span>
         </button>
       </form>

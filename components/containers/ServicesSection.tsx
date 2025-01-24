@@ -1,14 +1,15 @@
 import { motion } from "framer-motion";
-import { useQuery } from "react-query";
-import { getServices } from "../../fetchers";
+import { getInformation, getServices } from '../../fetchers'
 import { childrenAnimation } from "../../lib/motion";
 import { Service } from "../elements";
 import { Spinner } from "../utils";
+import { useQuery } from '@tanstack/react-query'
 
 const ServicesSection = () => {
-  const { data, isLoading } = useQuery("services", getServices);
+  const { data, isFetching } = useQuery({ queryKey: ['services'], queryFn: getServices })
 
-  if (isLoading)
+
+  if (isFetching)
     return (
       <div className="block py-20 text-center">
         <Spinner />
@@ -27,7 +28,7 @@ const ServicesSection = () => {
           transition={{ duration: 0.4, delay: 0.2 * index }}
           variants={childrenAnimation}
           className="col-span-3 lg:col-span-1"
-          key={service.id}
+          key={index}
         >
           <Service service={service} />
         </motion.div>

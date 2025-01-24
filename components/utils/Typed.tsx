@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, VoidFunctionComponent } from "react";
+import React, { useEffect, useRef, FunctionComponent } from "react";
 import { default as TypedLib } from "typed.js";
 
 const Typed: React.FC<{ options: any }> = ({options}) => {

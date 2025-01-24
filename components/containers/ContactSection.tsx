@@ -1,16 +1,16 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { RiMailLine, RiMapPinLine, RiPhoneLine } from "react-icons/ri";
-import { useQuery } from "react-query";
 import { getInformation } from "../../fetchers";
 import { childrenAnimation } from "../../lib/motion";
 import { Spinner } from "../utils";
 import ContactForm from "./ContactForm";
+import { useQuery } from '@tanstack/react-query'
 
 const ContactSection = () => {
-  const { data, isLoading } = useQuery("information", getInformation);
+  const { data, isFetching } = useQuery({ queryKey: ['information'], queryFn: getInformation })
 
-  if (isLoading)
+  if (isFetching)
     return (
       <div className="block py-20 text-center">
         <Spinner />

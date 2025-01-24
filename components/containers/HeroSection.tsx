@@ -5,15 +5,15 @@ import { SocialIcons } from "../elements";
 import { imageLoader, shimmer, toBase64 } from "../../lib/utils";
 import { motion } from "framer-motion";
 import { childrenAnimation } from "../../lib/motion";
-import { useQuery } from "react-query";
 import { getInformation } from "../../fetchers";
 import { Spinner } from "../utils";
 import Typed from "../utils/Typed";
+import { useQuery } from '@tanstack/react-query'
 
 const HeroSection = ({ blurred, scroll = true, typed = true }) => {
-  const { data, isLoading } = useQuery("information", getInformation);
+  const { data, isFetching } = useQuery({ queryKey: ['information'], queryFn: getInformation })
 
-  if (isLoading)
+  if (isFetching)
     return (
       <div className="flex min-h-screen w-full items-center justify-center py-20 text-center">
         <Spinner />
@@ -34,17 +34,35 @@ const HeroSection = ({ blurred, scroll = true, typed = true }) => {
       >
         <div className="container relative mx-auto">
           <div className="flex min-h-screen w-full items-center justify-center">
-            <div className="herosection-content w-full py-20 text-center md:w-3/4">
+            <div className="herosection-content w-full py-20 text-center md:w-3/4 relative">
               <motion.div
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: 0.2 }}
+                transition={{
+                  duration: 0.4,
+                  delay: 0.4
+                }}
+                variants={childrenAnimation}
+                className="absolute md:-top-24 top-14 left-0 right-0"
+              >
+                <span className="bg-primary text-sm lg:text-lg rounded-full px-4 py-2 font-medium text-grey shadow-sm">Disponible pour de nouvelles opportunités</span>
+              </motion.div>
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.4,
+                  delay: 0.2
+                }}
                 variants={childrenAnimation}
                 className="herosection-imagewrapper relative mb-5 inline-block overflow-hidden rounded-full align-middle"
               >
-                <span className="herosection-imageanimation absolute left-0 top-0 z-10 h-full w-full animate-spin rounded-full bg-gradient-to-tr from-primary to-transparent"></span>
-                <div className="herosection-image fiximage relative z-20 flex justify-center items-center h-[150px] w-[150px] overflow-hidden rounded-full border-6 border-primary border-opacity-10 align-middle">
+                <span
+                  className="herosection-imageanimation absolute left-0 top-0 z-10 h-full w-full animate-spin rounded-full bg-gradient-to-tr from-primary to-transparent"></span>
+                <div
+                  className="herosection-image fiximage relative z-20 flex justify-center items-center h-[150px] w-[150px] overflow-hidden rounded-full border-6 border-primary border-opacity-10 align-middle">
                   <Image
                     loader={imageLoader}
                     unoptimized={true}
@@ -63,7 +81,10 @@ const HeroSection = ({ blurred, scroll = true, typed = true }) => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: 0.4 }}
+                transition={{
+                  duration: 0.4,
+                  delay: 0.4
+                }}
                 variants={childrenAnimation}
                 className="mb-5 text-heading"
               >
@@ -76,10 +97,10 @@ const HeroSection = ({ blurred, scroll = true, typed = true }) => {
                       backSpeed: 20,
                       backDelay: 2000,
                       strings: [
-                          data.fullName,
-                        "Front-end Developer",
-                        "React.js Developer",
+                        data.fullName,
+                        "Full Stack Developer",
                         "Next.js Developer",
+                        "Node.js Developer",
                         "Typescript Developer",
                       ],
                       className: "text-primary"
@@ -93,7 +114,10 @@ const HeroSection = ({ blurred, scroll = true, typed = true }) => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: 0.6 }}
+                transition={{
+                  duration: 0.4,
+                  delay: 0.6
+                }}
                 variants={childrenAnimation}
                 className="lead mb-0"
               >
@@ -103,11 +127,14 @@ const HeroSection = ({ blurred, scroll = true, typed = true }) => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: 0.8 }}
+                transition={{
+                  duration: 0.4,
+                  delay: 0.8
+                }}
                 variants={childrenAnimation}
                 className="herosection-socialicons mt-7 text-center"
               >
-                <SocialIcons data={data.socialAddress} />
+                <SocialIcons data={data.socialAddress}/>
               </motion.div>
             </div>
           </div>
@@ -116,7 +143,10 @@ const HeroSection = ({ blurred, scroll = true, typed = true }) => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 1 }}
+              transition={{
+                duration: 0.4,
+                delay: 1
+              }}
               variants={childrenAnimation}
               className="herosection-bottom absolute left-0 top-auto bottom-10 w-full justify-between text-center"
             >
@@ -129,7 +159,7 @@ const HeroSection = ({ blurred, scroll = true, typed = true }) => {
                 duration={1000}
                 className="cursor-pointer text-xs font-medium uppercase tracking-widest transition-all hover:text-primary"
               >
-                <RiArrowDownLine className="inline animate-bounce text-base" />
+                <RiArrowDownLine className="inline animate-bounce text-base"/>
                 <span className="pl-2">Scroll Down</span>
               </Link>
             </motion.div>

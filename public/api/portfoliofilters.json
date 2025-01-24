@@ -1,21 +1,17 @@
 [
     {
-        "id": 1,
         "title": "React.js",
         "value": "react"
     },
     {
-        "id": 2,
         "title": "Prestashop",
         "value": "prestashop"
     },
     {
-        "id": 3,
         "title": "Wordpress",
         "value": "wordpress"
     },
     {
-        "id": 4,
         "title": "Next.js",
         "value": "nextjs"
     }

@@ -1,49 +1,53 @@
+import { AppProps } from 'next/app'
 import Head from 'next/head'
 import Router from 'next/router'
 import NProgress from 'nprogress'
-import { useRef } from 'react'
 import { AppProvider } from '../context/appContext'
-import { Hydrate, QueryClient, QueryClientProvider } from 'react-query'
 import { ParallaxProvider } from 'react-scroll-parallax'
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3'
+import { Analytics } from '@vercel/analytics/react'
+import {
+  QueryClient,
+  QueryClientProvider,
+  HydrationBoundary
+} from '@tanstack/react-query'
+
 import 'normalize.css'
 import 'nprogress/nprogress.css'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import '../styles/globals.scss'
-import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3'
-import { Analytics } from '@vercel/analytics/react'
 
 NProgress.configure({ showSpinner: true })
 Router.events.on('routeChangeStart', () => NProgress.start())
 Router.events.on('routeChangeComplete', () => NProgress.done())
 Router.events.on('routeChangeError', () => NProgress.done())
 
-function MyApp ({
-  Component,
-  pageProps
-}) {
-  const queryClientRef = useRef()
-
-  if (!queryClientRef.current) {
-    // @ts-ignore
-    queryClientRef.current = new QueryClient()
-  }
+export default function MyApp({ Component, pageProps }: AppProps) {
+  const queryClient = new QueryClient()
 
   return (
     <>
-      <QueryClientProvider client={queryClientRef.current}>
+      <QueryClientProvider client={queryClient}>
         <AppProvider>
-          <GoogleReCaptchaProvider reCaptchaKey="6LettL8iAAAAAAUJYd0V9xH_ggkmTqKGS6-sFj1O" language="fr">
+          <GoogleReCaptchaProvider
+            reCaptchaKey="6LettL8iAAAAAAUJYd0V9xH_ggkmTqKGS6-sFj1O"
+            language="fr"
+          >
             <Head>
               <meta
                 name="viewport"
                 content="width=device-width, initial-scale=1 maximum-scale=1"
               />
-              <meta name="description"
-                    content="Ancien développeur Back-end j'ai décidé de passer de l'invisible au visible en me spécialisant dans le développement frontend plus particulièrement sur React.js"/>
+              <meta
+                name="description"
+                content="Développeur Full Stack passionné par la création de produits, je combine expertise technique React.js et vision stratégique pour transformer vos idées en solutions concrètes. Actuellement disponible pour de nouveaux projets."
+              />
               <meta name="robots" content="index, follow"/>
-              <meta name="keywords"
-                    content="Robin Regis développeur front-end developper frontend freelance react next typescript"/>
+              <meta
+                name="keywords"
+                content="Robin Regis développeur full-stack full stack front end developper frontend freelance react next typescript node"
+              />
               <meta name="author" content="Robin Regis"/>
               <meta name="theme-color" content="#72E2AE"/>
               <meta httpEquiv="X-UA-Compatible" content="IE=edge"/>
@@ -54,20 +58,17 @@ function MyApp ({
               <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
               <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"/>
               <meta name="msapplication-TileColor" content="#da532c"/>
-              <title>Robin Regis - Développeur Front-end React.js / Next.js / Typescript</title>
+              <title>Robin Regis - Développeur full-stack React.js / Next.js / Node.js / Typescript</title>
             </Head>
             <ParallaxProvider>
-              <Hydrate state={pageProps.dehydratedState}>
+              <HydrationBoundary state={pageProps.dehydratedState}>
                 <Component {...pageProps} />
-              </Hydrate>
+              </HydrationBoundary>
             </ParallaxProvider>
           </GoogleReCaptchaProvider>
         </AppProvider>
-        {/* <ReactQueryDevtools initialIsOpen={false} /> */}
       </QueryClientProvider>
-      <Analytics/>
+      <Analytics />
     </>
   )
 }
-
-export default MyApp

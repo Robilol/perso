@@ -1,10 +1,12 @@
 import Link from "next/link";
-import { useQuery } from "react-query";
 import { getInformation } from "../../fetchers";
 import { SocialIcons } from "../elements";
+import { useQuery } from '@tanstack/react-query'
+import GitHubSnake from '../elements/GithubSnake'
+import React from 'react'
 
 const Footer = () => {
-    const { data, isLoading } = useQuery("information", getInformation);
+    const { data, isFetching } = useQuery({ queryKey: ['information'], queryFn: getInformation })
 
     if (!data) return null;
 
@@ -15,6 +17,7 @@ const Footer = () => {
                     <div className="w-full md:w-auto">
                         <SocialIcons data={data.socialAddress} />
                     </div>
+                    <GitHubSnake />
                     <p className="mb-0 w-full md:w-auto">
                         &copy; {new Date().getFullYear()}, Tous droits réservés
                         <Link

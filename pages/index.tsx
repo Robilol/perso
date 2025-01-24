@@ -11,7 +11,6 @@ import {
 } from "../components/containers";
 import { Layout } from "../components/layout";
 import { SectionHeading } from "../components/utils";
-import { getPostsByPage } from "../lib/blogging";
 
 const Index = ({ posts }) => {
   return (
@@ -128,14 +127,3 @@ const Index = ({ posts }) => {
 };
 
 export default Index;
-
-export function getStaticProps() {
-  const { posts } = getPostsByPage();
-
-  return {
-    props: {
-      posts,
-    },
-    revalidate: 10,
-  };
-}

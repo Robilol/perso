@@ -1,27 +1,23 @@
 [
     {
-        "id": 1,
         "title": "Master Ingénierie du Web",
         "meta": "ESGI, Paris (75)",
         "text": "",
         "year": "2017 - 2019"
     },
     {
-        "id": 2,
         "title": "Bachelor Ingénierie du Web",
         "meta": "ESGI, Paris (75)",
         "text": "",
         "year": "2016 - 2017"
     },
     {
-        "id": 3,
         "title": "BTS SIO (SLAM)",
         "meta": "ITESCIA, Cergy-Pontoise (95)",
         "text": "",
         "year": "2014 - 2016"
     },
     {
-        "id": 4,
         "title": "Baccalauréat scientifique",
         "meta": "Lycée Van Gogh, Aubergenville (78)",
         "text": "",

@@ -1,13 +1,14 @@
 import { useCallback, useRef } from "react";
-import { useQuery } from "react-query";
 import { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { getClientReviews } from "../../fetchers";
 import { Review } from "../elements";
 import { Spinner } from "../utils";
+import { useQuery } from '@tanstack/react-query'
+import { getClientReviews, getInformation } from '../../fetchers'
 
 const ReviewsSection = () => {
-  const { data, isLoading } = useQuery("clientreviews", getClientReviews);
+  const { data, isFetching } = useQuery({ queryKey: ['clientreviews'], queryFn: getClientReviews })
+
 
   const sliderRef = useRef<any>(null);
 
@@ -21,7 +22,7 @@ const ReviewsSection = () => {
     sliderRef.current.swiper.slideNext();
   }, []);
 
-  if (isLoading)
+  if (isFetching)
     return (
       <div className="block py-20 text-center">
         <Spinner />

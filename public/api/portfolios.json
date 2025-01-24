@@ -1,17 +1,62 @@
 [
     {
-        "id": 1,
+        "title": "LocaliBien",
+        "subtitle": "Mini projet me permettant de localier les biens des annonces immobilières avec leur description.",
+        "coverimage": "/images/portfolios/localibien/cover.png",
+        "imagegallery": [
+            "/images/portfolios/localibien/1.png"
+        ],
+        "videogallery": false,
+        "url": "https://localibien.vercel.app/",
+        "filters": ["react"],
+        "tags": ["React.js", "TailwindCSS"]
+    },
+    {
+        "title": "Fromton.app",
+        "subtitle": "Site de notation de fromage avec un aspect communautaire et de la gamification.",
+        "coverimage": "/images/portfolios/fromton/cover.png",
+        "imagegallery": [
+        ],
+        "videogallery": false,
+        "url": "https://www.fromton.app/",
+        "filters": ["nextjs"],
+        "tags": ["Next.js 14", "TailwindCSS", "Supabase"]
+    },
+    {
+        "title": "Agreenup",
+        "subtitle": "Site vitrine onepage pour des fomations de permaculture.",
+        "coverimage": "/images/portfolios/agreenup.png",
+        "imagegallery": [
+        ],
+        "videogallery": false,
+        "url": "https://www.agreenup.fr/",
+        "filters": ["nextjs"],
+        "tags": ["Next.js 13", "TailwindCSS"]
+    },
+    {
+        "title": "OneWay",
+        "subtitle": "Dashboard de suivi/localisation de livraisons.",
+        "coverimage": "/images/portfolios/oneway/cover.png",
+        "imagegallery": [
+            "/images/portfolios/oneway/1.png",
+            "/images/portfolios/oneway/2.png"
+        ],
+        "videogallery": false,
+        "filters": ["react"],
+        "tags": ["React.js", "TailwindCSS"]
+    },
+    {
         "title": "Flot bleu",
-        "subtitle": "Page de recherche dynamique",
+        "subtitle": "Page de recherche des aires de service Flot Bleu",
         "coverimage": "/images/portfolios/flot-bleu/cover.png",
         "imagegallery": [
         ],
         "videogallery": false,
         "url": "https://flotbleu.com/recherche",
-        "filters": ["react"]
+        "filters": ["react"],
+        "tags": ["React.js", "TailwindCSS"]
     },
     {
-        "id": 2,
         "title": "Henry Lemoine",
         "subtitle": "Création d'un thème Prestashop personnalisé",
         "coverimage": "/images/portfolios/henry-lemoine.png",
@@ -19,10 +64,10 @@
         ],
         "videogallery": false,
         "url": "https://www.henry-lemoine.com/fr/",
-        "filters": ["prestashop"]
+        "filters": ["prestashop"],
+        "tags": ["Prestashop"]
     },
     {
-        "id": 3,
         "title": "L'atelier des 2 roues",
         "subtitle": "Création d'un site vitrine",
         "coverimage": "/images/portfolios/atelier2roues.png",
@@ -30,10 +75,10 @@
         ],
         "videogallery": false,
         "url": "https://atelierdes2roues.com/",
-        "filters": ["wordpress"]
+        "filters": ["wordpress"],
+        "tags": ["Wordpress"]
     },
     {
-        "id": 4,
         "title": "Bernard Chauveau Édition",
         "subtitle": "Migration du site prestashop 1.4 vers 1.7",
         "coverimage": "/images/portfolios/bernard-chauveau.png",
@@ -41,17 +86,7 @@
         ],
         "videogallery": false,
         "url": "https://www.bernardchauveau.com/fr/",
-        "filters": ["prestashop"]
-    },
-    {
-        "id": 5,
-        "title": "Agreenup",
-        "subtitle": "Site onepage Next.js 13",
-        "coverimage": "/images/portfolios/agreenup.png",
-        "imagegallery": [
-        ],
-        "videogallery": false,
-        "url": "https://www.agreenup.fr/",
-        "filters": ["nextjs"]
+        "filters": ["prestashop"],
+        "tags": ["Prestashop"]
     }
 ]
