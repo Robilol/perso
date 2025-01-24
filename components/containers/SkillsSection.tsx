@@ -43,7 +43,8 @@ const SkillsSection = () => {
           height={500}
         />
         <p className="text-xl text-body text-center max-w-4xl mx-auto mt-20">
-          J'utilise le plus souvent Next.js, TailwindCss, Node.js, PostgreSQl et Docker pour livrer les produits le plus rapidement possible.
+          J'utilise le plus souvent Next.js, TailwindCss, Node.js, PostgreSQl et Docker pour livrer les produits le plus
+          rapidement possible.
         </p>
       </motion.div>
     </div>

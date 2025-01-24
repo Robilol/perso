@@ -1,24 +1,30 @@
-import Image from "next/image";
-import { imageLoader, shimmer, toBase64 } from "../../lib/utils";
-import { motion } from "framer-motion";
-import { childrenAnimation } from "../../lib/motion";
+import Image from 'next/image'
+import { imageLoader, shimmer, toBase64 } from '../../lib/utils'
+import { motion } from 'framer-motion'
+import { childrenAnimation } from '../../lib/motion'
 import { getInformation, getLanguageskills } from '../../fetchers'
-import { Spinner } from "../utils";
-import dayjs from "dayjs";
+import { Spinner } from '../utils'
+import dayjs from 'dayjs'
 import { useQuery } from '@tanstack/react-query'
 
 const AboutSection = () => {
-  const { data, isFetching } = useQuery({ queryKey: ['information'], queryFn: getInformation })
+  const {
+    data,
+    isFetching
+  } = useQuery({
+    queryKey: ['information'],
+    queryFn: getInformation
+  })
 
-
-  if (isFetching)
+  if (isFetching) {
     return (
       <div className="block py-20 text-center">
-        <Spinner />
+        <Spinner/>
       </div>
-    );
+    )
+  }
 
-  if (!data) return null;
+  if (!data) return null
 
   return (
     <div className="grid grid-cols-2 items-center gap-7">
@@ -27,15 +33,22 @@ const AboutSection = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.2 }}
+          transition={{
+            duration: 0.4,
+            delay: 0.2
+          }}
           variants={childrenAnimation}
           className="about-image overflow-hidden rounded-lg"
         >
           <div className="about-image-inner fiximage relative border-10 border-primary border-opacity-20">
-            <span className="absolute -top-2.5 left-0 z-10 h-2.5 w-10 animate-ledgerleftright rounded-full bg-gradient-to-r from-transparent to-primary"></span>
-            <span className="absolute top-auto -bottom-2.5 left-auto z-10 h-2.5 w-10 animate-ledgerrightleft rounded-full bg-gradient-to-r from-primary to-transparent"></span>
-            <span className="absolute -left-2.5 top-auto z-10 h-10 w-2.5 animate-ledgerbottomtop rounded-full bg-gradient-to-t from-transparent to-primary"></span>
-            <span className="absolute left-auto -right-2.5 z-10 h-10 w-2.5 animate-ledgertopbottom rounded-full bg-gradient-to-b from-transparent to-primary"></span>
+            <span
+              className="absolute -top-2.5 left-0 z-10 h-2.5 w-10 animate-ledgerleftright rounded-full bg-gradient-to-r from-transparent to-primary"></span>
+            <span
+              className="absolute top-auto -bottom-2.5 left-auto z-10 h-2.5 w-10 animate-ledgerrightleft rounded-full bg-gradient-to-r from-primary to-transparent"></span>
+            <span
+              className="absolute -left-2.5 top-auto z-10 h-10 w-2.5 animate-ledgerbottomtop rounded-full bg-gradient-to-t from-transparent to-primary"></span>
+            <span
+              className="absolute left-auto -right-2.5 z-10 h-10 w-2.5 animate-ledgertopbottom rounded-full bg-gradient-to-b from-transparent to-primary"></span>
             <Image
               loader={imageLoader}
               unoptimized={true}
@@ -56,7 +69,10 @@ const AboutSection = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.4 }}
+          transition={{
+            duration: 0.4,
+            delay: 0.4
+          }}
           variants={childrenAnimation}
           className="about-content"
         >
@@ -67,7 +83,7 @@ const AboutSection = () => {
             {data.firstName && (
               <li className="text-lg">
                 <strong className="inline-block min-w-[120px] font-medium">
-                  Prénom{" "}
+                  Prénom{' '}
                 </strong>
                 : {data.firstName}
               </li>
@@ -75,7 +91,7 @@ const AboutSection = () => {
             {data.lastName && (
               <li className="text-lg">
                 <strong className="inline-block min-w-[120px] font-medium">
-                  Nom{" "}
+                  Nom{' '}
                 </strong>
                 : {data.lastName}
               </li>
@@ -83,7 +99,7 @@ const AboutSection = () => {
             {data.age && (
               <li className="text-lg">
                 <strong className="inline-block min-w-[120px] font-medium">
-                  Âge{" "}
+                  Âge{' '}
                 </strong>
                 : {dayjs().diff(dayjs(data.birthday), 'year')} ans
               </li>
@@ -91,7 +107,7 @@ const AboutSection = () => {
             {data.nationality && (
               <li className="text-lg">
                 <strong className="inline-block min-w-[120px] font-medium">
-                  Nationalité{" "}
+                  Nationalité{' '}
                 </strong>
                 : {data.nationality}
               </li>
@@ -99,15 +115,15 @@ const AboutSection = () => {
             {data.languages.length ? (
               <li className="text-lg">
                 <strong className="inline-block min-w-[120px] font-medium">
-                  Langues{" "}
+                  Langues{' '}
                 </strong>
-                : {data.languages.join(", ")}
+                : {data.languages.join(', ')}
               </li>
             ) : null}
             {data.address && (
               <li className="text-lg">
                 <strong className="inline-block min-w-[120px] font-medium">
-                  Adresse{" "}
+                  Adresse{' '}
                 </strong>
                 : {data.address}
               </li>
@@ -115,19 +131,20 @@ const AboutSection = () => {
             {data.freelance && (
               <li className="text-lg">
                 <strong className="inline-block min-w-[120px] font-medium">
-                  Freelance{" "}
+                  Freelance{' '}
                 </strong>
                 : {data.freelance}
               </li>
             )}
           </ul>
-          <a href="/CV - Robin Regis - Développeur Front-end Reactjs Nextjs Typescript.pdf" className="btn mt-3" target="_blank">
+          <a href="/CV - Robin Regis - Développeur Front-end Reactjs Nextjs Typescript.pdf" className="btn mt-3"
+             target="_blank">
             <span>Voir mon CV</span>
           </a>
         </motion.div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default AboutSection;

@@ -1,9 +1,8 @@
-import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
-import {Breadcrumb} from "../components/elements";
-import {Layout} from "../components/layout";
-import {toBase64, shimmer, imageLoader} from "../lib/utils";
+import Head from 'next/head'
+import Image from 'next/image'
+import Link from 'next/link'
+import { Layout } from '../components/layout'
+import { toBase64, shimmer, imageLoader } from '../lib/utils'
 
 const NotFound = () => {
   return (
@@ -42,7 +41,7 @@ const NotFound = () => {
       </section>
       {/* End NotFound Section */}
     </Layout>
-  );
-};
+  )
+}
 
-export default NotFound;
+export default NotFound

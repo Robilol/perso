@@ -76,7 +76,6 @@ const JobTimeline = () => {
       ))}
 
       {/* Éléments additionnels avec effet de défilement */}
-      <AnimatePresence>
         {showAll && (
           <motion.div
             initial="hidden"
@@ -95,7 +94,6 @@ const JobTimeline = () => {
             ))}
           </motion.div>
         )}
-      </AnimatePresence>
 
       {hasMore && (
         <div

@@ -1,5 +1,5 @@
-import Head from "next/head";
-import { Element as Section } from "react-scroll";
+import Head from 'next/head'
+import { Element as Section } from 'react-scroll'
 import {
   AboutSection,
   ContactSection,
@@ -8,9 +8,9 @@ import {
   ResumeSection,
   ServicesSection,
   SkillsSection,
-} from "../components/containers";
-import { Layout } from "../components/layout";
-import { SectionHeading } from "../components/utils";
+} from '../components/containers'
+import { Layout } from '../components/layout'
+import { SectionHeading } from '../components/utils'
 
 const Index = ({ posts }) => {
   return (
@@ -21,7 +21,7 @@ const Index = ({ posts }) => {
 
       {/* Start Hero Section */}
       <Section name="section-home">
-        <HeroSection blurred={false} />
+        <HeroSection blurred={false}/>
       </Section>
       {/* End Hero Section */}
 
@@ -31,8 +31,8 @@ const Index = ({ posts }) => {
         className="about-section pt-24 lg:pt-28 xl:pt-32"
       >
         <div className="container mx-auto">
-          <SectionHeading animated={false} title="À propos de moi" watermark="À propos" />
-          <AboutSection />
+          <SectionHeading animated={false} title="À propos de moi" watermark="À propos"/>
+          <AboutSection/>
         </div>
       </Section>
       {/* End About Section */}
@@ -43,8 +43,8 @@ const Index = ({ posts }) => {
         className="skills-section pt-24 lg:pt-28 xl:pt-32"
       >
         <div className="container mx-auto">
-          <SectionHeading animated={false} title="Mes compétences" watermark="Compétences" />
-          <SkillsSection />
+          <SectionHeading animated={false} title="Mes compétences" watermark="Compétences"/>
+          <SkillsSection/>
         </div>
       </Section>
       {/* End Skills Section */}
@@ -55,8 +55,8 @@ const Index = ({ posts }) => {
         className="services-section pt-24 lg:pt-28 xl:pt-32"
       >
         <div className="container mx-auto">
-          <SectionHeading animated={false} title="Mes services" watermark="Services" />
-          <ServicesSection />
+          <SectionHeading animated={false} title="Mes services" watermark="Services"/>
+          <ServicesSection/>
         </div>
       </Section>
       {/* End Service Section */}
@@ -67,8 +67,8 @@ const Index = ({ posts }) => {
         className="resume-section pt-24 lg:pt-28 xl:pt-32"
       >
         <div className="container mx-auto">
-          <SectionHeading animated={false} title="Mon expérience" watermark="Expérience" />
-          <ResumeSection />
+          <SectionHeading animated={false} title="Mon expérience" watermark="Expérience"/>
+          <ResumeSection/>
         </div>
       </Section>
       {/* End Resume Section */}
@@ -79,8 +79,8 @@ const Index = ({ posts }) => {
         className="portfolios-section pt-24 lg:pt-28 xl:pt-32"
       >
         <div className="container mx-auto">
-          <SectionHeading animated={false} title="Mes réalisations" watermark="Réalisations" />
-          <PortfoliosSection />
+          <SectionHeading animated={false} title="Mes réalisations" watermark="Réalisations"/>
+          <PortfoliosSection/>
         </div>
       </Section>
       {/* End Portfolios Section */}
@@ -115,15 +115,15 @@ const Index = ({ posts }) => {
         className="contact-section pt-24 lg:pt-28 xl:pt-32"
       >
         <div className="container mx-auto">
-          <SectionHeading animated={false} title="Me contacter" watermark="Contact" />
-          <ContactSection />
+          <SectionHeading animated={false} title="Me contacter" watermark="Contact"/>
+          <ContactSection/>
         </div>
       </Section>
       {/* End Contact Section */}
 
       <span className="block pb-24 lg:pb-28 xl:pb-32"></span>
     </Layout>
-  );
-};
+  )
+}
 
-export default Index;
+export default Index

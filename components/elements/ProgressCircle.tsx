@@ -1,13 +1,22 @@
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion'
+import { FC } from 'react'
 
-const ProgressCircle = ({ skill: { title, percentage } }) => {
+const ProgressCircle: FC<{ skill: { title: string, percentage: number } }> = ({
+  skill: {
+    title,
+    percentage
+  }
+}) => {
   const draw = {
-    hidden: { pathLength: 0, opacity: 0 },
+    hidden: {
+      pathLength: 0,
+      opacity: 0
+    },
     visible: {
       pathLength: percentage / 100,
       opacity: 1,
     },
-  };
+  }
   return (
     <div className="circleprogress card hovercard relative p-4 text-center md:p-5">
       <div className="relative mb-2 inline-block text-primary">
@@ -39,13 +48,14 @@ const ProgressCircle = ({ skill: { title, percentage } }) => {
             transition={{ duration: 1 }}
           />
         </motion.svg>
-        <span className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 transform text-center text-xl text-body">
+        <span
+          className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 transform text-center text-xl text-body">
           {percentage}%
         </span>
       </div>
       <h5>{title}</h5>
     </div>
-  );
-};
+  )
+}
 
-export default ProgressCircle;
+export default ProgressCircle

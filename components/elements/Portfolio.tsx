@@ -41,7 +41,7 @@ const Portfolio: FC<{ portfolio: Portfolio }> = ({
         </div>
         <div
           className="portfolio-hovercontent absolute left-0 top-0 z-20 flex h-full w-full -translate-x-full transform items-center justify-center gap-4 overflow-hidden bg-grey bg-opacity-80 transition-all duration-500 group-hover:translate-x-0">
-          {imagegallery.length ? (
+          {imagegallery?.length ? (
             <button
               className="inline-flex h-10 min-h-0 w-10 items-center justify-center rounded-full bg-primary p-0 text-center text-lg text-grey"
               onClick={() => setImageGalleryOpen(true)}
@@ -82,7 +82,7 @@ const Portfolio: FC<{ portfolio: Portfolio }> = ({
           <FsLightbox toggler={imageGalleryOpen} sources={imagegallery}/>
         </Portal>
       )}
-      {videogallery && (
+      {videogallery && videogallery?.length > 0 && (
         <Portal>
           <FsLightbox toggler={videoGalleryOpen} sources={videogallery}/>
         </Portal>

@@ -1,6 +1,9 @@
-import Link from "next/link";
+import Link from 'next/link'
 
-const Logo = ({ url = "/", text = false }) => {
+const Logo = ({
+  url = '/',
+  text = false
+}) => {
   return (
     (<Link href={url} className="sitelogo py-2">
 
@@ -20,7 +23,7 @@ const Logo = ({ url = "/", text = false }) => {
       )}
 
     </Link>)
-  );
-};
+  )
+}
 
-export default Logo;
+export default Logo

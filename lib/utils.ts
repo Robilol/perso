@@ -1,4 +1,4 @@
-export const shimmer = (w, h) => `
+export const shimmer = (w: number, h: number) => `
 <svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs>
         <linearGradient id="g">
@@ -10,13 +10,13 @@ export const shimmer = (w, h) => `
     <rect width="${w}" height="${h}" fill="#1a2c38" />
     <rect id="r" width="${w}" height="${h}" fill="url(#g)" fill-opacity="0.1" />
     <animate xlink:href="#r" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite"  />
-</svg>`;
+</svg>`
 
-export const toBase64 = (str) =>
-    typeof window === "undefined"
-        ? Buffer.from(str).toString("base64")
-        : window.btoa(str);
+export const toBase64 = (str: string) =>
+  typeof window === 'undefined'
+    ? Buffer.from(str).toString('base64')
+    : window.btoa(str)
 
-export const imageLoader = (src) => {
-    return src;
-};
+export const imageLoader = (src: string) => {
+  return src
+}

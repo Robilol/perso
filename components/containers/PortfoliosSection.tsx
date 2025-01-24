@@ -1,62 +1,68 @@
-import { motion } from "framer-motion";
-import { useCallback, useEffect, useState } from "react";
+import { motion } from 'framer-motion'
+import { useCallback, useEffect, useState } from 'react'
 import { getInformation, getPortfolios } from '../../fetchers'
-import { Portfolio } from "../elements";
-import { PortfolioFilters, Spinner } from "../utils";
+import { Portfolio } from '../elements'
+import { PortfolioFilters, Spinner } from '../utils'
 import { useQuery } from '@tanstack/react-query'
 
 const PortfoliosSection = () => {
   // States
-  const [visiblePortfolios, setVisiblePortfolios] = useState([]);
-  const [currentFilter, setCurrentFilter] = useState("");
-  const [pageNumber, setPageNumber] = useState(1);
+  const [visiblePortfolios, setVisiblePortfolios] = useState<Portfolio[]>([])
+  const [currentFilter, setCurrentFilter] = useState<string>('')
+  const [pageNumber, setPageNumber] = useState<number>(1)
 
-  const { data, isFetching } = useQuery({ queryKey: ['portfolios'], queryFn: getPortfolios })
-
+  const {
+    data,
+    isFetching
+  } = useQuery({
+    queryKey: ['portfolios'],
+    queryFn: getPortfolios
+  })
 
   useEffect(() => {
-    if (data) setVisiblePortfolios(data.slice(0, 6));
-  }, [data]);
+    if (data) setVisiblePortfolios(data.slice(0, 6))
+  }, [data])
 
   // Portfolio Filter function
   const handleFilter = useCallback(
-    (value) => {
-      setCurrentFilter(value);
-      if (value === "") {
-        setVisiblePortfolios(data.slice(0, pageNumber * 6));
+    (value: string) => {
+      setCurrentFilter(value)
+      if (value === '') {
+        setVisiblePortfolios(data?.slice(0, pageNumber * 6) ?? [])
       } else {
         setVisiblePortfolios(
-          data
+          (data ?? [])
             .slice(0, pageNumber * 6)
             .filter((portfolio) => portfolio.filters.includes(value))
-        );
+        )
       }
     },
     [data, pageNumber]
-  );
+  )
 
   // Load more function
   const handleLoadmore = useCallback(() => {
-    setPageNumber((prevNumber) => prevNumber + 1);
-    if (currentFilter === "") {
-      setVisiblePortfolios(data.slice(0, (pageNumber + 1) * 6));
+    setPageNumber((prevNumber) => prevNumber + 1)
+    if (currentFilter === '') {
+      setVisiblePortfolios(data?.slice(0, (pageNumber + 1) * 6) ?? [])
     } else {
       setVisiblePortfolios(
-        data
+        (data ?? [])
           .slice(0, (pageNumber + 1) * 6)
           .filter((portfolio) => portfolio.filters.includes(currentFilter))
-      );
+      )
     }
-  }, [currentFilter, data, pageNumber]);
+  }, [currentFilter, data, pageNumber])
 
-  if (isFetching)
+  if (isFetching) {
     return (
       <div className="block py-20 text-center">
-        <Spinner />
+        <Spinner/>
       </div>
-    );
+    )
+  }
 
-  if (!data) return null;
+  if (!data) return null
 
   return (
     <>
@@ -77,7 +83,7 @@ const PortfoliosSection = () => {
             className="col-span-6 sm:col-span-3 lg:col-span-2"
             key={portfolio.id}
           >
-            <Portfolio portfolio={portfolio} />
+            <Portfolio portfolio={portfolio}/>
           </motion.div>
         ))}
       </motion.div>
@@ -89,7 +95,7 @@ const PortfoliosSection = () => {
         </div>
       ) : null}
     </>
-  );
-};
+  )
+}
 
 export default PortfoliosSection;

@@ -26,7 +26,8 @@ const TimelineItem: FC<{ timeline: JobExperience }> = ({
         <h5 className="mb-0 text-primary">{title}</h5>
         <p className="mb-2 text-heading">{meta}</p>
         <p className="whitespace-pre-line">{text}</p>
-        <div className="flex flex-row gap-2">{tags?.map((tag) => <span className="bg-primary bg-opacity-10 text-xs rounded px-1">{tag}</span>)}</div>
+        <div className="flex flex-row gap-2">{tags?.map((tag) => <span
+          className="bg-primary bg-opacity-10 text-xs rounded px-1">{tag}</span>)}</div>
       </div>
     </div>
   )

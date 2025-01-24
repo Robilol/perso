@@ -1,26 +1,38 @@
-import Image from "next/image";
-import { RiArrowDownLine } from "react-icons/ri";
-import { Link } from "react-scroll";
-import { SocialIcons } from "../elements";
-import { imageLoader, shimmer, toBase64 } from "../../lib/utils";
-import { motion } from "framer-motion";
-import { childrenAnimation } from "../../lib/motion";
-import { getInformation } from "../../fetchers";
-import { Spinner } from "../utils";
-import Typed from "../utils/Typed";
+import Image from 'next/image'
+import { RiArrowDownLine } from 'react-icons/ri'
+import { Link } from 'react-scroll'
+import { SocialIcons } from '../elements'
+import { imageLoader, shimmer, toBase64 } from '../../lib/utils'
+import { motion } from 'framer-motion'
+import { childrenAnimation } from '../../lib/motion'
+import { getInformation } from '../../fetchers'
+import { Spinner } from '../utils'
+import Typed from '../utils/Typed'
 import { useQuery } from '@tanstack/react-query'
+import { FC } from 'react'
 
-const HeroSection = ({ blurred, scroll = true, typed = true }) => {
-  const { data, isFetching } = useQuery({ queryKey: ['information'], queryFn: getInformation })
+const HeroSection: FC<{ blurred: boolean, scroll?: boolean, typed: boolean }> = ({
+  blurred,
+  scroll = true,
+  typed = true
+}) => {
+  const {
+    data,
+    isFetching
+  } = useQuery({
+    queryKey: ['information'],
+    queryFn: getInformation
+  })
 
-  if (isFetching)
+  if (isFetching) {
     return (
       <div className="flex min-h-screen w-full items-center justify-center py-20 text-center">
-        <Spinner />
+        <Spinner/>
       </div>
-    );
+    )
+  }
 
-  if (!data) return null;
+  if (!data) return null
 
   return (
     <div className="herosection relative overflow-hidden">
@@ -29,7 +41,7 @@ const HeroSection = ({ blurred, scroll = true, typed = true }) => {
       )}
       <div
         className={`herosection-content relative z-20 bg-grey-darken  ${
-          blurred ? "bg-opacity-20" : "bg-opacity-90"
+          blurred ? 'bg-opacity-20' : 'bg-opacity-90'
         }`}
       >
         <div className="container relative mx-auto">
@@ -88,7 +100,7 @@ const HeroSection = ({ blurred, scroll = true, typed = true }) => {
                 variants={childrenAnimation}
                 className="mb-5 text-heading"
               >
-                <span className="block sm:inline">Salut, je suis</span>{" "}
+                <span className="block sm:inline">Salut, je suis</span>{' '}
                 {typed ? (
                   <Typed
                     options={{
@@ -98,12 +110,12 @@ const HeroSection = ({ blurred, scroll = true, typed = true }) => {
                       backDelay: 2000,
                       strings: [
                         data.fullName,
-                        "Full Stack Developer",
-                        "Next.js Developer",
-                        "Node.js Developer",
-                        "Typescript Developer",
+                        'Full Stack Developer',
+                        'Next.js Developer',
+                        'Node.js Developer',
+                        'Typescript Developer',
                       ],
-                      className: "text-primary"
+                      className: 'text-primary'
                     }}
                   />
                 ) : (
@@ -167,7 +179,7 @@ const HeroSection = ({ blurred, scroll = true, typed = true }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default HeroSection;
+export default HeroSection

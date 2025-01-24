@@ -43,8 +43,12 @@
     "typed.js": "^2.0.12"
   },
   "devDependencies": {
+    "@types/fslightbox-react": "^1.7.8",
     "@types/react": "19.0.8",
-    "@typescript-eslint/eslint-plugin": "^5.41.0",
+    "@types/react-portal": "^4.0.7",
+    "@types/react-scroll": "^1.8.10",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
     "autoprefixer": "^10.4.12",
     "eslint": "^8.26.0",
     "eslint-config-next": "15.1.6",
