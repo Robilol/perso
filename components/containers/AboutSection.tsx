@@ -1,30 +1,27 @@
-import Image from 'next/image'
-import { imageLoader, shimmer, toBase64 } from '../../lib/utils'
-import { motion } from 'framer-motion'
-import { childrenAnimation } from '../../lib/motion'
-import { getInformation, getLanguageskills } from '../../fetchers'
-import { Spinner } from '../utils'
-import dayjs from 'dayjs'
-import { useQuery } from '@tanstack/react-query'
+import Image from 'next/image';
+import { shimmer, toBase64 } from '../../lib/utils';
+import { motion } from 'framer-motion';
+import { childrenAnimation } from '../../lib/motion';
+import { getInformation } from '../../fetchers';
+import { Spinner } from '../utils';
+import dayjs from 'dayjs';
+import { useQuery } from '@tanstack/react-query';
 
 const AboutSection = () => {
-  const {
-    data,
-    isFetching
-  } = useQuery({
+  const { data, isFetching } = useQuery({
     queryKey: ['information'],
-    queryFn: getInformation
-  })
+    queryFn: getInformation,
+  });
 
   if (isFetching) {
     return (
       <div className="block py-20 text-center">
-        <Spinner/>
+        <Spinner />
       </div>
-    )
+    );
   }
 
-  if (!data) return null
+  if (!data) return null;
 
   return (
     <div className="grid grid-cols-2 items-center gap-7">
@@ -35,22 +32,18 @@ const AboutSection = () => {
           viewport={{ once: true }}
           transition={{
             duration: 0.4,
-            delay: 0.2
+            delay: 0.2,
           }}
           variants={childrenAnimation}
           className="about-image overflow-hidden rounded-lg"
         >
           <div className="about-image-inner fiximage relative border-10 border-primary border-opacity-20">
-            <span
-              className="absolute -top-2.5 left-0 z-10 h-2.5 w-10 animate-ledgerleftright rounded-full bg-gradient-to-r from-transparent to-primary"></span>
-            <span
-              className="absolute top-auto -bottom-2.5 left-auto z-10 h-2.5 w-10 animate-ledgerrightleft rounded-full bg-gradient-to-r from-primary to-transparent"></span>
-            <span
-              className="absolute -left-2.5 top-auto z-10 h-10 w-2.5 animate-ledgerbottomtop rounded-full bg-gradient-to-t from-transparent to-primary"></span>
-            <span
-              className="absolute left-auto -right-2.5 z-10 h-10 w-2.5 animate-ledgertopbottom rounded-full bg-gradient-to-b from-transparent to-primary"></span>
+            <span className="absolute -top-2.5 left-0 z-10 h-2.5 w-10 animate-ledgerleftright rounded-full bg-gradient-to-r from-transparent to-primary"></span>
+            <span className="absolute -bottom-2.5 left-auto top-auto z-10 h-2.5 w-10 animate-ledgerrightleft rounded-full bg-gradient-to-r from-primary to-transparent"></span>
+            <span className="absolute -left-2.5 top-auto z-10 h-10 w-2.5 animate-ledgerbottomtop rounded-full bg-gradient-to-t from-transparent to-primary"></span>
+            <span className="absolute -right-2.5 left-auto z-10 h-10 w-2.5 animate-ledgertopbottom rounded-full bg-gradient-to-b from-transparent to-primary"></span>
             <Image
-              loader={imageLoader}
+              loader={({ src }) => src}
               unoptimized={true}
               src={data.largeImage}
               height={422}
@@ -71,7 +64,7 @@ const AboutSection = () => {
           viewport={{ once: true }}
           transition={{
             duration: 0.4,
-            delay: 0.4
+            delay: 0.4,
           }}
           variants={childrenAnimation}
           className="about-content"
@@ -137,14 +130,17 @@ const AboutSection = () => {
               </li>
             )}
           </ul>
-          <a href="/CV - Robin Regis - Développeur Front-end Reactjs Nextjs Typescript.pdf" className="btn mt-3"
-             target="_blank">
+          <a
+            href="/CV - Robin Regis - Développeur Front-end Reactjs Nextjs Typescript.pdf"
+            className="btn mt-3"
+            target="_blank"
+          >
             <span>Voir mon CV</span>
           </a>
         </motion.div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default AboutSection;

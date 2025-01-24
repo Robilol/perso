@@ -1,22 +1,19 @@
-import { motion } from 'framer-motion'
-import { getInformation, getTechskills } from '../../fetchers'
-import { childrenAnimation } from '../../lib/motion'
-import { ProgressCircle } from '../elements'
-import { useQuery } from '@tanstack/react-query'
+import { motion } from 'framer-motion';
+import { getTechskills } from '../../fetchers';
+import { childrenAnimation } from '../../lib/motion';
+import { ProgressCircle } from '../elements';
+import { useQuery } from '@tanstack/react-query';
 
 const TechSkills = () => {
-  const {
-    data,
-    isFetching
-  } = useQuery({
+  const { data, isFetching } = useQuery({
     queryKey: ['tech-skills'],
-    queryFn: getTechskills
-  })
+    queryFn: getTechskills,
+  });
 
-  if (!data) return null
+  if (!data) return null;
 
   return (
-    <div className={`grid grid-cols-1 lg:grid-cols-3 gap-7`}>
+    <div className={'grid grid-cols-1 gap-7 lg:grid-cols-3'}>
       {data?.map((skill, index) => (
         <motion.div
           initial="hidden"
@@ -24,17 +21,17 @@ const TechSkills = () => {
           viewport={{ once: true }}
           transition={{
             duration: 0.4,
-            delay: 0.2 * index
+            delay: 0.2 * index,
           }}
           variants={childrenAnimation}
           className=""
           key={index}
         >
-          <ProgressCircle skill={skill}/>
+          <ProgressCircle skill={skill} />
         </motion.div>
       ))}
     </div>
-  )
-}
+  );
+};
 
 export default TechSkills

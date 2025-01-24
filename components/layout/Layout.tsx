@@ -1,25 +1,25 @@
-import { motion } from 'framer-motion'
-import { FC, ReactElement, useState } from 'react'
-import Scroll from 'react-scroll'
-import Footer from './Footer'
-import Header from './Header'
-import { RiArrowUpSLine } from 'react-icons/ri'
-import useEventListener from '../../hooks/useEventListener'
+import { motion } from 'framer-motion';
+import { FC, ReactNode, useState } from 'react';
+import Scroll from 'react-scroll';
+import Footer from './Footer';
+import Header from './Header';
+import { RiArrowUpSLine } from 'react-icons/ri';
+import useEventListener from '../../hooks/useEventListener';
 
-const Layout: FC<{ blurred?: boolean, children: ReactElement }> = ({
+const Layout: FC<{ blurred?: boolean, children: ReactNode }> = ({
   children,
-  blurred
+  blurred,
 }) => {
-  const [backToTop, setBackToTop] = useState(false)
+  const [backToTop, setBackToTop] = useState(false);
 
-  const scroll = Scroll.animateScroll
+  const scroll = Scroll.animateScroll;
 
   const isVisible = () => {
-    const scrollTop = window.scrollY
-    scrollTop > 500 ? setBackToTop(true) : setBackToTop(false)
-  }
+    const scrollTop = window.scrollY;
+    scrollTop > 500 ? setBackToTop(true) : setBackToTop(false);
+  };
 
-  useEventListener('scroll', isVisible)
+  useEventListener('scroll', isVisible);
 
   return (
     <div
@@ -27,7 +27,7 @@ const Layout: FC<{ blurred?: boolean, children: ReactElement }> = ({
         blurred ? 'blurredBg' : ''
       }`}
     >
-      <Header/>
+      <Header />
       <main
         className={`page-content relative bg-grey bg-opacity-95 ${
           blurred ? 'backdrop-blur-lg backdrop-filter' : ''
@@ -42,7 +42,7 @@ const Layout: FC<{ blurred?: boolean, children: ReactElement }> = ({
         </div>
         <div className="sitedata relative z-30 min-h-screen">{children}</div>
       </main>
-      <Footer/>
+      <Footer />
       <motion.button
         initial={{
           opacity: 0,
@@ -52,13 +52,13 @@ const Layout: FC<{ blurred?: boolean, children: ReactElement }> = ({
           opacity: backToTop ? 1 : 0,
           x: backToTop ? 0 : 1000,
         }}
-        className="btn fixed bottom-12 left-auto top-auto right-7 z-30 rounded-full p-2.5 text-xl"
+        className="btn fixed bottom-12 left-auto right-7 top-auto z-30 rounded-full p-2.5 text-xl"
         onClick={() => scroll.scrollToTop()}
       >
-        <RiArrowUpSLine/>
+        <RiArrowUpSLine />
       </motion.button>
     </div>
-  )
-}
+  );
+};
 
 export default Layout

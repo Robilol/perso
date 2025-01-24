@@ -1,15 +1,12 @@
-import {
-  RiGithubFill,
-  RiLinkedinBoxFill,
-} from 'react-icons/ri'
-import { SiMalt } from 'react-icons/si'
-import { FC } from 'react'
+import { RiGithubFill, RiLinkedinBoxFill } from 'react-icons/ri';
+import { SiMalt } from 'react-icons/si';
+import { FC } from 'react';
 
-const SocialIcons: FC<{ data: { github: string, linkedin: string, malt: string }, rounded?: boolean }> = ({
-  data,
-  rounded = false
-}) => {
-  if (!data) return null
+const SocialIcons: FC<{
+  data: { github: string, linkedin: string, malt: string }
+  rounded?: boolean
+}> = ({ data, rounded = false }) => {
+  if (!data) return null;
 
   return (
     <ul className="mb-0 inline-flex list-none flex-wrap gap-3 pl-0 sm:gap-4">
@@ -23,14 +20,12 @@ const SocialIcons: FC<{ data: { github: string, linkedin: string, malt: string }
               rounded ? 'rounded-full' : 'rounded'
             }`}
           >
-                        <span
-                          className="front relative left-0 top-0 flex h-full w-full translate-y-0 transform items-center justify-center rounded bg-grey transition-all duration-500 group-hover:-translate-y-full">
-                            <RiGithubFill size={48} className="inline-block"/>
-                        </span>
-            <span
-              className="back absolute left-0 top-0 flex h-full w-full translate-y-full items-center justify-center rounded bg-primary text-grey transition-all duration-500 group-hover:translate-y-0">
-                            <RiGithubFill size={48} className="inline-block"/>
-                        </span>
+            <span className="front relative left-0 top-0 flex h-full w-full translate-y-0 transform items-center justify-center rounded bg-grey transition-all duration-500 group-hover:-translate-y-full">
+              <RiGithubFill size={48} className="inline-block" />
+            </span>
+            <span className="back absolute left-0 top-0 flex h-full w-full translate-y-full items-center justify-center rounded bg-primary text-grey transition-all duration-500 group-hover:translate-y-0">
+              <RiGithubFill size={48} className="inline-block" />
+            </span>
           </a>
         </li>
       )}
@@ -44,14 +39,12 @@ const SocialIcons: FC<{ data: { github: string, linkedin: string, malt: string }
               rounded ? 'rounded-full' : 'rounded'
             }`}
           >
-                        <span
-                          className="front relative left-0 top-0 flex h-full w-full translate-y-0 transform items-center justify-center rounded bg-grey transition-all duration-500 group-hover:-translate-y-full">
-                            <RiLinkedinBoxFill size={48} className="inline-block"/>
-                        </span>
-            <span
-              className="back absolute left-0 top-0 flex h-full w-full translate-y-full items-center justify-center rounded bg-primary text-grey transition-all duration-500 group-hover:translate-y-0">
-                            <RiLinkedinBoxFill size={48} className="inline-block"/>
-                        </span>
+            <span className="front relative left-0 top-0 flex h-full w-full translate-y-0 transform items-center justify-center rounded bg-grey transition-all duration-500 group-hover:-translate-y-full">
+              <RiLinkedinBoxFill size={48} className="inline-block" />
+            </span>
+            <span className="back absolute left-0 top-0 flex h-full w-full translate-y-full items-center justify-center rounded bg-primary text-grey transition-all duration-500 group-hover:translate-y-0">
+              <RiLinkedinBoxFill size={48} className="inline-block" />
+            </span>
           </a>
         </li>
       )}
@@ -65,19 +58,17 @@ const SocialIcons: FC<{ data: { github: string, linkedin: string, malt: string }
               rounded ? 'rounded-full' : 'rounded'
             }`}
           >
-                        <span
-                          className="front relative left-0 top-0 flex h-full w-full translate-y-0 transform items-center justify-center rounded bg-grey transition-all duration-500 group-hover:-translate-y-full">
-                            <SiMalt size={48} className="inline-block"/>
-                        </span>
-            <span
-              className="back absolute left-0 top-0 flex h-full w-full translate-y-full items-center justify-center rounded bg-primary text-grey transition-all duration-500 group-hover:translate-y-0">
-                            <SiMalt size={48} className="inline-block"/>
-                        </span>
+            <span className="front relative left-0 top-0 flex h-full w-full translate-y-0 transform items-center justify-center rounded bg-grey transition-all duration-500 group-hover:-translate-y-full">
+              <SiMalt size={48} className="inline-block" />
+            </span>
+            <span className="back absolute left-0 top-0 flex h-full w-full translate-y-full items-center justify-center rounded bg-primary text-grey transition-all duration-500 group-hover:translate-y-0">
+              <SiMalt size={48} className="inline-block" />
+            </span>
           </a>
         </li>
       )}
     </ul>
-  )
-}
+  );
+};
 
 export default SocialIcons

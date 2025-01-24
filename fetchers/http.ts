@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from 'axios';
 
 const http = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -8,6 +8,6 @@ const http = axios.create({
     'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH',
     'Content-Type': 'application/json',
   },
-})
+});
 
 export { http }

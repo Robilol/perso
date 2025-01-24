@@ -1,28 +1,28 @@
-import React, { useEffect, useRef, FunctionComponent } from 'react'
-import { default as TypedLib } from 'typed.js'
+import React, { useEffect, useRef } from 'react';
+import Typed from 'typed.js';
 
-const Typed: React.FC<{ options: any }> = ({ options }) => {
-  const ref = useRef<HTMLSpanElement | null>(null)
+const TypedText: React.FC<{ options: any }> = ({ options }) => {
+  const ref = useRef<HTMLSpanElement | null>(null);
 
   useEffect(() => {
     if (!ref.current) {
-      return
+      return;
     }
-    const typed = new TypedLib(ref.current, options)
+    const typed = new Typed(ref.current, options);
 
     return () => {
       if (!typed) {
-        return
+        return;
       }
-      typed.destroy()
-    }
-  }, [ref, options])
+      typed.destroy();
+    };
+  }, [ref, options]);
 
   return (
     <div>
-      <span ref={ref}/>
+      <span ref={ref} />
     </div>
-  )
-}
+  );
+};
 
-export default Typed
+export default TypedText

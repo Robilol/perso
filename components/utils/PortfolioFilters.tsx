@@ -1,20 +1,17 @@
-import { getInformation, getPortfolioFilters } from '../../fetchers'
-import { useQuery } from '@tanstack/react-query'
-import { FC } from 'react'
+import { getPortfolioFilters } from '../../fetchers';
+import { useQuery } from '@tanstack/react-query';
+import { FC } from 'react';
 
-const PortfolioFilters:FC<{currentFilter: string,filterHandler: (value: string) => void }> = ({
-  currentFilter,
-  filterHandler
-}) => {
-  const {
-    data,
-    isFetching
-  } = useQuery({
+const PortfolioFilters: FC<{
+  currentFilter: string
+  filterHandler: (value: string) => void
+}> = ({ currentFilter, filterHandler }) => {
+  const { data, isFetching } = useQuery({
     queryKey: ['portfolio-filters'],
-    queryFn: getPortfolioFilters
-  })
+    queryFn: getPortfolioFilters,
+  });
 
-  if (!data) return null
+  if (!data) return null;
 
   return (
     <div className="portfolio-filters flex flex-wrap justify-center gap-4">
@@ -40,7 +37,7 @@ const PortfolioFilters:FC<{currentFilter: string,filterHandler: (value: string) 
         </button>
       ))}
     </div>
-  )
-}
+  );
+};
 
 export default PortfolioFilters

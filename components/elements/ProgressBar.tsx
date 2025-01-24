@@ -1,11 +1,8 @@
-import { motion } from 'framer-motion'
-import { FC } from 'react'
+import { motion } from 'framer-motion';
+import { FC } from 'react';
 
 const ProgressBar: FC<{ skill: { title: string, percentage: number } }> = ({
-  skill: {
-    title,
-    percentage
-  }
+  skill: { title, percentage },
 }) => {
   return (
     <div className="progress">
@@ -21,11 +18,11 @@ const ProgressBar: FC<{ skill: { title: string, percentage: number } }> = ({
           variants={{
             visible: {
               scaleX: 1,
-              originX: 0
+              originX: 0,
             },
             hidden: {
               scaleX: 0,
-              originX: 0
+              originX: 0,
             },
           }}
           className="progress-progress absolute left-0 top-0 h-full rounded-full bg-primary"
@@ -33,7 +30,7 @@ const ProgressBar: FC<{ skill: { title: string, percentage: number } }> = ({
         ></motion.span>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default ProgressBar

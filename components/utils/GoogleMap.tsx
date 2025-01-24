@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useState } from 'react';
 
 const GoogleMap = () => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
   return (
     <div
       className={`google-map relative overflow-hidden ${
@@ -13,9 +13,9 @@ const GoogleMap = () => {
           className="map-opener absolute left-0 top-0 flex h-full w-full cursor-pointer items-center justify-center bg-grey-darken bg-opacity-90"
           onClick={() => setOpen(true)}
         >
-                    <span className="text-sm font-medium uppercase tracking-widest">
-                        Open Map
-                    </span>
+          <span className="text-sm font-medium uppercase tracking-widest">
+            Open Map
+          </span>
         </div>
       )}
       <iframe
@@ -29,7 +29,7 @@ const GoogleMap = () => {
         marginWidth={0}
       ></iframe>
     </div>
-  )
-}
+  );
+};
 
 export default GoogleMap

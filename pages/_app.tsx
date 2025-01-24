@@ -1,23 +1,23 @@
-import { AppProps } from 'next/app'
-import Head from 'next/head'
-import Router from 'next/router'
-import NProgress from 'nprogress'
-import { ParallaxProvider } from 'react-scroll-parallax'
-import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3'
-import { Analytics } from '@vercel/analytics/react'
+import { AppProps } from 'next/app';
+import Head from 'next/head';
+import Router from 'next/router';
+import NProgress from 'nprogress';
+import { ParallaxProvider } from 'react-scroll-parallax';
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
+import { Analytics } from '@vercel/analytics/react';
 import {
+  HydrationBoundary,
   QueryClient,
   QueryClientProvider,
-  HydrationBoundary
-} from '@tanstack/react-query'
+} from '@tanstack/react-query';
 
-import 'normalize.css'
-import 'nprogress/nprogress.css'
-import 'swiper/css'
-import 'swiper/css/navigation'
-import '../styles/globals.scss'
+import 'normalize.css';
+import 'nprogress/nprogress.css';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import '../styles/globals.scss';
 
-NProgress.configure({ showSpinner: true })
+NProgress.configure({ showSpinner: true });
 Router.events.on('routeChangeStart', () => NProgress.start())
 Router.events.on('routeChangeComplete', () => NProgress.done())
 Router.events.on('routeChangeError', () => NProgress.done())

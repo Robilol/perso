@@ -27,6 +27,7 @@
         "multiline-ternary": "off",
         "eol-last": "warn",
         "@typescript-eslint/semi": "off",
-        "react/jsx-key": "warn"
+        "react/jsx-key": "warn",
+        "@typescript-eslint/no-misused-promises": "off"
     }
 }

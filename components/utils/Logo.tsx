@@ -1,12 +1,8 @@
-import Link from 'next/link'
+import Link from 'next/link';
 
-const Logo = ({
-  url = '/',
-  text = false
-}) => {
+const Logo = ({ url = '/', text = false }) => {
   return (
-    (<Link href={url} className="sitelogo py-2">
-
+    <Link href={url} className="sitelogo py-2">
       {text ? (
         <span className="text-4xl font-bold uppercase leading-none text-primary">
           Robin Regis
@@ -21,9 +17,8 @@ const Logo = ({
           />
         </>
       )}
-
-    </Link>)
-  )
-}
+    </Link>
+  );
+};
 
 export default Logo

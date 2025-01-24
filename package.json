@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "lint:fix": "next lint --fix",
     "postbuild": "node ./scripts/generate-sitemap.mjs"
   },
   "dependencies": {
@@ -44,6 +45,7 @@
   },
   "devDependencies": {
     "@types/fslightbox-react": "^1.7.8",
+    "@types/nprogress": "^0.2.3",
     "@types/react": "19.0.8",
     "@types/react-portal": "^4.0.7",
     "@types/react-scroll": "^1.8.10",

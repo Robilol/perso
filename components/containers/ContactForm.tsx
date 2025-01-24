@@ -1,9 +1,9 @@
-import { useCallback, useRef, useState } from 'react'
-import { useForm } from 'react-hook-form'
-import emailjs from '@emailjs/browser'
-import { settings } from '../../settings/settings'
-import { GoogleReCaptcha, GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3'
-import { BiLoaderAlt } from 'react-icons/bi'
+import { useCallback, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import emailjs from '@emailjs/browser';
+import { settings } from '../../settings/settings';
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
+import { BiLoaderAlt } from 'react-icons/bi';
 
 interface FormData {
   from_name: string
@@ -13,7 +13,6 @@ interface FormData {
 }
 
 const ContactForm = () => {
-
   const { executeRecaptcha } = useGoogleReCaptcha()
 
   const [serverSuccess, setServerSuccess] = useState<boolean | string>(false)
@@ -39,7 +38,6 @@ const ContactForm = () => {
   }, [executeRecaptcha])
 
   const onSubmit = async (data: FormData) => {
-    console.log(data)
     setLoading(true)
     const token = await handleReCaptchaVerify()
 
@@ -65,6 +63,7 @@ const ContactForm = () => {
         },
         (error) => {
           setServerSuccess(false)
+          console.log(error)
           setServerError('Une erreur est survenue pendant l\'envoi du message!')
           setLoading(false)
         }
@@ -102,7 +101,7 @@ const ContactForm = () => {
           id="reply_to"
           {...register('reply_to', {
             required: true,
-            pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+            pattern: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
           })}
         />
         {errors.reply_to && (

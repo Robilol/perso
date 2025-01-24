@@ -1,23 +1,26 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import Link from 'next/link'
-import { Layout } from '../components/layout'
-import { toBase64, shimmer, imageLoader } from '../lib/utils'
+import Head from 'next/head';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Layout } from '../components/layout';
+import { shimmer, toBase64 } from '../lib/utils';
 
 const NotFound = () => {
   return (
     <Layout blurred>
       <Head>
-        <title>Page non trouvée - Robin Regis - Développeur Front-end React.js / Next.js / Typescript</title>
+        <title>
+          Page non trouvée - Robin Regis - Développeur Front-end React.js /
+          Next.js / Typescript
+        </title>
       </Head>
 
       {/* Start NotFound Section */}
-      <section className="section-notfound absolute flex items-center justify-center inset-0">
-        <div className="not-found-wrapper pb-24 pt-10 lg:pt-14 lg:pb-28 xl:pt-16 xl:pb-32">
+      <section className="section-notfound absolute inset-0 flex items-center justify-center">
+        <div className="not-found-wrapper pb-24 pt-10 lg:pb-28 lg:pt-14 xl:pb-32 xl:pt-16">
           <div className="container mx-auto">
             <div className="not-found text-center">
               <Image
-                loader={imageLoader}
+                loader={({ src }) => src}
                 unoptimized={true}
                 src="/images/notfound.svg"
                 height={700}
@@ -30,9 +33,7 @@ const NotFound = () => {
               />
               <div>
                 <Link href="/" className="btn btn-large">
-
                   <span>Retourner à l'accueil</span>
-
                 </Link>
               </div>
             </div>
@@ -41,7 +42,7 @@ const NotFound = () => {
       </section>
       {/* End NotFound Section */}
     </Layout>
-  )
-}
+  );
+};
 
 export default NotFound

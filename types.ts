@@ -23,7 +23,7 @@ export interface PortfolioFilter {
   value: string
 }
 
-export interface Portfolio {
+export interface Project {
   id: string
   'title': string
   'subtitle': string
