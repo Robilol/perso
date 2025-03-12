@@ -25,7 +25,7 @@
         "tags": ["Next.js 14", "TailwindCSS", "Supabase"]
     },
     {
-        "id": 'agreenup',
+        "id": "agreenup",
         "title": "Agreenup",
         "subtitle": "Site vitrine onepage pour des fomations de permaculture.",
         "coverimage": "/images/portfolios/agreenup.png",
