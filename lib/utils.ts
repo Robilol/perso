@@ -17,6 +17,6 @@ export const toBase64 = (str: string) =>
     ? Buffer.from(str).toString('base64')
     : window.btoa(str)
 
-export const imageLoader = (src: string) => {
+const imageLoader = (src: string) => {
   return src
 }

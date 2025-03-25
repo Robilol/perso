@@ -1,4 +1,4 @@
-export const parentAnimation = {
+const parentAnimation = {
   visible: {
     y: 0,
     opacity: 1,
