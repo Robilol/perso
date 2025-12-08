@@ -9,7 +9,16 @@ const nextConfig = {
     deviceSizes: [640, 768, 1024, 1280, 1536],
     loader: 'custom',
     path: '/',
-    domains: ['skillicons.dev', 'githubusercontent.com']
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'skillicons.dev'
+      },
+      {
+        protocol: 'https',
+        hostname: 'githubusercontent.com'
+      }
+    ]
   },
   async rewrites () {
     return [
