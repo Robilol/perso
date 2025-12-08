@@ -59,6 +59,8 @@ export interface Information {
   'languages': string[]
   'address': string
   'freelance': string
+  'isAvailable'?: boolean
+  'availabilityMessage'?: string
   'socialAddress': {
     'github': string
     'linkedin': string

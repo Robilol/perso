@@ -29,6 +29,8 @@ const HeroSection: FC<{
     );
   }
 
+  console.log(data)
+
   if (!data) return null;
 
   return (
@@ -44,21 +46,23 @@ const HeroSection: FC<{
         <div className="container relative mx-auto">
           <div className="flex min-h-screen w-full items-center justify-center">
             <div className="herosection-content relative w-full py-20 text-center md:w-3/4">
-              <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                transition={{
-                  duration: 0.4,
-                  delay: 0.4,
-                }}
-                variants={childrenAnimation}
-                className="absolute left-0 right-0 top-14 md:-top-4"
-              >
-                <span className="rounded-full bg-primary px-4 py-2 text-sm font-medium text-grey shadow-sm lg:text-lg">
-                  Disponible pour de nouvelles opportunités
-                </span>
-              </motion.div>
+              {data?.isAvailable && (
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 0.4,
+                    delay: 0.4,
+                  }}
+                  variants={childrenAnimation}
+                  className="absolute left-0 right-0 top-14 md:-top-4"
+                >
+                  <span className="rounded-full bg-primary px-4 py-2 text-sm font-medium text-grey shadow-sm lg:text-lg">
+                    {data?.availabilityMessage || 'Disponible pour de nouvelles opportunités'}
+                  </span>
+                </motion.div>
+              )}
               <motion.div
                 initial="hidden"
                 whileInView="visible"

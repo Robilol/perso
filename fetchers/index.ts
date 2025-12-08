@@ -1,4 +1,4 @@
-import { http } from './http';
+import { client } from '../lib/sanity'
 import {
   EducationalBackground,
   Information,
@@ -10,44 +10,112 @@ import {
   TechSkill,
 } from '../types'
 
-const getInformation = async () => {
-  const res = await http.get<Information>('/api/information.json');
-  return res.data;
-};
+const getInformation = async (): Promise<Information> => {
+  const query = `*[_type == "information"][0] {
+    firstName,
+    lastName,
+    fullName,
+    "thumbImage": thumbImage.asset->url,
+    "largeImage": largeImage.asset->url,
+    bio,
+    age,
+    birthday,
+    nationality,
+    languages,
+    address,
+    freelance,
+    isAvailable,
+    availabilityMessage,
+    socialAddress,
+    phoneNumbers,
+    emailAddress
+  }`
 
-const getServices = async () => {
-  const res = await http.get<Service[]>('/api/services.json')
-  return res.data
+  const data = await client.fetch(query)
+  return data
 }
 
-const getTechskills = async () => {
-  const res = await http.get<TechSkill[]>('/api/techskills.json')
-  return res.data
+const getServices = async (): Promise<Service[]> => {
+  const query = `*[_type == "service"] | order(_createdAt asc) {
+    title,
+    text,
+    "icon": icon.asset->url
+  }`
+
+  const data = await client.fetch(query)
+  return data
 }
 
-const getLanguageskills = async () => {
-  const res = await http.get<LanguageSkill[]>('/api/languageskills.json')
-  return res.data
+const getTechskills = async (): Promise<TechSkill[]> => {
+  const query = `*[_type == "techSkill"] | order(_createdAt asc) {
+    title,
+    percentage
+  }`
+
+  const data = await client.fetch(query)
+  return data
 }
 
-const getPortfolioFilters = async () => {
-  const res = await http.get<PortfolioFilter[]>('/api/portfoliofilters.json')
-  return res.data
+const getLanguageskills = async (): Promise<LanguageSkill[]> => {
+  const query = `*[_type == "languageSkill"] | order(_createdAt asc) {
+    title,
+    percentage
+  }`
+
+  const data = await client.fetch(query)
+  return data
 }
 
-const getPortfolios = async () => {
-  const res = await http.get<Project[]>('/api/portfolios.json')
-  return res.data
+const getPortfolioFilters = async (): Promise<PortfolioFilter[]> => {
+  const query = `*[_type == "portfolioFilter"] | order(_createdAt asc) {
+    title,
+    value
+  }`
+
+  const data = await client.fetch(query)
+  return data
 }
 
-const getJobExperience = async () => {
-  const res = await http.get<JobExperience[]>('/api/jobexperience.json')
-  return res.data
+const getPortfolios = async (): Promise<Project[]> => {
+  const query = `*[_type == "project"] | order(_createdAt asc) {
+    "id": _id,
+    title,
+    subtitle,
+    "coverimage": coverimage.asset->url,
+    "imagegallery": imagegallery[].asset->url,
+    videogallery,
+    url,
+    filters,
+    tags
+  }`
+
+  const data = await client.fetch(query)
+  return data
 }
 
-const getEducationBackground = async () => {
-  const res = await http.get<EducationalBackground[]>('/api/educationbackground.json')
-  return res.data
+const getJobExperience = async (): Promise<JobExperience[]> => {
+  const query = `*[_type == "jobExperience"] | order(_createdAt asc) {
+    title,
+    meta,
+    text,
+    year,
+    tags
+  }`
+
+  const data = await client.fetch(query)
+  return data
+}
+
+const getEducationBackground = async (): Promise<EducationalBackground[]> => {
+  const query = `*[_type == "educationalBackground"] | order(_createdAt asc) {
+    title,
+    meta,
+    text,
+    year
+  }`
+
+  const data = await client.fetch(query)
+  return data
 }
 
 export {
