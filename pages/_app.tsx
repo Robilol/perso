@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Router from 'next/router';
 import NProgress from 'nprogress';
 import { ParallaxProvider } from 'react-scroll-parallax';
-import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
+import { ReCaptchaProvider } from '../contexts/ReCaptchaContext';
 import { Analytics } from '@vercel/analytics/react';
 import {
   HydrationBoundary,
@@ -31,7 +31,7 @@ export default function MyApp ({
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        <GoogleReCaptchaProvider
+        <ReCaptchaProvider
           reCaptchaKey="6LettL8iAAAAAAUJYd0V9xH_ggkmTqKGS6-sFj1O"
           language="fr"
         >
@@ -66,7 +66,7 @@ export default function MyApp ({
               <Component {...pageProps} />
             </HydrationBoundary>
           </ParallaxProvider>
-        </GoogleReCaptchaProvider>
+        </ReCaptchaProvider>
       </QueryClientProvider>
       <Analytics/>
     </>

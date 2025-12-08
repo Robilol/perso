@@ -16,10 +16,10 @@
     "@emailjs/browser": "^3.7.0",
     "@sanity/client": "^7.13.1",
     "@sanity/image-url": "^2.0.2",
-    "@tanstack/react-query": "^5.64.2",
-    "@vercel/analytics": "^1.4.1",
-    "axios": "1.8.2",
-    "dayjs": "^1.11.6",
+    "@tanstack/react-query": "^5.90.12",
+    "@vercel/analytics": "^1.6.1",
+    "axios": "^1.13.2",
+    "dayjs": "^1.11.19",
     "framer-motion": "^12.0.5",
     "fslightbox-react": "^1.6.2-2",
     "globby": "^13.1.2",
@@ -31,13 +31,12 @@
     "nprogress": "^0.2.0",
     "react": "^19.2.1",
     "react-dom": "^19.2.1",
-    "react-google-recaptcha-v3": "^1.10.1",
-    "react-hook-form": "^7.30.0",
+    "react-hook-form": "^7.68.0",
     "react-icons": "^5.4.0",
     "react-portal": "^4.2.2",
     "react-scroll": "^1.8.6",
     "react-scroll-parallax": "^3.4.5",
-    "react-svg": "^14.1.18",
+    "react-svg": "^16.3.0",
     "swiper": "^8.1.4",
     "typed.js": "^2.0.12"
   },
@@ -62,9 +61,9 @@
     "postcss": "^8.4.18",
     "prettier": "2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.13",
-    "sass": "^1.55.0",
+    "sass": "^1.94.2",
     "tailwindcss": "^3.2.1",
     "tailwindcss-debug-screens": "^2.2.1",
-    "typescript": "^5.8.2"
+    "typescript": "^5.9.3"
   }
 }

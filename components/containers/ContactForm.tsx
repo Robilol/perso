@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import emailjs from '@emailjs/browser';
 import { settings } from '../../settings/settings';
-import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
+import { useReCaptcha } from '../../hooks/useReCaptcha';
 import { BiLoaderAlt } from 'react-icons/bi';
 
 interface FormData {
@@ -13,7 +13,7 @@ interface FormData {
 }
 
 const ContactForm = () => {
-  const { executeRecaptcha } = useGoogleReCaptcha()
+  const { executeRecaptcha } = useReCaptcha()
 
   const [serverSuccess, setServerSuccess] = useState<boolean | string>(false)
   const [serverError, setServerError] = useState<boolean | string>(false)
