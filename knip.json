@@ -1,0 +1,5 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "entry": ["sanity/image-loader.ts"],
+  "ignore": ["studio-perso/**", "sanity/types.ts"]
+}

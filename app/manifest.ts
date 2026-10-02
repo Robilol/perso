@@ -1,0 +1,16 @@
+import type { MetadataRoute } from 'next'
+
+export default function manifest(): MetadataRoute.Manifest {
+  return {
+    name: 'Robin Regis — Développeur full-stack freelance',
+    short_name: 'Robin Regis',
+    start_url: '/',
+    display: 'browser',
+    background_color: '#faf7f0',
+    theme_color: '#faf7f0',
+    icons: [
+      { src: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
+      { src: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
+    ],
+  }
+}

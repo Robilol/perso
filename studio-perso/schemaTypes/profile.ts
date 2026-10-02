@@ -1,0 +1,211 @@
+import {defineArrayMember, defineField, defineType} from 'sanity'
+import {UserIcon} from '@sanity/icons/User'
+
+export default defineType({
+  name: 'profile',
+  title: 'Profil',
+  type: 'document',
+  icon: UserIcon,
+  groups: [
+    {name: 'hero', title: 'Accroche', default: true},
+    {name: 'about', title: 'À propos'},
+    {name: 'contact', title: 'Contact'},
+    {name: 'seo', title: 'SEO'},
+  ],
+  fields: [
+    defineField({
+      name: 'firstName',
+      title: 'Prénom',
+      type: 'string',
+      group: 'hero',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'lastName',
+      title: 'Nom',
+      type: 'string',
+      group: 'hero',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'jobTitle',
+      title: 'Métier',
+      type: 'string',
+      group: 'hero',
+      description: 'Ex. « Développeur full-stack freelance »',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'availability',
+      title: 'Disponibilité',
+      type: 'object',
+      group: 'hero',
+      options: {collapsible: false},
+      fields: [
+        defineField({
+          name: 'status',
+          title: 'Statut',
+          type: 'string',
+          options: {
+            list: [
+              {title: 'Disponible', value: 'available'},
+              {title: 'Disponibilité partielle', value: 'limited'},
+              {title: 'Indisponible', value: 'unavailable'},
+            ],
+            layout: 'radio',
+            direction: 'horizontal',
+          },
+          initialValue: 'available',
+          validation: (rule) => rule.required(),
+        }),
+        defineField({
+          name: 'message',
+          title: 'Message',
+          type: 'string',
+          description: 'Ex. « Disponible pour de nouvelles missions dès janvier »',
+        }),
+      ],
+    }),
+    defineField({
+      name: 'headline',
+      title: 'Titre principal',
+      type: 'string',
+      group: 'hero',
+      description: "Phrase d'accroche affichée en très grand en haut de la page.",
+      validation: (rule) => rule.required().max(90),
+    }),
+    defineField({
+      name: 'headlineHighlight',
+      title: 'Mots mis en valeur',
+      type: 'string',
+      group: 'hero',
+      description: 'Extrait exact du titre principal à surligner, ex. « applications web ».',
+      validation: (rule) =>
+        rule.custom((value, context) => {
+          const headline = (context.document?.headline as string | undefined) ?? ''
+          return !value || headline.includes(value) || 'Doit être un extrait exact du titre'
+        }),
+    }),
+    defineField({
+      name: 'intro',
+      title: 'Introduction',
+      type: 'text',
+      rows: 4,
+      group: 'hero',
+      validation: (rule) => rule.required().max(320),
+    }),
+    defineField({
+      name: 'stats',
+      title: 'Chiffres clés',
+      type: 'array',
+      group: 'hero',
+      of: [defineArrayMember({type: 'stat'})],
+      validation: (rule) => rule.max(4),
+    }),
+    defineField({
+      name: 'portrait',
+      title: 'Photo',
+      type: 'image',
+      group: 'about',
+      options: {hotspot: true},
+      fields: [
+        defineField({
+          name: 'alt',
+          title: 'Texte alternatif',
+          type: 'string',
+        }),
+      ],
+    }),
+    defineField({
+      name: 'about',
+      title: 'Présentation',
+      type: 'richText',
+      group: 'about',
+    }),
+    defineField({
+      name: 'location',
+      title: 'Localisation',
+      type: 'string',
+      group: 'about',
+      description: 'Ex. « Versailles (78) · Remote »',
+    }),
+    defineField({
+      name: 'languages',
+      title: 'Langues',
+      type: 'array',
+      group: 'about',
+      of: [defineArrayMember({type: 'string'})],
+    }),
+    defineField({
+      name: 'skillGroups',
+      title: 'Compétences',
+      type: 'array',
+      group: 'about',
+      of: [defineArrayMember({type: 'skillGroup'})],
+    }),
+    defineField({
+      name: 'resume',
+      title: 'CV (PDF)',
+      type: 'file',
+      group: 'about',
+      description: 'Le bouton « Télécharger mon CV » apparaît dès qu’un fichier est ajouté.',
+      options: {accept: 'application/pdf'},
+    }),
+    defineField({
+      name: 'contactText',
+      title: 'Texte de la section contact',
+      type: 'text',
+      rows: 3,
+      group: 'contact',
+    }),
+    defineField({
+      name: 'email',
+      title: 'Email',
+      type: 'string',
+      group: 'contact',
+      validation: (rule) => rule.required().email(),
+    }),
+    defineField({
+      name: 'phone',
+      title: 'Téléphone',
+      type: 'string',
+      group: 'contact',
+    }),
+    defineField({
+      name: 'socialLinks',
+      title: 'Profils en ligne',
+      type: 'array',
+      group: 'contact',
+      of: [defineArrayMember({type: 'socialLink'})],
+    }),
+    defineField({
+      name: 'seo',
+      title: 'Référencement',
+      type: 'object',
+      group: 'seo',
+      fields: [
+        defineField({
+          name: 'title',
+          title: 'Titre de la page',
+          type: 'string',
+          validation: (rule) => rule.max(70).warning('Visez moins de 70 caractères'),
+        }),
+        defineField({
+          name: 'description',
+          title: 'Description',
+          type: 'text',
+          rows: 3,
+          validation: (rule) => rule.max(160).warning('Visez moins de 160 caractères'),
+        }),
+      ],
+    }),
+  ],
+  preview: {
+    select: {firstName: 'firstName', lastName: 'lastName', subtitle: 'jobTitle', media: 'portrait'},
+    prepare: ({firstName, lastName, subtitle, media}) => ({
+      title: [firstName, lastName].filter(Boolean).join(' ') || 'Profil',
+      subtitle,
+      media,
+    }),
+  },
+})

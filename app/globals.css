@@ -1,0 +1,99 @@
+@import 'tailwindcss';
+
+/*
+ * Design system — néo-brutalisme épuré
+ * Papier crème, encre presque noire, bordures franches et ombres dures décalées.
+ * Le vert menthe reprend la couleur historique du logo ; les pastels restent des accents ponctuels.
+ */
+@theme {
+  --color-paper: #faf7f0;
+  --color-ink: #141414;
+  --color-muted: #57534e;
+  --color-mint: #72e2ae;
+  --color-mint-light: #d3f6e4;
+  --color-lime: #c6ec8f;
+  --color-sun: #ffe168;
+  --color-rose: #ffc6e7;
+  --color-sky: #a9e9f8;
+  --color-lilac: #cdc7ff;
+
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, 'SFMono-Regular', monospace;
+
+  --shadow-brutal-sm: 2px 2px 0 0 var(--color-ink);
+  --shadow-brutal: 4px 4px 0 0 var(--color-ink);
+  --shadow-brutal-md: 6px 6px 0 0 var(--color-ink);
+  --shadow-brutal-lg: 8px 8px 0 0 var(--color-ink);
+
+  --animate-marquee: marquee 45s linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+/* Titres : Archivo dans sa version étendue, très grasse */
+@utility font-heading {
+  font-family: var(--font-sans);
+  font-stretch: 125%;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* Trame de points du hero (clin d'œil à Fromton) */
+@utility bg-dots {
+  background-image: radial-gradient(
+    color-mix(in srgb, var(--color-ink) 16%, transparent) 1.2px,
+    transparent 1.2px
+  );
+  background-size: 22px 22px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-paper font-sans text-ink antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    @apply bg-mint text-ink;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-ink);
+    outline-offset: 3px;
+  }
+
+  [id] {
+    scroll-margin-top: 6rem;
+  }
+
+  /* Badge reCAPTCHA masqué : la mention obligatoire figure sous le formulaire de contact */
+  .grecaptcha-badge {
+    visibility: hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}

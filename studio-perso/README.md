@@ -1,9 +1,14 @@
-# Sanity Clean Content Studio
+# Studio Sanity — Perso
 
-Congratulations, you have now installed the Sanity Content Studio, an open-source real-time content editing environment connected to the Sanity backend.
+Studio d’édition du contenu du portfolio (projet `65s5qkds`, dataset `production`).
 
-Now you can do the following things:
+```bash
+npm install
+npm run dev       # http://localhost:3333
+npm run deploy    # met à jour le Studio hébergé
+npm run typegen   # régénère ../sanity/types.ts (schéma + requêtes GROQ du site)
+```
 
-- [Read “getting started” in the docs](https://www.sanity.io/docs/introduction/getting-started?utm_source=readme)
-- [Join the Sanity community](https://www.sanity.io/community/join?utm_source=readme)
-- [Extend and build plugins](https://www.sanity.io/docs/content-studio/extending?utm_source=readme)
+- `schemaTypes/` : modèle de contenu (profil, réalisations, expériences, services, formations, témoignages)
+- `structure.ts` : organisation du Studio ; le **Profil** est un document unique (`_id: "profile"`)
+- Les types de la rubrique *Ancien site* ne servent qu’à l’ancienne version du site et pourront être supprimés

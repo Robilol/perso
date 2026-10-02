@@ -28,3 +28,6 @@
 # Dotenv and similar local-only files
 *.local
 .env
+
+# Schéma extrait pour la génération des types (npm run typegen)
+schema.json

@@ -1,34 +1,67 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# robin-regis.fr
 
-## Getting Started
+Portfolio de Robin Regis, développeur full-stack freelance : réalisations, études de cas, services, parcours et contact.
+Design néo-brutaliste épuré, contenu entièrement géré dans Sanity.
 
-First, run the development server:
+## Stack
+
+- **Next.js 16** (App Router, Server Components, ISR) · **React 19** · **TypeScript 6**
+- **Tailwind CSS 4** (tokens dans `app/globals.css`) · polices Archivo (étendue pour les titres) et JetBrains Mono
+- **Sanity 6** : Studio dans `studio-perso/`, contenu lu côté serveur avec `@sanity/client`, types générés par TypeGen
+- **EmailJS** pour le formulaire de contact, **Vercel Analytics**
+
+## Démarrage
 
 ```bash
-npm run dev
-# or
-yarn dev
+npm install
+cp .env.local.example .env.local   # facultatif : les identifiants Sanity ont des valeurs par défaut
+npm run dev                        # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Studio Sanity (édition du contenu) :
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+```bash
+cd studio-perso
+npm install
+npm run dev                        # http://localhost:3333
+npm run deploy                     # met à jour le Studio hébergé
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Scripts
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+| Commande            | Rôle                                                                |
+| ------------------- | ------------------------------------------------------------------- |
+| `npm run dev`       | Serveur de développement                                            |
+| `npm run build`     | Build de production (le sitemap et les images Open Graph sont générés par Next.js) |
+| `npm run lint`      | ESLint (configuration Next.js)                                      |
+| `npm run typecheck` | Vérification TypeScript                                             |
+| `npm run typegen`   | Régénère `sanity/types.ts` depuis le schéma du Studio et les requêtes GROQ |
+| `npm run knip`      | Détecte le code et les dépendances inutilisés                       |
 
-## Learn More
+## Contenu (Sanity)
 
-To learn more about Next.js, take a look at the following resources:
+| Document          | Contenu                                                                                     |
+| ----------------- | ------------------------------------------------------------------------------------------- |
+| **Profil**        | Accroche, disponibilité, chiffres clés, présentation, compétences, CV (PDF), coordonnées, SEO |
+| **Réalisations**  | Carte (résumé, stack, type, ordre, mise en avant) et étude de cas (`/realisations/<slug>`)  |
+| **Expériences**   | Poste, entreprise, années, contexte, réalisations, stack                                    |
+| **Services**      | Offres affichées dans « Comment je peux vous aider »                                        |
+| **Formations**    | Diplômes                                                                                    |
+| **Témoignages**   | Section affichée dès qu’un témoignage est publié                                           |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Une réalisation sans étude de cas renvoie vers son site en ligne ; dès que le champ « Étude de cas » est rempli,
+la carte mène à la page dédiée, qui est ajoutée au sitemap.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Les documents « Informations personnelles » et « Filtres de portfolio » (rubrique *Ancien site*) ne servent plus :
+ils pourront être supprimés une fois la nouvelle version en ligne.
 
-## Deploy on Vercel
+## Mise à jour des pages
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Les pages sont statiques et régénérées au plus tard toutes les heures. Pour une mise à jour immédiate à chaque
+publication, créer un webhook dans [sanity.io/manage](https://www.sanity.io/manage) → API → Webhooks :
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- **URL** : `https://www.robin-regis.fr/api/revalidate`
+- **Déclencheurs** : création, mise à jour, suppression
+- **Filtre** : `_type in ["profile", "project", "jobExperience", "service", "educationalBackground", "clientReview"]`
+- **Projection** : `{_type}`
+- **Secret** : une valeur aléatoire, à reporter dans la variable `SANITY_REVALIDATE_SECRET` sur Vercel

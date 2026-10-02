@@ -3,7 +3,7 @@ import {defineCliConfig} from 'sanity/cli'
 export default defineCliConfig({
   api: {
     projectId: '65s5qkds',
-    dataset: 'production'
+    dataset: 'production',
   },
   deployment: {
     /**
@@ -11,5 +11,11 @@ export default defineCliConfig({
      * Learn more at https://www.sanity.io/docs/cli#auto-updates
      */
     autoUpdates: true,
-  }
+  },
+  // `npm run typegen` : types des requêtes GROQ du site (sanity/queries.ts) → sanity/types.ts
+  typegen: {
+    path: '../sanity/**/*.ts',
+    schema: './schema.json',
+    generates: '../sanity/types.ts',
+  },
 })

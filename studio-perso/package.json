@@ -10,32 +10,33 @@
     "build": "sanity build",
     "deploy": "sanity deploy",
     "deploy-graphql": "sanity graphql deploy",
-    "migrate": "tsx scripts/migrate.ts",
-    "migrate:cli": "sanity exec scripts/migrate-cli.ts --with-user-token",
-    "cleanup": "sanity exec scripts/cleanup.ts --with-user-token"
+    "typegen": "sanity schema extract --enforce-required-fields && sanity typegen generate"
   },
   "keywords": [
     "sanity"
   ],
   "dependencies": {
-    "react": "^19.1",
-    "react-dom": "^19.1",
-    "sanity": "^4.20.3",
-    "styled-components": "^6.1.18"
+    "@sanity/icons": "^5.2.3",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "sanity": "^6.17.0",
+    "styled-components": "^6.5.3"
   },
   "devDependencies": {
-    "@sanity/eslint-config-studio": "^5.0.2",
-    "@types/node": "^22.10.2",
-    "@types/react": "^19.1",
-    "eslint": "^9.28",
-    "prettier": "^3.5",
-    "tsx": "^4.19.2",
-    "typescript": "^5.8"
+    "@sanity/eslint-config-studio": "^7.0.0",
+    "@types/node": "^22.19.0",
+    "@types/react": "^19.3.0",
+    "eslint": "^10.12.0",
+    "prettier": "^3.9.9",
+    "typescript": "^6.0.3"
   },
   "prettier": {
     "semi": false,
     "printWidth": 100,
     "bracketSpacing": false,
     "singleQuote": true
+  },
+  "engines": {
+    "node": ">=22.12"
   }
 }

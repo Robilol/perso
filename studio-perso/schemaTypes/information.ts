@@ -1,9 +1,15 @@
 import {defineType} from 'sanity'
+import {ArchiveIcon} from '@sanity/icons/Archive'
 
 export default defineType({
   name: 'information',
-  title: 'Informations personnelles',
+  title: 'Informations personnelles (ancien site)',
   type: 'document',
+  icon: ArchiveIcon,
+  deprecated: {
+    reason:
+      "Remplacé par le document « Profil ». Utilisé uniquement par l'ancien site, à supprimer après la mise en ligne de la refonte.",
+  },
   fields: [
     {
       name: 'firstName',
@@ -80,14 +86,15 @@ export default defineType({
       name: 'isAvailable',
       title: 'Disponible pour de nouvelles opportunités',
       type: 'boolean',
-      description: 'Afficher le badge de disponibilité sur la page d\'accueil',
+      description: "Afficher le badge de disponibilité sur la page d'accueil",
       initialValue: true,
     },
     {
       name: 'availabilityMessage',
       title: 'Message de disponibilité',
       type: 'string',
-      description: 'Message personnalisé pour le badge (par défaut: "Disponible pour de nouvelles opportunités")',
+      description:
+        'Message personnalisé pour le badge (par défaut: "Disponible pour de nouvelles opportunités")',
       hidden: ({document}) => !document?.isAvailable,
     },
     {
