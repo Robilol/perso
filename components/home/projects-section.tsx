@@ -76,7 +76,7 @@ function FeaturedProject({ project }: { project: Project }) {
 
   return (
     <article className="grid gap-8 rounded-3xl border-2 border-ink bg-white p-4 shadow-brutal-lg sm:p-6 lg:grid-cols-[1.15fr_1fr] lg:gap-10 lg:p-7">
-      <div className="relative aspect-[16/11] overflow-hidden rounded-2xl border-2 border-ink bg-sun">
+      <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border-2 border-ink bg-sun">
         <SanityImage
           image={project.coverimage}
           fill
