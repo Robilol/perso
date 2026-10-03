@@ -1,4 +1,4 @@
-import { RiMailLine, RiPhoneLine } from 'react-icons/ri'
+import { RiMailLine } from 'react-icons/ri'
 import { ContactForm } from '@/components/contact/contact-form'
 import { socialIcon } from '@/components/icons'
 import { Container } from '@/components/ui/container'
@@ -29,40 +29,18 @@ export function ContactSection({ profile }: { profile: Profile }) {
               <p className="mt-5 max-w-md text-lg text-pretty">{profile.contactText}</p>
             )}
 
-            <ul className="mt-8 space-y-3">
-              <li>
-                <a
-                  href={`mailto:${profile.email}`}
-                  className="group inline-flex items-center gap-3 font-semibold break-all"
-                >
-                  <span
-                    aria-hidden
-                    className="grid size-10 shrink-0 place-items-center rounded-full border-2 border-ink bg-white text-lg transition-transform group-hover:-rotate-12"
-                  >
-                    <RiMailLine />
-                  </span>
-                  <span className="underline decoration-2 underline-offset-4">{profile.email}</span>
-                </a>
-              </li>
-              {profile.phone && (
-                <li>
-                  <a
-                    href={`tel:${profile.phone.replace(/\s/g, '')}`}
-                    className="group inline-flex items-center gap-3 font-semibold"
-                  >
-                    <span
-                      aria-hidden
-                      className="grid size-10 shrink-0 place-items-center rounded-full border-2 border-ink bg-white text-lg transition-transform group-hover:-rotate-12"
-                    >
-                      <RiPhoneLine />
-                    </span>
-                    <span className="underline decoration-2 underline-offset-4">
-                      {profile.phone}
-                    </span>
-                  </a>
-                </li>
-              )}
-            </ul>
+            <a
+              href={`mailto:${profile.email}`}
+              className="group mt-8 flex w-fit items-center gap-3 font-semibold break-all"
+            >
+              <span
+                aria-hidden
+                className="grid size-10 shrink-0 place-items-center rounded-full border-2 border-ink bg-white text-lg transition-transform group-hover:-rotate-12"
+              >
+                <RiMailLine />
+              </span>
+              <span className="underline decoration-2 underline-offset-4">{profile.email}</span>
+            </a>
 
             {profile.socialLinks?.length ? (
               <ul className="mt-8 flex flex-wrap gap-3">

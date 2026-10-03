@@ -54,12 +54,6 @@ export default async function LegalNoticePage() {
         <TextLink href={`mailto:${contact.email}`}>{contact.email}</TextLink>
       ),
     },
-    {
-      label: 'Téléphone',
-      value: contact?.phone && (
-        <TextLink href={`tel:${contact.phone.replace(/\s/g, '')}`}>{contact.phone}</TextLink>
-      ),
-    },
     { label: 'Directeur de la publication', value: legal.publicationDirector },
   ]
 

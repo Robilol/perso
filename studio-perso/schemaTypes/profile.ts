@@ -177,9 +177,13 @@ export default defineType({
     }),
     defineField({
       name: 'phone',
-      title: 'Téléphone',
+      title: 'Téléphone (obsolète)',
       type: 'string',
       group: 'contact',
+      deprecated: {reason: 'Le numéro de téléphone n’est plus affiché sur le site.'},
+      readOnly: true,
+      hidden: ({value}) => value === undefined,
+      initialValue: undefined,
     }),
     defineField({
       name: 'socialLinks',

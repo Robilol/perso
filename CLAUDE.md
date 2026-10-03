@@ -29,7 +29,7 @@ app/                    # App Router
   layout.tsx            # Fonts, metadata, header/footer (profile fetched once, cached)
   page.tsx              # Home: one HOME_QUERY, sections in components/home/
   realisations/[slug]/  # Case study page + its Open Graph image
-  mentions-legales/     # Legal notice (legalNotice singleton + profile email/phone)
+  mentions-legales/     # Legal notice (legalNotice singleton + profile email; the phone is never shown)
   api/contact/          # Contact form: validation, honeypot, reCAPTCHA v3 check, sends with Resend
   api/revalidate/       # Signed Sanity webhook → revalidateTag(<document type>)
   sitemap.ts, manifest.ts, opengraph-image.tsx, not-found.tsx

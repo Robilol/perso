@@ -278,12 +278,18 @@ function Gallery({ project }: { project: Project }) {
   const images = (project.imagegallery ?? []).filter((image) => image.asset)
   if (images.length === 0) return null
 
-  // Captures d'écran mobiles (portrait) : jusqu'à 4 par ligne ; captures de bureau : 2 par ligne
+  // Captures mobiles (portrait) : jusqu'à 4 par ligne. Captures de bureau : 2 par ligne dans une
+  // fenêtre de navigateur, ou une seule en pleine largeur.
   const portrait = images.every((image) => {
     const dimensions = image.asset?.metadata?.dimensions
     return dimensions ? dimensions.height > dimensions.width : false
   })
-  const columns = portrait ? PORTRAIT_COLUMNS[Math.min(images.length, 4)] : 'md:grid-cols-2'
+  const single = images.length === 1
+  const columns = portrait
+    ? PORTRAIT_COLUMNS[Math.min(images.length, 4)]
+    : single
+      ? 'mx-auto max-w-4xl'
+      : 'md:grid-cols-2'
 
   return (
     <section aria-labelledby="galerie" className="pb-20 sm:pb-24">
@@ -293,21 +299,41 @@ function Gallery({ project }: { project: Project }) {
           En images
         </h2>
         <ul className={cx('mt-10 grid items-start gap-6 sm:gap-8', columns)}>
-          {images.map((image) => (
-            <li
-              key={image._key}
-              className="overflow-hidden rounded-2xl border-2 border-ink bg-white shadow-brutal-md transition-transform duration-300 md:odd:-rotate-1 md:even:rotate-1 md:hover:rotate-0"
-            >
+          {images.map((image) => {
+            const picture = (
               <SanityImage
                 image={image}
                 alt={image.alt ?? `${project.title} — capture d’écran`}
                 sizes={
-                  portrait ? '(min-width: 768px) 270px, 50vw' : '(min-width: 768px) 550px, 100vw'
+                  portrait
+                    ? '(min-width: 768px) 270px, 50vw'
+                    : single
+                      ? '(min-width: 896px) 896px, 100vw'
+                      : '(min-width: 768px) 550px, 100vw'
                 }
                 className="h-auto w-full"
               />
-            </li>
-          ))}
+            )
+            return (
+              <li
+                key={image._key}
+                className={cx(
+                  'transition-transform duration-300',
+                  !single && 'md:odd:-rotate-1 md:even:rotate-1 md:hover:rotate-0',
+                )}
+              >
+                {portrait ? (
+                  <div className="overflow-hidden rounded-2xl border-2 border-ink bg-white shadow-brutal-md">
+                    {picture}
+                  </div>
+                ) : (
+                  <BrowserFrame url={project.url} className="shadow-brutal-md">
+                    {picture}
+                  </BrowserFrame>
+                )}
+              </li>
+            )
+          })}
         </ul>
       </Container>
     </section>

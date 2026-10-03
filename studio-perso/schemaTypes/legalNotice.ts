@@ -61,7 +61,7 @@ export default defineType({
       title: 'Directeur de la publication',
       type: 'string',
       group: 'publisher',
-      description: 'L’email et le téléphone affichés sont ceux du profil.',
+      description: 'L’email affiché est celui du profil.',
       initialValue: 'Robin Regis',
     }),
     defineField({

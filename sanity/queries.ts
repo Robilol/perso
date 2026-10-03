@@ -56,7 +56,6 @@ export const HOME_QUERY = defineQuery(/* groq */ `{
     process[]{_key, title, text},
     contactText,
     email,
-    phone,
     socialLinks[]{_key, platform, url}
   },
   "projects": *[_type == "project" && defined(slug.current)]
@@ -130,7 +129,7 @@ export const CASE_STUDIES_QUERY = defineQuery(/* groq */ `
   }
 `)
 
-/** Mentions légales ; l'email et le téléphone de contact viennent du profil */
+/** Mentions légales ; l'email de contact vient du profil */
 export const LEGAL_QUERY = defineQuery(/* groq */ `{
   "legal": *[_type == "legalNotice" && _id == "legalNotice"][0]{
     _updatedAt,
@@ -143,5 +142,5 @@ export const LEGAL_QUERY = defineQuery(/* groq */ `{
     host{name, address, phone, url},
     body
   },
-  "contact": *[_type == "profile" && _id == "profile"][0]{email, phone}
+  "contact": *[_type == "profile" && _id == "profile"][0]{email}
 }`)
