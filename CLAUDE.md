@@ -50,6 +50,7 @@ sanity/
 lib/                    # cx, site constants (SITE_URL, NAV_ITEMS, formatPeriod), SEO helpers, OG image renderer,
                         # contact rules shared by form and API (contact.ts), reCAPTCHA loader (recaptcha.ts)
 studio-perso/           # Standalone Sanity Studio (v6): schemaTypes/, structure.ts (profile + legalNotice singletons)
+brand/                  # Logos (square badge, horizontal lockup): SVG with outlined text + PNG exports
 ```
 
 ### Data flow

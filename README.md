@@ -11,6 +11,12 @@ et mentions légales. Design néo-brutaliste éditorial, contenu entièrement g�
 - Formulaire de contact : route `/api/contact` (reCAPTCHA v3 vérifié côté serveur, envoi avec **Resend**),
   **EmailJS** en secours tant que Resend n'est pas configuré · **Vercel Analytics**
 
+## Logos
+
+Le dossier `brand/` contient le logo au format carré (pastille « RR ») et rectangle (pastille, nom et métier),
+en SVG (texte vectorisé, sans dépendance aux polices) et en PNG : fond papier, fond transparent, et version sombre
+pour le rectangle.
+
 ## Démarrage
 
 ```bash
