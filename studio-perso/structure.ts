@@ -3,6 +3,7 @@ import {ArchiveIcon} from '@sanity/icons/Archive'
 import {BookIcon} from '@sanity/icons/Book'
 import {CaseIcon} from '@sanity/icons/Case'
 import {CommentIcon} from '@sanity/icons/Comment'
+import {DocumentTextIcon} from '@sanity/icons/DocumentText'
 import {ProjectsIcon} from '@sanity/icons/Projects'
 import {UserIcon} from '@sanity/icons/User'
 import {WrenchIcon} from '@sanity/icons/Wrench'
@@ -49,6 +50,16 @@ export const structure: StructureResolver = (S) =>
             .defaultOrdering([{field: 'year', direction: 'desc'}]),
         ),
       S.documentTypeListItem('clientReview').title('Témoignages').icon(CommentIcon),
+      S.divider(),
+      S.listItem()
+        .title('Mentions légales')
+        .icon(DocumentTextIcon)
+        .child(
+          S.document()
+            .schemaType('legalNotice')
+            .documentId('legalNotice')
+            .title('Mentions légales'),
+        ),
       S.divider(),
       S.listItem()
         .title('Ancien site (obsolète)')

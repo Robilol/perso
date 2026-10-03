@@ -1,12 +1,4 @@
-// Clés publiques EmailJS et reCAPTCHA (surchargées par les variables d'environnement si besoin)
-export const EMAILJS = {
-  serviceId: process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'service_1rri71q',
-  templateId: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'template_asi2pl8',
-  publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || 'vQEcWA00nuHecM3b5',
-}
-
-const RECAPTCHA_SITE_KEY =
-  process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '6LettL8iAAAAAAUJYd0V9xH_ggkmTqKGS6-sFj1O'
+// Règles du formulaire de contact, partagées entre le formulaire et la route /api/contact
 
 export const CONTACT_SUBJECTS = [
   'Création d’une application web',
@@ -16,38 +8,43 @@ export const CONTACT_SUBJECTS = [
   'Autre demande',
 ]
 
-declare global {
-  interface Window {
-    grecaptcha?: {
-      ready: (callback: () => void) => void
-      execute: (siteKey: string, options: { action: string }) => Promise<string>
-    }
+export const CONTACT_LIMITS = { name: 100, email: 254, messageMin: 20, messageMax: 5000 }
+
+export const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
+
+/** Action reCAPTCHA v3, vérifiée côté serveur */
+export const RECAPTCHA_ACTION = 'contact'
+
+export type ContactMessage = {
+  name: string
+  email: string
+  subject: string
+  message: string
+}
+
+/** Erreurs renvoyées par /api/contact */
+export type ContactError = 'invalid' | 'captcha' | 'send' | 'not_configured'
+
+/** Valide le corps de la requête ; `null` si un champ est absent ou invalide */
+export function parseContactMessage(input: unknown): ContactMessage | null {
+  if (!input || typeof input !== 'object') return null
+  const { name, email, subject, message } = input as Record<string, unknown>
+  if (typeof name !== 'string' || typeof email !== 'string') return null
+  if (typeof subject !== 'string' || typeof message !== 'string') return null
+
+  const parsed = {
+    name: name.trim(),
+    email: email.trim(),
+    subject: subject.trim(),
+    message: message.trim(),
   }
-}
-
-let recaptchaLoader: Promise<void> | undefined
-
-/** Charge reCAPTCHA v3 à la première interaction avec le formulaire, pas au chargement de la page */
-export function loadRecaptcha() {
-  recaptchaLoader ??= new Promise<void>((resolve, reject) => {
-    const script = document.createElement('script')
-    script.src = `https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}&hl=fr`
-    script.async = true
-    script.onload = () => window.grecaptcha?.ready(() => resolve())
-    script.onerror = () => {
-      recaptchaLoader = undefined
-      reject(new Error('reCAPTCHA indisponible'))
-    }
-    document.head.appendChild(script)
-  })
-  return recaptchaLoader
-}
-
-/** Jeton reCAPTCHA transmis à EmailJS ; `undefined` si le script est bloqué (l'envoi n'est pas empêché) */
-export async function getRecaptchaToken(action: string): Promise<string | undefined> {
-  const timeout = new Promise<undefined>((resolve) => setTimeout(() => resolve(undefined), 5000))
-  const token = loadRecaptcha().then(() =>
-    window.grecaptcha?.execute(RECAPTCHA_SITE_KEY, { action }),
-  )
-  return Promise.race([token, timeout]).catch(() => undefined)
+  const valid =
+    parsed.name.length > 0 &&
+    parsed.name.length <= CONTACT_LIMITS.name &&
+    parsed.email.length <= CONTACT_LIMITS.email &&
+    EMAIL_PATTERN.test(parsed.email) &&
+    CONTACT_SUBJECTS.includes(parsed.subject) &&
+    parsed.message.length >= CONTACT_LIMITS.messageMin &&
+    parsed.message.length <= CONTACT_LIMITS.messageMax
+  return valid ? parsed : null
 }

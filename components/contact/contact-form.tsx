@@ -1,6 +1,5 @@
 'use client'
 
-import emailjs from '@emailjs/browser'
 import { useId, useState, type ReactNode } from 'react'
 import { useForm, type FieldError } from 'react-hook-form'
 import {
@@ -10,16 +9,19 @@ import {
   RiLoader4Line,
   RiSendPlaneLine,
 } from 'react-icons/ri'
+import { sendContactMessage } from '@/components/contact/send-message'
 import { buttonClasses } from '@/components/ui/button'
+import {
+  CONTACT_LIMITS,
+  CONTACT_SUBJECTS,
+  EMAIL_PATTERN,
+  RECAPTCHA_ACTION,
+  type ContactMessage,
+} from '@/lib/contact'
 import { cx } from '@/lib/cx'
-import { CONTACT_SUBJECTS, EMAILJS, getRecaptchaToken, loadRecaptcha } from '@/lib/contact'
+import { getRecaptchaToken, loadRecaptcha } from '@/lib/recaptcha'
 
-// Noms des champs attendus par le modèle EmailJS existant
-type FormValues = {
-  from_name: string
-  reply_to: string
-  subject: string
-  message: string
+type FormValues = ContactMessage & {
   /** Pot de miel : invisible pour les humains, rempli par les robots */
   website: string
 }
@@ -28,7 +30,7 @@ const fieldClasses =
   'w-full rounded-xl border-2 border-ink bg-white px-4 py-3 text-base shadow-brutal-sm transition-[background-color,box-shadow] placeholder:text-muted/70 focus:bg-mint-light focus:shadow-brutal focus-visible:outline-none aria-[invalid=true]:border-[#c2410c] aria-[invalid=true]:bg-[#fff4ed]'
 
 export function ContactForm({ email }: { email: string }) {
-  const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [status, setStatus] = useState<'idle' | 'success' | 'error' | 'captcha'>('idle')
   const {
     register,
     handleSubmit,
@@ -44,26 +46,17 @@ export function ContactForm({ email }: { email: string }) {
       return
     }
 
-    try {
-      const token = await getRecaptchaToken('contact')
-      await emailjs.send(
-        EMAILJS.serviceId,
-        EMAILJS.templateId,
-        { ...values, ...(token ? { 'g-recaptcha-response': token } : {}) },
-        { publicKey: EMAILJS.publicKey },
-      )
-      reset()
-      setStatus('success')
-    } catch {
-      setStatus('error')
-    }
+    const token = await getRecaptchaToken(RECAPTCHA_ACTION)
+    const result = await sendContactMessage(values, token)
+    if (result === 'sent') reset()
+    setStatus(result === 'sent' ? 'success' : result === 'captcha' ? 'captcha' : 'error')
   }
 
   if (status === 'success') {
     return (
       <div
         role="status"
-        className="flex flex-col items-start rounded-2xl border-2 border-ink bg-white p-6 shadow-brutal sm:p-8"
+        className="flex flex-col items-start rounded-2xl border-2 border-ink bg-white p-6 shadow-brutal-lg sm:p-8"
       >
         <span
           aria-hidden
@@ -89,10 +82,10 @@ export function ContactForm({ email }: { email: string }) {
       noValidate
       onSubmit={handleSubmit(onSubmit)}
       onFocus={() => void loadRecaptcha().catch(() => undefined)}
-      className="relative rounded-2xl border-2 border-ink bg-white p-5 shadow-brutal sm:p-7"
+      className="relative rounded-2xl border-2 border-ink bg-white p-5 shadow-brutal-lg sm:p-7"
     >
       <div className="grid gap-5 sm:grid-cols-2">
-        <Field label="Nom" error={errors.from_name}>
+        <Field label="Nom" error={errors.name}>
           {(props) => (
             <input
               {...props}
@@ -100,11 +93,14 @@ export function ContactForm({ email }: { email: string }) {
               autoComplete="name"
               placeholder="Votre nom"
               className={fieldClasses}
-              {...register('from_name', { required: 'Indiquez votre nom' })}
+              {...register('name', {
+                required: 'Indiquez votre nom',
+                maxLength: { value: CONTACT_LIMITS.name, message: 'Ce nom est un peu long' },
+              })}
             />
           )}
         </Field>
-        <Field label="Email" error={errors.reply_to}>
+        <Field label="Email" error={errors.email}>
           {(props) => (
             <input
               {...props}
@@ -112,11 +108,12 @@ export function ContactForm({ email }: { email: string }) {
               autoComplete="email"
               placeholder="vous@entreprise.fr"
               className={fieldClasses}
-              {...register('reply_to', {
+              {...register('email', {
                 required: 'Indiquez votre adresse email',
-                pattern: {
-                  value: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/,
-                  message: 'Cette adresse email semble incorrecte',
+                pattern: { value: EMAIL_PATTERN, message: 'Cette adresse email semble incorrecte' },
+                maxLength: {
+                  value: CONTACT_LIMITS.email,
+                  message: 'Cette adresse est trop longue',
                 },
               })}
             />
@@ -158,7 +155,14 @@ export function ContactForm({ email }: { email: string }) {
             className={cx(fieldClasses, 'resize-y')}
             {...register('message', {
               required: 'Décrivez votre projet en quelques mots',
-              minLength: { value: 20, message: 'Quelques mots de plus ? (20 caractères minimum)' },
+              minLength: {
+                value: CONTACT_LIMITS.messageMin,
+                message: `Quelques mots de plus ? (${CONTACT_LIMITS.messageMin} caractères minimum)`,
+              },
+              maxLength: {
+                value: CONTACT_LIMITS.messageMax,
+                message: `Votre message dépasse ${CONTACT_LIMITS.messageMax} caractères`,
+              },
             })}
           />
         )}
@@ -171,14 +175,17 @@ export function ContactForm({ email }: { email: string }) {
         </label>
       </div>
 
-      {status === 'error' && (
+      {(status === 'error' || status === 'captcha') && (
         <p
           role="alert"
           className="mt-5 flex items-start gap-2 rounded-xl border-2 border-ink bg-rose px-4 py-3 text-sm"
         >
           <RiErrorWarningLine aria-hidden className="mt-0.5 shrink-0 text-lg" />
           <span>
-            L’envoi a échoué. Réessayez ou écrivez-moi directement à{' '}
+            {status === 'captcha'
+              ? 'La vérification anti-spam n’a pas abouti (un bloqueur de contenu peut en être la cause).'
+              : 'L’envoi a échoué.'}{' '}
+            Réessayez ou écrivez-moi directement à{' '}
             <a href={`mailto:${email}`} className="font-semibold underline underline-offset-2">
               {email}
             </a>

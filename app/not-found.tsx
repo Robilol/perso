@@ -9,10 +9,10 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <section className="border-b-2 border-ink bg-dots">
+    <section className="border-b-2 border-ink bg-grid">
       <Container className="flex min-h-[65vh] flex-col items-center justify-center py-24 text-center">
         <p aria-hidden className="font-heading text-[6.5rem] leading-none sm:text-[9rem]">
-          <span className="inline-block -rotate-3 rounded-3xl border-2 border-ink bg-mint px-6 shadow-brutal-lg">
+          <span className="inline-block -rotate-3 rounded-3xl border-2 border-ink bg-coral px-6 shadow-brutal-lg">
             404
           </span>
         </p>

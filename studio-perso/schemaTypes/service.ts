@@ -1,4 +1,4 @@
-import {defineField, defineType} from 'sanity'
+import {defineArrayMember, defineField, defineType} from 'sanity'
 import {WrenchIcon} from '@sanity/icons/Wrench'
 
 export const SERVICE_ICONS = [
@@ -28,6 +28,21 @@ export default defineType({
       type: 'text',
       rows: 3,
       validation: (rule) => rule.required().max(240),
+    }),
+    defineField({
+      name: 'deliverables',
+      title: 'Ce que je livre',
+      type: 'array',
+      of: [defineArrayMember({type: 'string'})],
+      description: 'Trois à cinq livrables concrets, affichés en liste.',
+      validation: (rule) => rule.max(5),
+    }),
+    defineField({
+      name: 'stack',
+      title: 'Technologies',
+      type: 'array',
+      of: [defineArrayMember({type: 'string'})],
+      options: {layout: 'tags'},
     }),
     defineField({
       name: 'iconName',

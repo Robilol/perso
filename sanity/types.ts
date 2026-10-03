@@ -15,6 +15,12 @@
 export declare const internalGroqTypeReferenceTo: unique symbol
 
 // Source: schema.json
+export type ProcessStep = {
+  _type: 'processStep'
+  title: string
+  text: string
+}
+
 export type Link = {
   _type: 'link'
   label: string
@@ -144,6 +150,27 @@ export type SanityImageHotspot = {
   width: number
 }
 
+export type LegalNotice = {
+  _id: string
+  _type: 'legalNotice'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  publisherName: string
+  legalStatus?: string
+  siret: string
+  address: string
+  vatNumber?: string
+  publicationDirector?: string
+  host?: {
+    name?: string
+    address?: string
+    phone?: string
+    url?: string
+  }
+  body?: RichText
+}
+
 export type ClientReview = {
   _id: string
   _type: 'clientReview'
@@ -183,6 +210,8 @@ export type Service = {
   _rev: string
   title: string
   text: string
+  deliverables?: Array<string>
+  stack?: Array<string>
   iconName?: 'code' | 'server' | 'mobile' | 'team' | 'layout' | 'gauge'
   order?: number
   icon?: {
@@ -320,6 +349,11 @@ export type Profile = {
     media?: unknown
     _type: 'file'
   }
+  process?: Array<
+    {
+      _key: string
+    } & ProcessStep
+  >
   contactText?: string
   email: string
   phone?: string
@@ -432,6 +466,7 @@ export type Geopoint = {
 }
 
 export type AllSanitySchemaTypes =
+  | ProcessStep
   | Link
   | SocialLink
   | SkillGroup
@@ -442,6 +477,7 @@ export type AllSanitySchemaTypes =
   | Information
   | SanityImageCrop
   | SanityImageHotspot
+  | LegalNotice
   | ClientReview
   | EducationalBackground
   | Service
@@ -487,7 +523,7 @@ export type SITE_QUERY_RESULT = {
 
 // Source: ../sanity/queries.ts
 // Variable: HOME_QUERY
-// Query: {  "profile": *[_type == "profile" && _id == "profile"][0]{    firstName,    lastName,    jobTitle,    availability,    headline,    headlineHighlight,    intro,    stats[]{_key, value, label},    portrait{  alt,  crop,  hotspot,  asset->{_id, url, metadata{lqip, dimensions{width, height}}}},    about,    location,    languages,    skillGroups[]{_key, title, skills},    "resumeUrl": resume.asset->url,    contactText,    email,    phone,    socialLinks[]{_key, platform, url}  },  "projects": *[_type == "project" && defined(slug.current)]    | order(coalesce(order, 999) asc, _createdAt asc){        _id,  title,  "slug": slug.current,  category,  subtitle,  tags,  url,  period,  "hasCaseStudy": defined(body[0]),  coverimage{  alt,  crop,  hotspot,  asset->{_id, url, metadata{lqip, dimensions{width, height}}}},      featured,      client,      keyResults[]{_key, value, label}    },  "experiences": *[_type == "jobExperience"]    | order(select(current == true => 9999, coalesce(endYear, startYear)) desc, startYear desc){      _id,      title,      company,      companyUrl,      location,      contractType,      startYear,      endYear,      current,      summary,      achievements,      tags    },  "services": *[_type == "service"] | order(coalesce(order, 999) asc){_id, title, text, iconName},  "education": *[_type == "educationalBackground"] | order(year desc){_id, title, meta, year},  "testimonials": *[_type == "clientReview"] | order(_createdAt desc){    _id,    name,    meta,    text,    image{  alt,  crop,  hotspot,  asset->{_id, url, metadata{lqip, dimensions{width, height}}}}  }}
+// Query: {  "profile": *[_type == "profile" && _id == "profile"][0]{    firstName,    lastName,    jobTitle,    availability,    headline,    headlineHighlight,    intro,    stats[]{_key, value, label},    portrait{  alt,  crop,  hotspot,  asset->{_id, url, metadata{lqip, dimensions{width, height}}}},    about,    location,    languages,    skillGroups[]{_key, title, skills},    "resumeUrl": resume.asset->url,    process[]{_key, title, text},    contactText,    email,    phone,    socialLinks[]{_key, platform, url}  },  "projects": *[_type == "project" && defined(slug.current)]    | order(coalesce(order, 999) asc, _createdAt asc){        _id,  title,  "slug": slug.current,  category,  subtitle,  tags,  url,  period,  "hasCaseStudy": defined(body[0]),  coverimage{  alt,  crop,  hotspot,  asset->{_id, url, metadata{lqip, dimensions{width, height}}}},      featured,      client,      keyResults[]{_key, value, label}    },  "experiences": *[_type == "jobExperience"]    | order(select(current == true => 9999, coalesce(endYear, startYear)) desc, startYear desc){      _id,      title,      company,      companyUrl,      location,      contractType,      startYear,      endYear,      current,      summary,      achievements,      tags    },  "services": *[_type == "service"] | order(coalesce(order, 999) asc){    _id,    title,    text,    iconName,    deliverables,    stack  },  "education": *[_type == "educationalBackground"] | order(year desc){_id, title, meta, year},  "testimonials": *[_type == "clientReview"] | order(_createdAt desc){    _id,    name,    meta,    text,    image{  alt,  crop,  hotspot,  asset->{_id, url, metadata{lqip, dimensions{width, height}}}}  }}
 export type HOME_QUERY_RESULT = {
   profile: {
     firstName: string
@@ -530,6 +566,11 @@ export type HOME_QUERY_RESULT = {
       skills: Array<string>
     }> | null
     resumeUrl: string | null
+    process: Array<{
+      _key: string
+      title: string
+      text: string
+    }> | null
     contactText: string | null
     email: string
     phone: string | null
@@ -592,6 +633,8 @@ export type HOME_QUERY_RESULT = {
     title: string
     text: string
     iconName: 'code' | 'gauge' | 'layout' | 'mobile' | 'server' | 'team' | null
+    deliverables: Array<string> | null
+    stack: Array<string> | null
   }>
   education: Array<{
     _id: string
@@ -759,13 +802,40 @@ export type CASE_STUDIES_QUERY_RESULT = Array<{
   _updatedAt: string
 }>
 
+// Source: ../sanity/queries.ts
+// Variable: LEGAL_QUERY
+// Query: {  "legal": *[_type == "legalNotice" && _id == "legalNotice"][0]{    _updatedAt,    publisherName,    legalStatus,    siret,    address,    vatNumber,    publicationDirector,    host{name, address, phone, url},    body  },  "contact": *[_type == "profile" && _id == "profile"][0]{email, phone}}
+export type LEGAL_QUERY_RESULT = {
+  legal: {
+    _updatedAt: string
+    publisherName: string
+    legalStatus: string | null
+    siret: string
+    address: string
+    vatNumber: string | null
+    publicationDirector: string | null
+    host: {
+      name: string | null
+      address: string | null
+      phone: string | null
+      url: string | null
+    } | null
+    body: RichText | null
+  } | null
+  contact: {
+    email: string
+    phone: string | null
+  } | null
+}
+
 // Query TypeMap
 declare global {
   interface SanityQueries {
     '\n  *[_type == "profile" && _id == "profile"][0]{\n    firstName,\n    lastName,\n    jobTitle,\n    headline,\n    intro,\n    email,\n    location,\n    availability,\n    socialLinks[]{_key, platform, url},\n    seo\n  }\n': SITE_QUERY_RESULT
-    '{\n  "profile": *[_type == "profile" && _id == "profile"][0]{\n    firstName,\n    lastName,\n    jobTitle,\n    availability,\n    headline,\n    headlineHighlight,\n    intro,\n    stats[]{_key, value, label},\n    portrait{\n  alt,\n  crop,\n  hotspot,\n  asset->{_id, url, metadata{lqip, dimensions{width, height}}}\n},\n    about,\n    location,\n    languages,\n    skillGroups[]{_key, title, skills},\n    "resumeUrl": resume.asset->url,\n    contactText,\n    email,\n    phone,\n    socialLinks[]{_key, platform, url}\n  },\n  "projects": *[_type == "project" && defined(slug.current)]\n    | order(coalesce(order, 999) asc, _createdAt asc){\n      \n  _id,\n  title,\n  "slug": slug.current,\n  category,\n  subtitle,\n  tags,\n  url,\n  period,\n  "hasCaseStudy": defined(body[0]),\n  coverimage{\n  alt,\n  crop,\n  hotspot,\n  asset->{_id, url, metadata{lqip, dimensions{width, height}}}\n}\n,\n      featured,\n      client,\n      keyResults[]{_key, value, label}\n    },\n  "experiences": *[_type == "jobExperience"]\n    | order(select(current == true => 9999, coalesce(endYear, startYear)) desc, startYear desc){\n      _id,\n      title,\n      company,\n      companyUrl,\n      location,\n      contractType,\n      startYear,\n      endYear,\n      current,\n      summary,\n      achievements,\n      tags\n    },\n  "services": *[_type == "service"] | order(coalesce(order, 999) asc){_id, title, text, iconName},\n  "education": *[_type == "educationalBackground"] | order(year desc){_id, title, meta, year},\n  "testimonials": *[_type == "clientReview"] | order(_createdAt desc){\n    _id,\n    name,\n    meta,\n    text,\n    image{\n  alt,\n  crop,\n  hotspot,\n  asset->{_id, url, metadata{lqip, dimensions{width, height}}}\n}\n  }\n}': HOME_QUERY_RESULT
+    '{\n  "profile": *[_type == "profile" && _id == "profile"][0]{\n    firstName,\n    lastName,\n    jobTitle,\n    availability,\n    headline,\n    headlineHighlight,\n    intro,\n    stats[]{_key, value, label},\n    portrait{\n  alt,\n  crop,\n  hotspot,\n  asset->{_id, url, metadata{lqip, dimensions{width, height}}}\n},\n    about,\n    location,\n    languages,\n    skillGroups[]{_key, title, skills},\n    "resumeUrl": resume.asset->url,\n    process[]{_key, title, text},\n    contactText,\n    email,\n    phone,\n    socialLinks[]{_key, platform, url}\n  },\n  "projects": *[_type == "project" && defined(slug.current)]\n    | order(coalesce(order, 999) asc, _createdAt asc){\n      \n  _id,\n  title,\n  "slug": slug.current,\n  category,\n  subtitle,\n  tags,\n  url,\n  period,\n  "hasCaseStudy": defined(body[0]),\n  coverimage{\n  alt,\n  crop,\n  hotspot,\n  asset->{_id, url, metadata{lqip, dimensions{width, height}}}\n}\n,\n      featured,\n      client,\n      keyResults[]{_key, value, label}\n    },\n  "experiences": *[_type == "jobExperience"]\n    | order(select(current == true => 9999, coalesce(endYear, startYear)) desc, startYear desc){\n      _id,\n      title,\n      company,\n      companyUrl,\n      location,\n      contractType,\n      startYear,\n      endYear,\n      current,\n      summary,\n      achievements,\n      tags\n    },\n  "services": *[_type == "service"] | order(coalesce(order, 999) asc){\n    _id,\n    title,\n    text,\n    iconName,\n    deliverables,\n    stack\n  },\n  "education": *[_type == "educationalBackground"] | order(year desc){_id, title, meta, year},\n  "testimonials": *[_type == "clientReview"] | order(_createdAt desc){\n    _id,\n    name,\n    meta,\n    text,\n    image{\n  alt,\n  crop,\n  hotspot,\n  asset->{_id, url, metadata{lqip, dimensions{width, height}}}\n}\n  }\n}': HOME_QUERY_RESULT
     '\n  *[_type == "project" && slug.current == $slug][0]{\n    \n  _id,\n  title,\n  "slug": slug.current,\n  category,\n  subtitle,\n  tags,\n  url,\n  period,\n  "hasCaseStudy": defined(body[0]),\n  coverimage{\n  alt,\n  crop,\n  hotspot,\n  asset->{_id, url, metadata{lqip, dimensions{width, height}}}\n}\n,\n    _updatedAt,\n    client,\n    role,\n    keyResults[]{_key, value, label},\n    links[]{_key, label, url},\n    body[]{\n      ...,\n      _type == "image" => {\n        _key,\n        _type,\n        caption,\n        \n  alt,\n  crop,\n  hotspot,\n  asset->{_id, url, metadata{lqip, dimensions{width, height}}}\n\n      }\n    },\n    imagegallery[]{_key, \n  alt,\n  crop,\n  hotspot,\n  asset->{_id, url, metadata{lqip, dimensions{width, height}}}\n},\n    "others": *[_type == "project" && defined(slug.current) && slug.current != $slug]\n      | order(coalesce(order, 999) asc)[0...3]{\n  _id,\n  title,\n  "slug": slug.current,\n  category,\n  subtitle,\n  tags,\n  url,\n  period,\n  "hasCaseStudy": defined(body[0]),\n  coverimage{\n  alt,\n  crop,\n  hotspot,\n  asset->{_id, url, metadata{lqip, dimensions{width, height}}}\n}\n}\n  }\n': PROJECT_QUERY_RESULT
     '\n  *[_type == "project" && defined(slug.current) && defined(body[0])]{\n    "slug": slug.current,\n    _updatedAt\n  }\n': CASE_STUDIES_QUERY_RESULT
+    '{\n  "legal": *[_type == "legalNotice" && _id == "legalNotice"][0]{\n    _updatedAt,\n    publisherName,\n    legalStatus,\n    siret,\n    address,\n    vatNumber,\n    publicationDirector,\n    host{name, address, phone, url},\n    body\n  },\n  "contact": *[_type == "profile" && _id == "profile"][0]{email, phone}\n}': LEGAL_QUERY_RESULT
   }
 }
 // Lets @sanity/client releases that predate the global registry read it too

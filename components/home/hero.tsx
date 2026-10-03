@@ -1,5 +1,10 @@
 import Link from 'next/link'
-import { RiArrowRightLine, RiArrowRightUpLine, RiMapPin2Line } from 'react-icons/ri'
+import {
+  RiArrowRightLine,
+  RiArrowRightUpLine,
+  RiCodeSSlashLine,
+  RiMapPin2Line,
+} from 'react-icons/ri'
 import { SanityImage } from '@/components/sanity-image'
 import { ButtonLink } from '@/components/ui/button'
 import { Container } from '@/components/ui/container'
@@ -31,7 +36,7 @@ export function Hero({
   return (
     <section
       aria-labelledby="hero-title"
-      className="relative overflow-hidden border-b-2 border-ink bg-dots"
+      className="relative overflow-hidden border-b-2 border-ink bg-grid"
     >
       <Container className="grid items-center gap-14 pt-12 pb-20 sm:pt-16 lg:grid-cols-[1.45fr_1fr] lg:gap-14 lg:pt-20 lg:pb-28">
         <div>
@@ -122,6 +127,7 @@ function ProfileCard({
 
   return (
     <aside aria-label="En bref" className="relative mx-auto w-full max-w-md lg:max-w-none">
+      <RotatingBadge text={`${profile.jobTitle} • `} />
       <div className="rounded-3xl border-2 border-ink bg-white p-6 shadow-brutal-lg sm:p-7 lg:rotate-[1.5deg]">
         <div className="flex items-center gap-4">
           <div className="relative size-16 shrink-0 overflow-hidden rounded-2xl border-2 border-ink bg-mint">
@@ -177,7 +183,7 @@ function ProfileCard({
                   ? `/realisations/${featuredProject.slug}`
                   : '/#realisations'
               }
-              className="group mt-3 flex items-center gap-4 rounded-2xl border-2 border-ink bg-sun p-3 transition-[translate,box-shadow] hover:-translate-0.5 hover:shadow-brutal"
+              className="group mt-3 flex items-center gap-4 rounded-2xl border-2 border-ink bg-lilac p-3 transition-[translate,box-shadow] hover:-translate-0.5 hover:shadow-brutal"
             >
               <div className="relative size-14 shrink-0 overflow-hidden rounded-xl border-2 border-ink bg-white">
                 <SanityImage
@@ -205,5 +211,39 @@ function ProfileCard({
         )}
       </div>
     </aside>
+  )
+}
+
+/** Pastille tournante autour du métier, posée sur le coin de la carte (décorative) */
+function RotatingBadge({ text }: { text: string }) {
+  const radius = 37
+  return (
+    <div
+      aria-hidden
+      className="absolute -top-14 -right-4 z-10 hidden size-32 sm:block lg:-top-16 lg:-right-10"
+    >
+      <div className="relative size-full rounded-full border-2 border-ink bg-sun shadow-brutal">
+        <svg viewBox="0 0 100 100" className="size-full animate-spin-slow">
+          <defs>
+            <path
+              id="badge-circle"
+              d={`M50,50 m-${radius},0 a${radius},${radius} 0 1,1 ${radius * 2},0 a${radius},${radius} 0 1,1 -${radius * 2},0`}
+            />
+          </defs>
+          <text className="fill-ink font-mono text-[9.5px] font-bold uppercase">
+            <textPath
+              href="#badge-circle"
+              textLength={Math.floor(2 * Math.PI * radius) - 1}
+              lengthAdjust="spacing"
+            >
+              {text}
+            </textPath>
+          </text>
+        </svg>
+        <span className="absolute inset-0 m-auto grid size-12 place-items-center rounded-full border-2 border-ink bg-mint text-2xl">
+          <RiCodeSSlashLine />
+        </span>
+      </div>
+    </div>
   )
 }

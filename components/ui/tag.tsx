@@ -1,11 +1,12 @@
 import type { ComponentProps } from 'react'
 import { cx } from '@/lib/cx'
 
-export function Tag({ className, ...props }: ComponentProps<'span'>) {
+export function Tag({ muted, className, ...props }: ComponentProps<'span'> & { muted?: boolean }) {
   return (
     <span
       className={cx(
-        'inline-flex items-center rounded-full border-2 border-ink bg-white px-2.5 py-0.5 font-mono text-xs leading-5',
+        'inline-flex items-center rounded-full border-2 border-ink px-2.5 py-0.5 font-mono text-xs leading-5',
+        muted ? 'bg-paper' : 'bg-white',
         className,
       )}
       {...props}
@@ -35,7 +36,7 @@ export function TagList({
       ))}
       {hidden > 0 && (
         <li>
-          <Tag className="bg-paper">+{hidden}</Tag>
+          <Tag muted>+{hidden}</Tag>
         </li>
       )}
     </ul>

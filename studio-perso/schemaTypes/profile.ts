@@ -9,6 +9,7 @@ export default defineType({
   groups: [
     {name: 'hero', title: 'Accroche', default: true},
     {name: 'about', title: 'À propos'},
+    {name: 'services', title: 'Méthode'},
     {name: 'contact', title: 'Contact'},
     {name: 'seo', title: 'SEO'},
   ],
@@ -150,6 +151,15 @@ export default defineType({
       group: 'about',
       description: 'Le bouton « Télécharger mon CV » apparaît dès qu’un fichier est ajouté.',
       options: {accept: 'application/pdf'},
+    }),
+    defineField({
+      name: 'process',
+      title: 'Méthode de travail',
+      type: 'array',
+      group: 'services',
+      description: 'Étapes d’une mission, affichées sous les services.',
+      of: [defineArrayMember({type: 'processStep'})],
+      validation: (rule) => rule.max(5),
     }),
     defineField({
       name: 'contactText',

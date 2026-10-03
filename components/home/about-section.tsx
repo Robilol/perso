@@ -5,9 +5,13 @@ import { ButtonLink } from '@/components/ui/button'
 import { Container } from '@/components/ui/container'
 import { SectionHeading } from '@/components/ui/section-heading'
 import { Tag } from '@/components/ui/tag'
+import { cx } from '@/lib/cx'
 import type { HOME_QUERY_RESULT } from '@/sanity/types'
 
 type Profile = NonNullable<HOME_QUERY_RESULT['profile']>
+
+// Repères colorés des groupes de compétences
+const TONES = ['bg-mint', 'bg-sun', 'bg-sky', 'bg-rose', 'bg-lilac', 'bg-lime']
 
 export function AboutSection({
   profile,
@@ -26,6 +30,7 @@ export function AboutSection({
         <div>
           <SectionHeading
             id="a-propos-title"
+            index="04"
             eyebrow="À propos"
             title="Le code au service du produit"
           />
@@ -61,9 +66,13 @@ export function AboutSection({
             <div className="rounded-3xl border-2 border-ink bg-paper p-6 shadow-brutal sm:p-8">
               <h3 className="font-heading text-2xl">Compétences</h3>
               <dl className="mt-6 space-y-5">
-                {profile.skillGroups.map((group) => (
+                {profile.skillGroups.map((group, index) => (
                   <div key={group._key}>
-                    <dt className="font-mono text-xs tracking-[0.2em] text-muted uppercase">
+                    <dt className="flex items-center gap-2 font-mono text-xs tracking-[0.2em] text-muted uppercase">
+                      <span
+                        aria-hidden
+                        className={cx('size-2.5 border-2 border-ink', TONES[index % TONES.length])}
+                      />
                       {group.title}
                     </dt>
                     <dd className="mt-2">

@@ -2,7 +2,9 @@ import { RiArrowDownSLine, RiArrowRightUpLine, RiDownload2Line } from 'react-ico
 import { ButtonLink } from '@/components/ui/button'
 import { Container } from '@/components/ui/container'
 import { SectionHeading } from '@/components/ui/section-heading'
+import { Sticker } from '@/components/ui/sticker'
 import { TagList } from '@/components/ui/tag'
+import { cx } from '@/lib/cx'
 import { formatPeriod } from '@/lib/site'
 import { CONTRACT_TYPES } from '@/sanity/labels'
 import type { HOME_QUERY_RESULT } from '@/sanity/types'
@@ -11,6 +13,10 @@ type Experience = HOME_QUERY_RESULT['experiences'][number]
 
 /** Nombre d'expériences affichées avant le bouton « Voir les expériences précédentes » */
 const VISIBLE_COUNT = 5
+
+// Frise : rail vertical entre la colonne des dates et les cartes (à gauche sur mobile)
+const TIMELINE =
+  'relative space-y-8 before:absolute before:top-4 before:bottom-4 before:left-[calc(0.75rem-1px)] before:w-0.5 before:bg-ink md:before:left-[calc(13.25rem-1px)]'
 
 export function ExperienceSection({
   experiences,
@@ -31,6 +37,7 @@ export function ExperienceSection({
       <Container>
         <SectionHeading
           id="experiences-title"
+          index="03"
           eyebrow="Parcours"
           title="Expériences"
           description={`${years} ans à concevoir et faire évoluer des produits web, de l’alternance au freelance.`}
@@ -44,15 +51,15 @@ export function ExperienceSection({
           }
         />
 
-        <ol className="mt-14 space-y-6">
+        <ol className={cx('mt-14', TIMELINE)}>
           {visible.map((experience) => (
             <ExperienceItem key={experience._id} experience={experience} />
           ))}
         </ol>
 
         {older.length > 0 && (
-          <details className="group mt-6">
-            <summary className="mx-auto flex w-fit cursor-pointer list-none items-center gap-2 rounded-full border-2 border-ink bg-white px-5 py-2.5 font-semibold shadow-brutal transition-[translate,box-shadow] group-open:mb-6 hover:-translate-0.5 hover:shadow-brutal-md [&::-webkit-details-marker]:hidden">
+          <details className="group mt-8">
+            <summary className="mx-auto flex w-fit cursor-pointer list-none items-center gap-2 rounded-full border-2 border-ink bg-white px-5 py-2.5 font-semibold shadow-brutal transition-[translate,box-shadow] group-open:mb-8 hover:-translate-0.5 hover:shadow-brutal-md [&::-webkit-details-marker]:hidden">
               <span className="group-open:hidden">
                 Voir les expériences précédentes ({older.length})
               </span>
@@ -62,7 +69,7 @@ export function ExperienceSection({
                 className="text-xl transition-transform group-open:rotate-180"
               />
             </summary>
-            <ol className="space-y-6">
+            <ol className={TIMELINE}>
               {older.map((experience) => (
                 <ExperienceItem key={experience._id} experience={experience} />
               ))}
@@ -78,12 +85,20 @@ function ExperienceItem({ experience }: { experience: Experience }) {
   const contract = experience.contractType ? CONTRACT_TYPES[experience.contractType] : null
 
   return (
-    <li className="grid gap-3 md:grid-cols-[11rem_1fr] md:gap-8">
-      <div className="flex items-center gap-3 md:flex-col md:items-start md:pt-6">
-        <p className="flex items-center gap-2 font-mono text-sm font-medium">
-          <span aria-hidden className="size-2.5 rotate-45 bg-ink" />
+    <li className="relative grid gap-3 pl-10 md:grid-cols-[12rem_1fr] md:gap-10 md:pl-0">
+      <span
+        aria-hidden
+        className={cx(
+          'absolute top-6 left-0 size-6 rounded-full border-2 border-ink shadow-brutal-sm md:left-[12.5rem]',
+          experience.current ? 'bg-coral' : 'bg-mint',
+        )}
+      />
+
+      <div className="flex flex-wrap items-center gap-2 md:flex-col md:items-end md:pt-6 md:text-right">
+        <p className="font-mono text-sm font-bold">
           {formatPeriod(experience.startYear, experience.endYear, experience.current)}
         </p>
+        {experience.current && <Sticker className="-rotate-2 bg-coral">En cours</Sticker>}
         {contract && (
           <span className="rounded-full border-2 border-ink bg-lilac px-2.5 py-0.5 text-xs font-semibold">
             {contract}
@@ -92,7 +107,7 @@ function ExperienceItem({ experience }: { experience: Experience }) {
       </div>
 
       <article className="rounded-2xl border-2 border-ink bg-white p-5 shadow-brutal sm:p-6">
-        <h3 className="font-heading text-xl leading-tight">{experience.title}</h3>
+        <h3 className="font-heading text-xl leading-tight sm:text-2xl">{experience.title}</h3>
         <p className="mt-1.5 text-[15px]">
           {experience.companyUrl ? (
             <a
@@ -103,6 +118,7 @@ function ExperienceItem({ experience }: { experience: Experience }) {
             >
               {experience.company}
               <RiArrowRightUpLine aria-hidden />
+              <span className="sr-only">(nouvel onglet)</span>
             </a>
           ) : (
             <span className="font-semibold">{experience.company}</span>

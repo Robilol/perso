@@ -9,7 +9,7 @@ export function Footer({ profile }: { profile: NonNullable<SITE_QUERY_RESULT> })
   const fullName = `${profile.firstName} ${profile.lastName}`
 
   return (
-    <footer className="border-t-2 border-ink bg-ink text-paper">
+    <footer className="overflow-hidden border-t-2 border-ink bg-ink text-paper">
       <Container className="grid gap-10 py-14 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
           <p className="font-heading text-2xl">{fullName}</p>
@@ -70,9 +70,24 @@ export function Footer({ profile }: { profile: NonNullable<SITE_QUERY_RESULT> })
           <p>
             © {new Date().getFullYear()} {fullName}
           </p>
-          <p>Conçu et développé avec Next.js et Sanity</p>
+          <p className="flex flex-wrap gap-x-5 gap-y-2">
+            <Link
+              href="/mentions-legales"
+              className="underline decoration-paper/30 underline-offset-4 hover:text-mint hover:decoration-mint"
+            >
+              Mentions légales
+            </Link>
+            <span>Conçu et développé avec Next.js et Sanity</span>
+          </p>
         </Container>
       </div>
+
+      <p
+        aria-hidden
+        className="pb-[0.15em] text-center font-heading text-[clamp(2.75rem,11vw,11rem)] leading-none whitespace-nowrap text-transparent select-none [-webkit-text-stroke:2px_var(--color-mint)]"
+      >
+        {fullName}
+      </p>
     </footer>
   )
 }

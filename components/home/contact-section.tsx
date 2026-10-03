@@ -13,17 +13,15 @@ export function ContactSection({ profile }: { profile: Profile }) {
     <section
       id="contact"
       aria-labelledby="contact-title"
-      className="border-t-2 border-ink py-20 sm:py-28"
+      className="border-t-2 border-ink bg-mint bg-grid py-20 sm:py-28"
     >
       <Container>
-        <div className="grid gap-10 rounded-[2rem] border-2 border-ink bg-mint p-5 shadow-brutal-lg sm:p-10 lg:grid-cols-[1fr_1.15fr] lg:gap-14 lg:p-14">
+        <div className="grid gap-12 lg:grid-cols-[1fr_1.15fr] lg:gap-16">
           <div>
-            <Eyebrow className="text-ink/75" markerClassName="bg-white">
-              Contact
-            </Eyebrow>
+            <Eyebrow index="05">Contact</Eyebrow>
             <h2
               id="contact-title"
-              className="mt-4 font-heading text-4xl leading-[1.05] sm:text-5xl"
+              className="mt-5 font-heading text-[2.6rem] leading-none text-balance sm:text-6xl"
             >
               Un projet en tête&nbsp;?
             </h2>

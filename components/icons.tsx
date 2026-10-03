@@ -30,8 +30,9 @@ const SOCIAL_ICONS: Record<string, IconType> = {
   other: RiGlobalLine,
 }
 
-export function serviceIcon(name?: string | null): IconType {
-  return SERVICE_ICONS[name ?? ''] ?? RiCodeSSlashLine
+export function ServiceIcon({ name, className }: { name?: string | null; className?: string }) {
+  const Icon = SERVICE_ICONS[name ?? ''] ?? RiCodeSSlashLine
+  return <Icon aria-hidden className={className} />
 }
 
 export function socialIcon(platform?: string | null): IconType {

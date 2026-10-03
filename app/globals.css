@@ -1,9 +1,10 @@
 @import 'tailwindcss';
 
 /*
- * Design system — néo-brutalisme épuré
- * Papier crème, encre presque noire, bordures franches et ombres dures décalées.
- * Le vert menthe reprend la couleur historique du logo ; les pastels restent des accents ponctuels.
+ * Design system — néo-brutalisme éditorial
+ * Papier crème quadrillé, encre presque noire, bordures franches et ombres dures décalées.
+ * Le vert menthe reprend la couleur historique du logo ; lilas et corail servent d'accents forts,
+ * les autres pastels colorent les cartes.
  */
 @theme {
   --color-paper: #faf7f0;
@@ -16,6 +17,7 @@
   --color-rose: #ffc6e7;
   --color-sky: #a9e9f8;
   --color-lilac: #cdc7ff;
+  --color-coral: #ff9a6c;
 
   --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, 'SFMono-Regular', monospace;
@@ -24,8 +26,11 @@
   --shadow-brutal: 4px 4px 0 0 var(--color-ink);
   --shadow-brutal-md: 6px 6px 0 0 var(--color-ink);
   --shadow-brutal-lg: 8px 8px 0 0 var(--color-ink);
+  --shadow-brutal-xl: 12px 12px 0 0 var(--color-ink);
 
   --animate-marquee: marquee 45s linear infinite;
+  --animate-marquee-reverse: marquee 60s linear infinite reverse;
+  --animate-spin-slow: spin 24s linear infinite;
 
   @keyframes marquee {
     from {
@@ -45,13 +50,13 @@
   letter-spacing: -0.02em;
 }
 
-/* Trame de points du hero (clin d'œil à Fromton) */
-@utility bg-dots {
-  background-image: radial-gradient(
-    color-mix(in srgb, var(--color-ink) 16%, transparent) 1.2px,
-    transparent 1.2px
-  );
-  background-size: 22px 22px;
+/* Papier millimétré : les lignes prennent la couleur du texte (encre sur fond clair, papier sur fond sombre) */
+@utility bg-grid {
+  --grid-line: color-mix(in srgb, currentColor 8%, transparent);
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 2rem 2rem;
 }
 
 @layer base {

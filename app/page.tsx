@@ -42,9 +42,12 @@ export default async function HomePage() {
   return (
     <>
       <Hero profile={profile} featuredProject={featuredProject} />
-      <ClientsMarquee names={clientNames(experiences, projects)} />
+      <ClientsMarquee
+        names={clientNames(experiences, projects)}
+        keywords={services.map((service) => service.title)}
+      />
       <ProjectsSection projects={projects} />
-      <ServicesSection services={services} />
+      <ServicesSection services={services} process={profile.process} />
       <ExperienceSection experiences={experiences} resumeUrl={profile.resumeUrl} />
       <TestimonialsSection testimonials={testimonials} />
       <AboutSection profile={profile} education={education} />

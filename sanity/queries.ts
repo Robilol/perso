@@ -53,6 +53,7 @@ export const HOME_QUERY = defineQuery(/* groq */ `{
     languages,
     skillGroups[]{_key, title, skills},
     "resumeUrl": resume.asset->url,
+    process[]{_key, title, text},
     contactText,
     email,
     phone,
@@ -80,7 +81,14 @@ export const HOME_QUERY = defineQuery(/* groq */ `{
       achievements,
       tags
     },
-  "services": *[_type == "service"] | order(coalesce(order, 999) asc){_id, title, text, iconName},
+  "services": *[_type == "service"] | order(coalesce(order, 999) asc){
+    _id,
+    title,
+    text,
+    iconName,
+    deliverables,
+    stack
+  },
   "education": *[_type == "educationalBackground"] | order(year desc){_id, title, meta, year},
   "testimonials": *[_type == "clientReview"] | order(_createdAt desc){
     _id,
@@ -121,3 +129,19 @@ export const CASE_STUDIES_QUERY = defineQuery(/* groq */ `
     _updatedAt
   }
 `)
+
+/** Mentions légales ; l'email et le téléphone de contact viennent du profil */
+export const LEGAL_QUERY = defineQuery(/* groq */ `{
+  "legal": *[_type == "legalNotice" && _id == "legalNotice"][0]{
+    _updatedAt,
+    publisherName,
+    legalStatus,
+    siret,
+    address,
+    vatNumber,
+    publicationDirector,
+    host{name, address, phone, url},
+    body
+  },
+  "contact": *[_type == "profile" && _id == "profile"][0]{email, phone}
+}`)
