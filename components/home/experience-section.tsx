@@ -1,4 +1,6 @@
+import { Fragment } from 'react'
 import { RiArrowDownSLine, RiArrowRightUpLine, RiDownload2Line } from 'react-icons/ri'
+import { SanityImage } from '@/components/sanity-image'
 import { ButtonLink } from '@/components/ui/button'
 import { Container } from '@/components/ui/container'
 import { SectionHeading } from '@/components/ui/section-heading'
@@ -82,10 +84,10 @@ export function ExperienceSection({
 }
 
 function ExperienceItem({ experience }: { experience: Experience }) {
-  const contract = experience.contractType ? CONTRACT_TYPES[experience.contractType] : null
+  const contracts = (experience.contractTypes ?? []).map((type) => CONTRACT_TYPES[type] ?? type)
 
   return (
-    <li className="relative grid gap-3 pl-10 md:grid-cols-[12rem_1fr] md:gap-10 md:pl-0">
+    <li className="relative grid grid-cols-1 gap-3 pl-10 md:grid-cols-[12rem_1fr] md:gap-10 md:pl-0">
       <span
         aria-hidden
         className={cx(
@@ -99,32 +101,58 @@ function ExperienceItem({ experience }: { experience: Experience }) {
           {formatPeriod(experience.startYear, experience.endYear, experience.current)}
         </p>
         {experience.current && <Sticker className="-rotate-2 bg-coral">En cours</Sticker>}
-        {contract && (
+        {contracts.length > 0 && (
           <span className="rounded-full border-2 border-ink bg-lilac px-2.5 py-0.5 text-xs font-semibold">
-            {contract}
+            {contracts.map((contract, index) => (
+              <Fragment key={contract}>
+                {index > 0 && (
+                  <>
+                    <span aria-hidden> → </span>
+                    <span className="sr-only"> puis </span>
+                  </>
+                )}
+                {contract}
+              </Fragment>
+            ))}
           </span>
         )}
       </div>
 
       <article className="rounded-2xl border-2 border-ink bg-white p-5 shadow-brutal sm:p-6">
-        <h3 className="font-heading text-xl leading-tight sm:text-2xl">{experience.title}</h3>
-        <p className="mt-1.5 text-[15px]">
-          {experience.companyUrl ? (
-            <a
-              href={experience.companyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-0.5 font-semibold underline decoration-mint decoration-2 underline-offset-4 hover:decoration-ink"
-            >
-              {experience.company}
-              <RiArrowRightUpLine aria-hidden />
-              <span className="sr-only">(nouvel onglet)</span>
-            </a>
-          ) : (
-            <span className="font-semibold">{experience.company}</span>
+        <div className="flex items-start gap-4">
+          {experience.logo?.asset && (
+            <div className="relative size-12 shrink-0 overflow-hidden rounded-xl border-2 border-ink bg-white shadow-brutal-sm sm:size-14">
+              {/* Décoratif : le nom de l'entreprise est écrit juste à côté */}
+              <SanityImage
+                image={experience.logo}
+                alt=""
+                fill
+                sizes="56px"
+                className="object-cover"
+              />
+            </div>
           )}
-          {experience.location && <span className="text-muted"> · {experience.location}</span>}
-        </p>
+          <div className="min-w-0">
+            <h3 className="font-heading text-xl leading-tight sm:text-2xl">{experience.title}</h3>
+            <p className="mt-1.5 text-[15px]">
+              {experience.companyUrl ? (
+                <a
+                  href={experience.companyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-0.5 font-semibold underline decoration-mint decoration-2 underline-offset-4 hover:decoration-ink"
+                >
+                  {experience.company}
+                  <RiArrowRightUpLine aria-hidden />
+                  <span className="sr-only">(nouvel onglet)</span>
+                </a>
+              ) : (
+                <span className="font-semibold">{experience.company}</span>
+              )}
+              {experience.location && <span className="text-muted"> · {experience.location}</span>}
+            </p>
+          </div>
+        </div>
 
         {experience.summary && <p className="mt-3 text-pretty text-muted">{experience.summary}</p>}
 

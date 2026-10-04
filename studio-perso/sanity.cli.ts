@@ -6,6 +6,8 @@ export default defineCliConfig({
     dataset: 'production',
   },
   deployment: {
+    // Studio hébergé sur https://perso.sanity.studio
+    appId: 'ntdfh58qmyopvuktk7iq98bd',
     /**
      * Enable auto-updates for studios.
      * Learn more at https://www.sanity.io/docs/cli#auto-updates

@@ -42,10 +42,10 @@ export function Header({ firstName, lastName }: { firstName: string; lastName: s
           : 'border-transparent bg-paper',
       )}
     >
-      <Container className="flex h-16 items-center justify-between gap-6 md:h-[4.5rem]">
+      <Container className="flex h-16 items-center justify-between gap-6 lg:h-[4.5rem]">
         <Logo firstName={firstName} lastName={lastName} />
 
-        <nav aria-label="Navigation principale" className="hidden md:block">
+        <nav aria-label="Navigation principale" className="hidden lg:block">
           <ul className="flex items-center gap-1">
             {NAV_ITEMS.map((item) => (
               <li key={item.href}>
@@ -60,13 +60,13 @@ export function Header({ firstName, lastName }: { firstName: string; lastName: s
           </ul>
         </nav>
 
-        <div className="hidden md:block">
+        <div className="hidden lg:block">
           <ButtonLink href="/#contact">Me contacter</ButtonLink>
         </div>
 
         <button
           type="button"
-          className="grid size-10 place-items-center rounded-full border-2 border-ink bg-white text-xl shadow-brutal-sm md:hidden"
+          className="grid size-10 place-items-center rounded-full border-2 border-ink bg-white text-xl shadow-brutal-sm lg:hidden"
           aria-expanded={menuOpen}
           aria-controls="menu-mobile"
           onClick={() => setMenuOpen((open) => !open)}
@@ -77,7 +77,7 @@ export function Header({ firstName, lastName }: { firstName: string; lastName: s
       </Container>
 
       {menuOpen && (
-        <div id="menu-mobile" className="border-t-2 border-ink bg-paper md:hidden">
+        <div id="menu-mobile" className="border-t-2 border-ink bg-paper lg:hidden">
           <Container className="py-6">
             <nav aria-label="Navigation mobile">
               <ul className="flex flex-col">

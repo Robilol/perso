@@ -1,10 +1,26 @@
+'use client'
+
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import type { MouseEvent } from 'react'
 import { initials } from '@/lib/site'
 
 export function Logo({ firstName, lastName }: { firstName: string; lastName: string }) {
+  const pathname = usePathname()
+
+  // Déjà sur l'accueil, Next.js ne fait rien : on remonte en douceur comme le bouton « haut de page »
+  const scrollToTop = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (pathname !== '/' || event.button !== 0) return
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+    event.preventDefault()
+    window.scrollTo({ top: 0 })
+    if (window.location.hash) window.history.replaceState(null, '', '/')
+  }
+
   return (
     <Link
       href="/"
+      onClick={scrollToTop}
       className="group flex items-center gap-3"
       aria-label={`${firstName} ${lastName}, accueil`}
     >

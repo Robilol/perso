@@ -25,12 +25,16 @@ export async function generateMetadata(): Promise<Metadata> {
     title: TITLE,
     description: DESCRIPTION,
     alternates: { canonical: PATH },
-    openGraph: openGraph({
-      siteName: fullName(profile),
-      title: TITLE,
-      description: DESCRIPTION,
-      url: PATH,
-    }),
+    openGraph: {
+      ...openGraph({
+        siteName: fullName(profile),
+        title: TITLE,
+        description: DESCRIPTION,
+        url: PATH,
+      }),
+      // Pas d'image propre à la page : celle de l'accueil (app/opengraph-image)
+      images: '/opengraph-image',
+    },
   }
 }
 

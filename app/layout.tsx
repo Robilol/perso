@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Archivo, JetBrains_Mono } from 'next/font/google'
 import type { ReactNode } from 'react'
 import { Analytics } from '@vercel/analytics/next'
+import { BackToTop } from '@/components/layout/back-to-top'
 import { Footer } from '@/components/layout/footer'
 import { Header } from '@/components/layout/header'
 import { fullName, getSiteProfile, openGraph } from '@/lib/seo'
@@ -34,8 +35,10 @@ export async function generateMetadata(): Promise<Metadata> {
     applicationName: name,
     authors: [{ name, url: SITE_URL }],
     creator: name,
+    // Grandes vignettes et extraits complets dans les résultats Google
+    robots: { googleBot: { 'max-image-preview': 'large', 'max-snippet': -1 } },
     openGraph: openGraph({ siteName: name, title, description, url: '/' }),
-    twitter: { card: 'summary_large_image', title, description: description ?? undefined },
+    twitter: { card: 'summary_large_image' },
     icons: {
       icon: [
         { url: '/favicon.svg', type: 'image/svg+xml' },
@@ -66,6 +69,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
         {profile && <Header firstName={profile.firstName} lastName={profile.lastName} />}
         <main id="contenu">{children}</main>
         {profile && <Footer profile={profile} />}
+        <BackToTop />
         <Analytics />
       </body>
     </html>

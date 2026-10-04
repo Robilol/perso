@@ -1,6 +1,0 @@
-Sitemap: https://www.robin-regis.fr/sitemap.xml
-
-User-agent: *
-Allow: /*
-
-Disallow: /api/*

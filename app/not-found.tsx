@@ -4,7 +4,6 @@ import { Container } from '@/components/ui/container'
 
 export const metadata: Metadata = {
   title: 'Page introuvable',
-  robots: { index: false },
 }
 
 export default function NotFound() {

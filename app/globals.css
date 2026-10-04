@@ -83,6 +83,17 @@
     scroll-margin-top: 6rem;
   }
 
+  /* Tailwind 4 rend aux boutons le curseur par défaut : on remet la main sur tout ce qui est cliquable */
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+
+  /* La page ne défile pas derrière une fenêtre modale (visionneuse d'images) */
+  html:has(dialog[open]) {
+    overflow: hidden;
+  }
+
   /* Badge reCAPTCHA masqué : la mention obligatoire figure sous le formulaire de contact */
   .grecaptcha-badge {
     visibility: hidden;

@@ -37,6 +37,16 @@ export const SITE_QUERY = defineQuery(/* groq */ `
   }
 `)
 
+/** Types de documents affichés sur l'accueil : tags de cache de la page et date de mise à jour du sitemap */
+export const HOME_TYPES = [
+  'profile',
+  'project',
+  'jobExperience',
+  'service',
+  'educationalBackground',
+  'clientReview',
+]
+
 export const HOME_QUERY = defineQuery(/* groq */ `{
   "profile": *[_type == "profile" && _id == "profile"][0]{
     firstName,
@@ -71,8 +81,9 @@ export const HOME_QUERY = defineQuery(/* groq */ `{
       title,
       company,
       companyUrl,
+      logo{${imageFields}},
       location,
-      contractType,
+      contractTypes,
       startYear,
       endYear,
       current,
@@ -101,6 +112,7 @@ export const HOME_QUERY = defineQuery(/* groq */ `{
 export const PROJECT_QUERY = defineQuery(/* groq */ `
   *[_type == "project" && slug.current == $slug][0]{
     ${projectCardFields},
+    _createdAt,
     _updatedAt,
     client,
     role,
@@ -121,13 +133,21 @@ export const PROJECT_QUERY = defineQuery(/* groq */ `
   }
 `)
 
-/** Réalisations qui ont une étude de cas : pages pré-générées et sitemap */
+/** Réalisations qui ont une étude de cas : pages pré-générées */
 export const CASE_STUDIES_QUERY = defineQuery(/* groq */ `
-  *[_type == "project" && defined(slug.current) && defined(body[0])]{
-    "slug": slug.current,
-    _updatedAt
-  }
+  *[_type == "project" && defined(slug.current) && defined(body[0])]{"slug": slug.current}
 `)
+
+/** Sitemap : dernières mises à jour et captures des études de cas ($homeTypes = HOME_TYPES) */
+export const SITEMAP_QUERY = defineQuery(/* groq */ `{
+  "homeUpdatedAt": *[_type in $homeTypes] | order(_updatedAt desc)[0]._updatedAt,
+  "caseStudies": *[_type == "project" && defined(slug.current) && defined(body[0])]{
+    "slug": slug.current,
+    _updatedAt,
+    "images": [coverimage, ...coalesce(imagegallery, [])].asset->url
+  },
+  "legalUpdatedAt": *[_type == "legalNotice" && _id == "legalNotice"][0]._updatedAt
+}`)
 
 /** Mentions légales ; l'email de contact vient du profil */
 export const LEGAL_QUERY = defineQuery(/* groq */ `{

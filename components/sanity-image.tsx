@@ -25,10 +25,20 @@ type SanityImageProps = {
   fill?: boolean
   alt?: string
   priority?: boolean
+  /** « eager » charge l'image même hors écran (ex. image suivante d'un diaporama) */
+  loading?: 'eager' | 'lazy'
   className?: string
 }
 
-export function SanityImage({ image, sizes, fill, alt, priority, className }: SanityImageProps) {
+export function SanityImage({
+  image,
+  sizes,
+  fill,
+  alt,
+  priority,
+  loading,
+  className,
+}: SanityImageProps) {
   if (!image?.asset) return null
 
   const { crop, hotspot } = image
@@ -50,6 +60,7 @@ export function SanityImage({ image, sizes, fill, alt, priority, className }: Sa
         fill
         sizes={sizes}
         priority={priority}
+        loading={loading}
         placeholder={placeholder}
         blurDataURL={lqip}
         className={className}
@@ -67,6 +78,7 @@ export function SanityImage({ image, sizes, fill, alt, priority, className }: Sa
       height={height}
       sizes={sizes}
       priority={priority}
+      loading={loading}
       placeholder={placeholder}
       blurDataURL={lqip}
       className={className}

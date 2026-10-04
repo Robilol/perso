@@ -38,7 +38,7 @@ export function Hero({
       aria-labelledby="hero-title"
       className="relative overflow-hidden border-b-2 border-ink bg-grid"
     >
-      <Container className="grid items-center gap-14 pt-12 pb-20 sm:pt-16 lg:grid-cols-[1.45fr_1fr] lg:gap-14 lg:pt-20 lg:pb-28">
+      <Container className="grid grid-cols-1 items-center gap-14 pt-12 pb-20 sm:pt-16 lg:grid-cols-[1.45fr_1fr] lg:gap-14 lg:pt-20 lg:pb-28">
         <div>
           <p className="inline-flex items-center gap-2.5 rounded-full border-2 border-ink bg-white px-3.5 py-1.5 text-sm font-medium shadow-brutal-sm">
             <span className="relative flex size-2.5" aria-hidden>
@@ -59,7 +59,7 @@ export function Hero({
 
           <h1
             id="hero-title"
-            className="mt-7 font-heading text-[2.6rem] leading-[1.06] text-balance sm:text-6xl lg:text-[3.6rem] xl:text-[4rem]"
+            className="mt-7 font-heading text-[clamp(2.1rem,11vw,2.6rem)] leading-[1.06] text-balance sm:text-6xl lg:text-[3.6rem] xl:text-[4rem]"
           >
             <Headline text={profile.headline} highlight={profile.headlineHighlight} />
           </h1>
@@ -196,7 +196,7 @@ function ProfileCard({
               </div>
               <div className="min-w-0 flex-1">
                 <p className="truncate font-heading text-base">{featuredProject.title}</p>
-                <p className="truncate text-sm text-ink/70">
+                <p className="text-sm text-ink/70">
                   {[PROJECT_CATEGORIES[featuredProject.category], featuredProject.period]
                     .filter(Boolean)
                     .join(' · ')}

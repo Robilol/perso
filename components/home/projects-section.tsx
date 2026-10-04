@@ -54,7 +54,7 @@ export function ProjectsSection({ projects }: { projects: Project[] }) {
           ))}
 
           {cards.length > 0 && (
-            <ul className="grid gap-8 md:grid-cols-2">
+            <ul className="grid grid-cols-1 gap-8 md:grid-cols-2">
               {cards.map((project, position) => (
                 <li key={project._id}>
                   <ProjectCard
@@ -80,7 +80,7 @@ function FeaturedProject({ project, index }: { project: Project; index: number }
   const target = projectTarget(project)
 
   return (
-    <article className="grid overflow-hidden rounded-3xl border-2 border-ink bg-white shadow-brutal-xl lg:grid-cols-[1.3fr_1fr]">
+    <article className="grid grid-cols-1 overflow-hidden rounded-3xl border-2 border-ink bg-white shadow-brutal-xl lg:grid-cols-[1.3fr_1fr]">
       <div className="relative border-b-2 border-ink bg-lilac bg-grid p-5 pt-14 sm:p-9 sm:pt-16 lg:border-r-2 lg:border-b-0 lg:p-10 lg:pt-16">
         <Sticker className="absolute top-4 left-4 -rotate-3 bg-coral sm:top-5 sm:left-6">
           ★ Projet phare
@@ -109,7 +109,7 @@ function FeaturedProject({ project, index }: { project: Project; index: number }
             </>
           )}
         </p>
-        <h3 className="mt-4 font-heading text-[2.4rem] leading-[1.02] sm:text-5xl">
+        <h3 className="mt-4 font-heading text-[clamp(1.9rem,9.5vw,2.4rem)] leading-[1.02] break-words sm:text-5xl">
           {project.title}
         </h3>
         <p className="mt-4 text-lg text-pretty text-muted">{project.subtitle}</p>

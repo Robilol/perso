@@ -48,6 +48,13 @@ export default defineType({
       group: 'main',
     }),
     defineField({
+      name: 'logo',
+      title: 'Logo',
+      type: 'image',
+      group: 'main',
+      description: "Format carré de préférence, affiché à côté du nom de l'entreprise.",
+    }),
+    defineField({
       name: 'location',
       title: 'Lieu',
       type: 'string',
@@ -55,11 +62,13 @@ export default defineType({
       description: 'Ex. « Paris (75) », « Remote »',
     }),
     defineField({
-      name: 'contractType',
-      title: 'Type de contrat',
-      type: 'string',
+      name: 'contractTypes',
+      title: 'Types de contrat',
+      type: 'array',
       group: 'main',
-      options: {list: CONTRACT_TYPES},
+      description: 'Dans l’ordre chronologique, ex. « Freelance » puis « CDI ».',
+      of: [defineArrayMember({type: 'string', options: {list: CONTRACT_TYPES}})],
+      validation: (rule) => rule.unique(),
     }),
     defineField({
       name: 'startYear',
@@ -120,6 +129,14 @@ export default defineType({
     }),
     defineField({
       ...legacyField,
+      deprecated: {reason: 'Remplacé par « Types de contrat ».'},
+      name: 'contractType',
+      title: 'Type de contrat (obsolète)',
+      type: 'string',
+      options: {list: CONTRACT_TYPES},
+    }),
+    defineField({
+      ...legacyField,
       name: 'meta',
       title: 'Entreprise / Lieu (obsolète)',
       type: 'string',
@@ -151,11 +168,12 @@ export default defineType({
       startYear: 'startYear',
       endYear: 'endYear',
       current: 'current',
+      media: 'logo',
     },
-    prepare: ({title, company, startYear, endYear, current}) => {
+    prepare: ({title, company, startYear, endYear, current, media}) => {
       const end = current ? 'aujourd’hui' : endYear
       const period = startYear && end && end !== startYear ? `${startYear} – ${end}` : startYear
-      return {title, subtitle: [company, period].filter(Boolean).join(' · ')}
+      return {title, subtitle: [company, period].filter(Boolean).join(' · '), media}
     },
   },
 })
